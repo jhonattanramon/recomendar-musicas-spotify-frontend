@@ -1,4 +1,5 @@
 import { TextInput, StyleSheet} from "react-native"
+import styled from "styled-components/native";
 
 
 const Input = ({placeholder, value}) => {
@@ -9,7 +10,10 @@ const Input = ({placeholder, value}) => {
     inputMode="text"
     placeholder={placeholder}
     value={value}
-    
+
+    onFocus={ () => {
+        
+    }}
     /> 
 }
 
@@ -17,13 +21,28 @@ const Input = ({placeholder, value}) => {
 const styles = StyleSheet.create(
     {
         input:{
-            padding: 10,
+            padding: 13,
             border: '1px solid white',
             color: 'white',
+            borderRadius:7,
+            
+
         },
+
+       
+
+        
       
        
     }
 )
+
+
+const Textinput = styled.TextInput`
+
+    
+
+
+`
 
 export default Input

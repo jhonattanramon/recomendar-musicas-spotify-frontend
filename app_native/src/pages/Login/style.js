@@ -1,11 +1,16 @@
 import styled from "styled-components/native";
 
-const Container = styled.View`
+export const Container = styled.View`
     
-width: 500px;
-height: 700px;
-
+width: 70%;
+margin: 0 auto; 
+justifyContent: center;
+flex: 1;
 
 `
 
-export default Container
+export const Separador = styled.View`
+
+    margin: 10px 0;
+`
+

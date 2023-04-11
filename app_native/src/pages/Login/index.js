@@ -2,15 +2,18 @@ import { View } from "react-native"
 import Button_Component from "../../components/Button_Component"
 import Input_Component from "../../components/Input_Component"
 
-import Container  from "./style"
+import {Separador, Container}  from "./style.js"
+
+ 
 
 const Login_Page = () => {
     
     return(
     
-        <View style={Container}> 
+        <Container> 
 
             <View> 
+                
                 
                 <Input_Component placeholder="EMAIL"/> 
 
@@ -18,15 +21,19 @@ const Login_Page = () => {
 
             </View>
 
+            <Separador />
+
             <View> 
                 
-            <Button_Component title="login" /> 
+                <Button_Component title="login" /> 
             
             </View>
 
-        </View>
+        </Container>
     )
 }
+
+
 
 
 
