@@ -1,23 +1,33 @@
 import { View } from "react-native"
-import Input from "../../components/Input"
+import Button_Component from "../../components/Button_Component"
+import Input_Component from "../../components/Input_Component"
 
+import Container  from "./style"
 
-const Login = () => {
+const Login_Page = () => {
     
     return(
     
-        <View> 
+        <View style={Container}> 
 
             <View> 
+                
+                <Input_Component placeholder="EMAIL"/> 
 
-                <Input /> 
+                <Input_Component placeholder="SENHA"/>
 
             </View>
-    
+
+            <View> 
+                
+            <Button_Component title="login" /> 
+            
+            </View>
 
         </View>
     )
 }
 
 
-export default Login
+
+export default Login_Page
