@@ -1,4 +1,4 @@
-import { TextInput, StyleSheet} from "react-native"
+import { TextInput} from "react-native-paper"
 import styled from "styled-components/native";
 
 
@@ -25,7 +25,8 @@ const styles = StyleSheet.create(
             border: '1px solid white',
             color: 'white',
             borderRadius:7,
-            
+                
+        
 
         },
 
