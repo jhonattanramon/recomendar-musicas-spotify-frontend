@@ -15,9 +15,9 @@ const Login_Page = () => {
             <View> 
                 
                 
-                <Input_Component placeholder="EMAIL"/> 
+                <Input_Component placeholderName="Email"  color={"#00000"}/> 
 
-                <Input_Component placeholder="SENHA"/>
+                <Input_Component placeholderName="Senha"  color={"#00000"}/>
 
             </View>
 

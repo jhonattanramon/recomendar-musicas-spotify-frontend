@@ -2,48 +2,25 @@ import { TextInput} from "react-native-paper"
 import styled from "styled-components/native";
 
 
-const Input = ({placeholder, value}) => {
+const Input = ({labelName, placeholderName, value, color}) => {
 
 
     return <TextInput
-    style={styles.input} 
-    inputMode="text"
-    placeholder={placeholder}
-    value={value}
-
-    onFocus={ () => {
-        
-    }}
+        label={labelName}
+        mode="outlined"
+        placeholder={placeholderName}
+        selectionColor={color}
+        activeUnderlineColor="#00000"
+        underlineColor="#00000"
     /> 
 }
 
 
-const styles = StyleSheet.create(
-    {
-        input:{
-            padding: 13,
-            border: '1px solid white',
-            color: 'white',
-            borderRadius:7,
-                
-        
 
-        },
-
-       
-
-        
-      
-       
-    }
-)
-
-
-const Textinput = styled.TextInput`
 
     
 
 
-`
+
 
 export default Input
