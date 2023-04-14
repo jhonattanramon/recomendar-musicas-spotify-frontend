@@ -2,7 +2,7 @@ import { View, Text } from "react-native"
 import Button_Component from "../../components/Button_Component"
 import Input_Component from "../../components/Input_Component"
 
-import {Separador, Container}  from "../../styles/general"
+import {Separador, Container, SectionCenter}  from "../../styles/styled-components"
 
  
 
@@ -12,13 +12,8 @@ const Login_Page = () => {
     
         <Container> 
 
-            <View> 
+            <SectionCenter> 
 
-                <Text style={{
-                    color:'white'
-                    }}>LOGIN</Text>
-                    
-            </View>
 
             <View> 
                 
@@ -37,6 +32,8 @@ const Login_Page = () => {
             
             </View>
 
+            </SectionCenter>
+            
         </Container>
     )
 }

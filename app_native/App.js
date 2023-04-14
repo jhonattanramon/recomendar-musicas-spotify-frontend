@@ -1,26 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Login_Page from "./src/pages/Login"
-import Cadastro_page from './src/pages/Cadastro';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import Login_Page from "./src/pages/Login";
+import Cadastro_page from "./src/pages/Cadastro";
 
-const  App = () => {
-  return(
+const App = () => {
 
-    <View style={{
-      backgroundColor:'black',
-       flex:1,
-       
-       }}> 
+    const Stack = createNativeStackNavigator()
+  
+  return (
+    <NavigationContainer>
 
-
-
-      <Cadastro_page /> 
+        <Stack.Navigator> 
+            <Stack.Screen name="login" component={Login_Page} /> 
+        </Stack.Navigator>
       
+  
+      
+    </NavigationContainer>
+  );
+};
 
-    
-    </View>
-
-  )
-}
-
-export default App
+export default App;

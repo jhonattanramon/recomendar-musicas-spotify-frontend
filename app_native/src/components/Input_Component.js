@@ -2,7 +2,7 @@ import { TextInput} from "react-native-paper"
 import styled from "styled-components/native";
 
 
-const Input = ({labelName, placeholderName, value, color}) => {
+const Input_Component = ({labelName, placeholderName, value, color}) => {
 
 
     return <TextInput
@@ -12,6 +12,7 @@ const Input = ({labelName, placeholderName, value, color}) => {
         selectionColor={color}
         activeUnderlineColor="#00000"
         underlineColor="#00000"
+        
     /> 
 }
 
@@ -23,4 +24,4 @@ const Input = ({labelName, placeholderName, value, color}) => {
 
 
 
-export default Input
+export default Input_Component

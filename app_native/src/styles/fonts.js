@@ -1,5 +1,5 @@
 
 
-  const fontDefault = {
+ export const fontDefault = {
     
   }
