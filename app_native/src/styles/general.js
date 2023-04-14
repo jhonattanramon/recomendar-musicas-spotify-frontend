@@ -7,9 +7,12 @@ margin: 0 auto;
 justifyContent: center;
 flex: 1;
 
+
 `
 
 export const Separador = styled.View`
 
     margin: 10px 0;
 `
+
+

@@ -8,7 +8,8 @@ const  App = () => {
 
     <View style={{
       backgroundColor:'black',
-       flex:1
+       flex:1,
+       
        }}> 
 
 
