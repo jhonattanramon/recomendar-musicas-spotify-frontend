@@ -1,8 +1,8 @@
-import { View } from "react-native"
+import { View, Text } from "react-native" 
 import Button_Component from "../../components/Button_Component"
 import Input_Component from "../../components/Input_Component"
 
-import {Separador, Container}  from "./style.js"
+import {Separador, Container}  from "../../styles/general"
 
  
 
@@ -11,6 +11,14 @@ const Login_Page = () => {
     return(
     
         <Container> 
+
+            <View> 
+
+                <Text style={{
+                    color:'white'
+                    }}>LOGIN</Text>
+                    
+            </View>
 
             <View> 
                 

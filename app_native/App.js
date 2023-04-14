@@ -1,16 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Tela_Page from "./src/pages/Login"
-
+import Login_Page from "./src/pages/Login"
+import Cadastro_page from './src/pages/Cadastro';
 
 const  App = () => {
   return(
 
-    <View style={{backgroundColor:'black', flex:1}}> 
+    <View style={{
+      backgroundColor:'black',
+       flex:1
+       }}> 
 
 
 
-      <Tela_Page /> 
+      <Cadastro_page /> 
       
 
     
