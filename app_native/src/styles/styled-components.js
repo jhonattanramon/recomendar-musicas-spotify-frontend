@@ -1,10 +1,11 @@
 import styled from "styled-components/native";
+import {colors} from "./colors"
 
 export const Container = styled.View`
     
 width: 100%;
 flex: 1;
-background: black;
+background: ${colors.complement.primary};
 
 
 `

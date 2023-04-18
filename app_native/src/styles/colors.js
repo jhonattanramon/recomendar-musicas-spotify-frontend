@@ -2,13 +2,13 @@
 
 export const colors = {
 
-    primary: "#00E007",
-    secondary: "#50E655",
-    tertiary: "00AD06",
+    primary: "#22c55e",
+    secondary: "#16a34a",
+    tertiary: "#4ade80",
 
     complement:{
         
-        primary: "#F4F4F4",
-        secondary: "#1B1B1B"
+        primary: "#030712",
+        secondary: "#f9fafb"
     }
 }

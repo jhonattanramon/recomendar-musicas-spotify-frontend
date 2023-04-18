@@ -12,8 +12,9 @@ const App = () => {
   return (
     <NavigationContainer>
 
-        <Stack.Navigator> 
+        <Stack.Navigator initialRouteName="login"> 
             <Stack.Screen name="login" component={Login_Page} /> 
+            <Stack.Screen name="cadastro" component={Cadastro_page} /> 
         </Stack.Navigator>
       
   

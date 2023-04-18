@@ -1,18 +1,32 @@
 import { TextInput} from "react-native-paper"
 import styled from "styled-components/native";
+import {colors} from "../styles/colors"
 
 
-const Input_Component = ({labelName, placeholderName, value, color}) => {
+const Input_Component = ({
+    labelName,
+    placeholderName,
+    value,
+    color,
+    secureTextEntry,
+    inputMode,
+    textAffix
+}) => {
 
 
     return <TextInput
         label={labelName}
         mode="outlined"
         placeholder={placeholderName}
-        selectionColor={color}
-        activeUnderlineColor="#00000"
-        underlineColor="#00000"
+        outlineColor={colors.complement.secondary}
+        activeOutlineColor={colors.secondary}
+        activeUnderlineColor="#020617"
+        underlineColor="#020617"
+        secureTextEntry={secureTextEntry}
+        inputMode={inputMode}
+
         
+         
     /> 
 }
 

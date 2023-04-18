@@ -1,11 +1,16 @@
 import { Button, View, StyleSheet } from "react-native"
 
-const Button_Component = ({title}) =>{
+const Button_Component = ({title, funcOnPress}) =>{
 
 
     return (
         <View style={styles.Button}> 
-            <Button color="none" title={title}  />
+            <Button
+             color="none"
+              title={title}
+              onPress={
+                funcOnPress 
+              }  />
         </View>
     )
 }
@@ -13,7 +18,7 @@ const Button_Component = ({title}) =>{
 const styles = StyleSheet.create(
     {
         Button: {
-            backgroundColor: '#00E007',
+            backgroundColor: '#22c55e',
             padding: 10,
             borderRadius: 4
              
