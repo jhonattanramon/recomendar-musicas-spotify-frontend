@@ -45,7 +45,14 @@ const Login_Page = ({navigation}) => {
             
             </View>
 
+
+            <View> 
+
+                <Text> Cadastro </Text>
+            </View>
+
             </SectionCenter>
+
             
         </Container>
     )

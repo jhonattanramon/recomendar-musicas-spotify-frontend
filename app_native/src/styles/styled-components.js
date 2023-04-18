@@ -30,5 +30,10 @@ justifyContent: center;
 
 margin: 0 auto;   
 `
+export const HeaderStyle = styled.View`
+
+    background: #222;
+
+`
 
 
