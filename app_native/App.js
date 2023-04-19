@@ -12,7 +12,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="cadastro"
         screenOptions={{
           headerStyle: {
             backgroundColor: colors.secondary,
@@ -27,7 +27,9 @@ const App = () => {
           name="login"
           component={Login_Page}
         />
-        <Stack.Screen name="cadastro" component={Cadastro_page} />
+        <Stack.Screen
+         name="cadastro"
+         component={Cadastro_page} />
       </Stack.Navigator>
     </NavigationContainer>
   );
