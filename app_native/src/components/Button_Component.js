@@ -1,6 +1,8 @@
 import { Button, View, StyleSheet } from "react-native"
 
-const Button_Component = ({title, funcOnPress}) =>{
+const Button_Component = ({
+    title,
+    funcOnPress,}) =>{
 
 
     return (

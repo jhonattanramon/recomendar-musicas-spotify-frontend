@@ -36,4 +36,8 @@ export const HeaderStyle = styled.View`
 
 `
 
+export const Title =  styled.Text`
+    fontSize:33
+    fontWeight:bold
+`
 

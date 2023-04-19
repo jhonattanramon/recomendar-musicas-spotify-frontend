@@ -4,13 +4,15 @@ import {
   Section,
   SectionCenter,
   Separador,
+  Title
 } from "../../styles/styled-components";
 import { TextInput } from "react-native-paper";
 import Button_Component from "../../components/Button_Component";
 import Input_Component from "../../components/Input_Component";
 import { useState } from "react";
+import { colors } from "../../styles/colors";
 
-const Cadastro_page = () => {
+const Cadastro_page = ({navigation}) => {
   //states
   const [name, setName] = useState()
   const [sobrenome, setSobrenome]= useState()
@@ -39,6 +41,14 @@ const Cadastro_page = () => {
     <Container>
       <SectionCenter>
         <Section>
+ 
+
+        <View> 
+          <Title style={{color:colors.complement.secondary, textAlign:'center', }}> 
+             CADASTRO
+          </Title>
+        </View>
+
           <View>
             <Input_Component
             
@@ -82,6 +92,9 @@ const Cadastro_page = () => {
         <Section>
           <View>
             <Button_Component
+              funcOnPress={ () => {
+                navigation.navigate('login')
+              }}
              title="Realizar Cadastro"
              
              />

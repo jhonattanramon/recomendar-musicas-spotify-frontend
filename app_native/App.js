@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Login_Page from "./src/pages/Login";
 import Cadastro_page from "./src/pages/Cadastro";
+import Bem_vindo from "./src/pages/Bem-vindo";
 import { colors } from "./src/styles/colors";
 
 const App = () => {
@@ -12,24 +13,24 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="cadastro"
+        initialRouteName="Bem-vindo"
         screenOptions={{
-          headerStyle: {
-            backgroundColor: colors.secondary,
-          },
-          headerTintColor: colors.complement.secondary,
+          headerShown: false,
         }}
       >
         <Stack.Screen
           options={{
             title: "Seu login",
+            headerShown: false,
           }}
           name="login"
           component={Login_Page}
         />
-        <Stack.Screen
-         name="cadastro"
-         component={Cadastro_page} />
+        <Stack.Screen name="cadastro" component={Cadastro_page} />
+
+        <Stack.Screen name="Bem-vindo" component={Bem_vindo} /> 
+
+
       </Stack.Navigator>
     </NavigationContainer>
   );
