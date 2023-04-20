@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import {
   Container,
+  NewText,
   Section,
   SectionCenter,
   Separador,
@@ -44,9 +45,13 @@ const Cadastro_page = ({navigation}) => {
  
 
         <View> 
-          <Title style={{color:colors.complement.secondary, textAlign:'center', }}> 
+          <NewText>Realize seu</NewText>
+          <Title style={{color:colors.complement.secondary }}> 
              CADASTRO
           </Title>
+
+          <Separador />
+
         </View>
 
           <View>

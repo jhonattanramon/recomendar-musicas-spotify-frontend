@@ -11,7 +11,6 @@ background: ${colors.complement.primary};
 `
 
 export const Separador = styled.View`
-
     margin: 10px 0;
 `
 
@@ -37,7 +36,16 @@ export const HeaderStyle = styled.View`
 `
 
 export const Title =  styled.Text`
-    fontSize:33
-    fontWeight:bold
+    fontSize:37;
+    fontWeight:bold;
+    color: ${colors.complement.secondary};
+    
+`
+
+export const NewText = styled.Text`
+    fontSize:24;
+    fontWeight: bold;
+    color: ${colors.tertiary};
+
 `
 

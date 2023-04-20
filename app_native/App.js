@@ -6,20 +6,17 @@ import Login_Page from "./src/pages/Login";
 import Cadastro_page from "./src/pages/Cadastro";
 import Bem_vindo from "./src/pages/Bem-vindo";
 import { colors } from "./src/styles/colors";
-import { MyTheme } from "./src/styles/theme"
+import { MyTheme } from "./src/styles/theme";
 
 const App = () => {
 
-  console.log(MyTheme);
 
   const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer
-    theme={MyTheme}
-    >
+    <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="Bem-vindo"
+        initialRouteName="login"
         screenOptions={{
           headerShown: false,
         }}
@@ -34,9 +31,7 @@ const App = () => {
         />
         <Stack.Screen name="cadastro" component={Cadastro_page} />
 
-        <Stack.Screen name="Bem-vindo" component={Bem_vindo} /> 
-
-
+        <Stack.Screen name="Bem-vindo" component={Bem_vindo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
