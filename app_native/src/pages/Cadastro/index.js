@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import {
   Container,
   NewText,
@@ -14,6 +14,7 @@ import TextButton from "../../components/TextButton";
 import { useState } from "react";
 import { colors } from "../../styles/colors";
 import HeaderComponent from "../../patterns/header";
+import { RegisterUser } from "../../services/models/RegisterUser";
 
 const Cadastro_page = ({navigation}) => {
   //states
@@ -21,24 +22,43 @@ const Cadastro_page = ({navigation}) => {
   const [sobrenome, setSobrenome]= useState()
   const [email, setEmail] = useState()
   const [senha, setSenha] = useState()
-
-
+  const [ confirmPassword, setConfirmPassword ] = useState()
 
   const onAddName = (valueName) => setName(valueName)
   const onAddSobrenome = (valueSobrenome) => setSobrenome(valueSobrenome)
   const onAddEmail = (valueEmail) => setEmail(valueEmail)
   const onAddSenha = (valueSenha) => setSenha(valueSenha)
-
+  const onConfirmPassword = (valuePassword) => setConfirmPassword(valuePassword)
 
   const valueRegisterUser = {
     name: name,
     sobrenome: sobrenome,
     email: email,
-    senha: senha
+    password: senha,
+    confirmPassword: confirmPassword
   }
 
 
-  console.log(valueRegisterUser);
+  const checkForm = () =>{
+
+    if(!valueRegisterUser.name || !valueRegisterUser.sobrenome || !valueRegisterUser.email || !valueRegisterUser.password || !valueRegisterUser.confirmPassword){ 
+      console.log('campo em branco');
+      return
+    }
+
+    if(valueRegisterUser.password !== valueRegisterUser.confirmPassword){
+      console.log('senhas não são iguais')
+      Alert.alert('Please enter your password', "alert-warning")
+      return
+       
+    }
+
+    navigation.navigate('login')
+
+  }
+
+
+  
 
   return (
     <Container>
@@ -52,8 +72,7 @@ const Cadastro_page = ({navigation}) => {
              CADASTRO
           </TitleText>
 
-          <Separador />
-
+    
         </View>
 
           <View>
@@ -92,6 +111,16 @@ const Cadastro_page = ({navigation}) => {
             }}
             />
           </View>
+
+          <View> 
+            <Input_Component 
+            labelName='Confirme Senha'
+            secureTextEntry={true}
+            onChange={ (valueText) => {
+              onConfirmPassword(valueText)
+            }}
+            /> 
+          </View>
         </Section>
 
         <Separador />
@@ -100,8 +129,8 @@ const Cadastro_page = ({navigation}) => {
           <View>
             <Button_Component
               funcOnPress={ () => {
-                navigation.navigate('login')
-              }}
+                checkForm()
+            }}
              title="Realizar Cadastro"
              
              />
@@ -109,7 +138,10 @@ const Cadastro_page = ({navigation}) => {
         </Section>
 
       <View> 
-      <TextButton title='Login' onPressFunc={ () => navigation.navigate('login') } />
+      <TextButton title='Login' onPressFunc={ () => {
+          
+          }
+      }   />
       </View>
 
 

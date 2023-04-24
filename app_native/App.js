@@ -16,7 +16,7 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="Bem-vindo"
+        initialRouteName="cadastro"
         screenOptions={{
           headerShown: true,
         }}
@@ -39,7 +39,14 @@ const App = () => {
         }
         />
 
-        <Stack.Screen name="Bem-vindo" component={Bem_vindo} />
+        <Stack.Screen 
+        name="Bem-vindo"
+         component={Bem_vindo}
+         options={
+          {
+            headerShown:false
+          }
+         } />
       </Stack.Navigator>
     </NavigationContainer>
   );
