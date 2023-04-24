@@ -4,30 +4,42 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Login_Page from "./src/pages/Login";
 import Cadastro_page from "./src/pages/Cadastro";
+import Bem_vindo from "./src/pages/Bem-vindo";
 import { colors } from "./src/styles/colors";
+import { MyTheme } from "./src/styles/theme";
 
 const App = () => {
+
+
   const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="Bem-vindo"
         screenOptions={{
-          headerStyle: {
-            backgroundColor: colors.secondary,
-          },
-          headerTintColor: colors.complement.secondary,
+          headerShown: true,
         }}
       >
         <Stack.Screen
           options={{
             title: "Seu login",
+            headerShown:false
           }}
           name="login"
           component={Login_Page}
         />
-        <Stack.Screen name="cadastro" component={Cadastro_page} />
+        <Stack.Screen 
+        name="cadastro"
+        component={Cadastro_page}
+        options={
+          {
+           headerShown:false
+          }
+        }
+        />
+
+        <Stack.Screen name="Bem-vindo" component={Bem_vindo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

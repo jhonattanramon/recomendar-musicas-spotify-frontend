@@ -1,27 +1,31 @@
-import { Button, View, StyleSheet } from "react-native"
-
-const Button_Component = ({title, funcOnPress}) =>{
+import { Button, View, StyleSheet, Pressable, Text } from "react-native"
+import { colors } from "../styles/colors"
+const Button_Component = ({
+    title,
+    funcOnPress,}) =>{
 
 
     return (
-        <View style={styles.Button}> 
-            <Button
-             color="none"
-              title={title}
-              onPress={
-                funcOnPress 
-              }  />
-        </View>
+      <Pressable style={styles.Button} onPress={funcOnPress}> 
+        <Text style={styles.TextButton}>{title}</Text>
+      </Pressable>
     )
 }
 
 const styles = StyleSheet.create(
     {
         Button: {
-            backgroundColor: '#22c55e',
-            padding: 10,
-            borderRadius: 4
+            backgroundColor: colors.primary,
+            padding: 14,
+            borderRadius: 4,
+            
              
+        },
+
+        TextButton: {
+           textAlign:'center' ,
+           color: colors.complement.secondary,
+           fontWeight:'bold'
         }
     }
 )

@@ -6,16 +6,17 @@ import {colors} from "../styles/colors"
 const Input_Component = ({
     labelName,
     placeholderName,
-    value,
-    color,
     secureTextEntry,
     inputMode,
-    textAffix
+    onChange,
+    value,
+    onBlur
 }) => {
 
 
     return <TextInput
-        label={labelName}
+
+  
         mode="outlined"
         placeholder={placeholderName}
         outlineColor={colors.complement.secondary}
@@ -24,6 +25,12 @@ const Input_Component = ({
         underlineColor="#020617"
         secureTextEntry={secureTextEntry}
         inputMode={inputMode}
+
+
+        value={value}
+        label={labelName}
+        onChangeText={onChange}
+        onBlur={onBlur}
 
         
          
