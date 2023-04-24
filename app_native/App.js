@@ -16,20 +16,28 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="Bem-vindo"
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
         }}
       >
         <Stack.Screen
           options={{
             title: "Seu login",
-            headerShown: false,
+            headerShown:false
           }}
           name="login"
           component={Login_Page}
         />
-        <Stack.Screen name="cadastro" component={Cadastro_page} />
+        <Stack.Screen 
+        name="cadastro"
+        component={Cadastro_page}
+        options={
+          {
+           headerShown:false
+          }
+        }
+        />
 
         <Stack.Screen name="Bem-vindo" component={Bem_vindo} />
       </Stack.Navigator>

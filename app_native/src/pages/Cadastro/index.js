@@ -5,13 +5,15 @@ import {
   Section,
   SectionCenter,
   Separador,
-  Title
+  Title,
+  TitleText
 } from "../../styles/styled-components";
-import { TextInput } from "react-native-paper";
 import Button_Component from "../../components/Button_Component";
 import Input_Component from "../../components/Input_Component";
+import TextButton from "../../components/TextButton";
 import { useState } from "react";
 import { colors } from "../../styles/colors";
+import HeaderComponent from "../../patterns/header";
 
 const Cadastro_page = ({navigation}) => {
   //states
@@ -46,9 +48,9 @@ const Cadastro_page = ({navigation}) => {
 
         <View> 
           <NewText>Realize seu</NewText>
-          <Title style={{color:colors.complement.secondary }}> 
+          <TitleText style={{color:colors.complement.secondary }}> 
              CADASTRO
-          </Title>
+          </TitleText>
 
           <Separador />
 
@@ -105,6 +107,13 @@ const Cadastro_page = ({navigation}) => {
              />
           </View>
         </Section>
+
+      <View> 
+      <TextButton title='Login' onPressFunc={ () => navigation.navigate('login') } />
+      </View>
+
+
+        
       </SectionCenter>
     </Container>
   );

@@ -6,7 +6,8 @@ import {
   SectionCenter,
   Title,
   Separador,
-  NewText
+  NewText,
+  TitleText
 } from "../../styles/styled-components";
 import { colors } from "../../styles/colors";
 
@@ -18,7 +19,7 @@ const Bem_vindo = ({navigation}) => {
 
           <View> 
             <NewText>Olá,</NewText>
-          <Title>Bem-vindo</Title>
+          <TitleText>Bem-vindo</TitleText>
           </View>  
         
           <View>
