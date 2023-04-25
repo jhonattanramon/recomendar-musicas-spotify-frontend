@@ -3,6 +3,7 @@ const { RegisterUser: RegisterModel } = require("../models/RegisterUser");
 
 const UserController = {
   create: async (req, res) => {
+  
     try {
       const user = {
         name: req.body.name,
