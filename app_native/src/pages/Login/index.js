@@ -16,7 +16,7 @@ import {
 const Login_Page = ({ navigation }) => {
 
   const navigationLogin = () => {
-    return navigation.navigate("cadastro");
+    return navigation.navigate("");
   };
 
 

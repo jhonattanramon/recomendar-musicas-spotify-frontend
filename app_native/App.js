@@ -7,7 +7,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Login_Page from "./src/pages/Login";
 import Cadastro_page from "./src/pages/Cadastro";
 import Bem_vindo from "./src/pages/Bem-vindo";
-import TesteDeApi from "./src/pages/TestDeApi/TestDeApi";
+import HomePage from "./src/pages/Home";
 //
 import { colors } from "./src/styles/colors";
 import { MyTheme } from "./src/styles/theme";
@@ -20,7 +20,7 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="testeDeApi"
+        initialRouteName="home"
         screenOptions={{
           headerShown: true,
         }}
@@ -53,8 +53,8 @@ const App = () => {
          } />
 
          <Stack.Screen 
-         name='testeDeApi'
-         component={TesteDeApi} />
+         name='home'
+         component={HomePage} />
 
          </Stack.Navigator>
     </NavigationContainer>
