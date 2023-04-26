@@ -20,10 +20,7 @@ const RegisterUserSchema = new Schema({
     type: String,
     required: true
   },
-  confirmPassword: {
-    type: String,
-    required: true
-  }
+ 
 
 },
 {

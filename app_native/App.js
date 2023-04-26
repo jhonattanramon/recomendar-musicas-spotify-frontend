@@ -2,9 +2,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+
+//Pages 
 import Login_Page from "./src/pages/Login";
 import Cadastro_page from "./src/pages/Cadastro";
 import Bem_vindo from "./src/pages/Bem-vindo";
+import TesteDeApi from "./src/pages/TestDeApi/TestDeApi";
+//
 import { colors } from "./src/styles/colors";
 import { MyTheme } from "./src/styles/theme";
 
@@ -16,7 +20,7 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="cadastro"
+        initialRouteName="testeDeApi"
         screenOptions={{
           headerShown: true,
         }}
@@ -47,7 +51,12 @@ const App = () => {
             headerShown:false
           }
          } />
-      </Stack.Navigator>
+
+         <Stack.Screen 
+         name='testeDeApi'
+         component={TesteDeApi} />
+
+         </Stack.Navigator>
     </NavigationContainer>
   );
 };

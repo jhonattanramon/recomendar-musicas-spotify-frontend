@@ -80,13 +80,16 @@ const Cadastro_page = ({ navigation }) => {
 
     axios.get(`${baseUrlUser}/api/users`).then( res => console.log(res))
 
-    // axios.post(`${baseUrlUser}/api/users`, {
-    //   name: "jhonattan",
-    //   sobrenome: 'jhonattan',
-    //   email: "jhonattan",
-    //   password: "jhonattan",
-    //   confirmPassword: "jhonattan"
-    // }).then( res => console.log(res))
+    axios.post(`${baseUrlUser}/api/users`, {
+      name: valueRegisterUser.name,
+      sobrenome: valueRegisterUser.sobrenome,
+      email: valueRegisterUser.email,
+      password: valueRegisterUser.password
+    }).then( () => {
+      console.log('user registration');
+      Alert.alert('usuario registrado')}
+      )
+    
 
  
    
