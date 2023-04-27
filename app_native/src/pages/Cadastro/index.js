@@ -114,6 +114,7 @@ const Cadastro_page = ({ navigation }) => {
               labelName="Nome"
               inputMode='text'
               onChange={(valueText) => {
+
                 onAddName(valueText);
               }}
             />

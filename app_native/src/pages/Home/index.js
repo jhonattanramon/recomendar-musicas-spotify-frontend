@@ -1,21 +1,23 @@
 import { View } from "react-native";
 import { Button } from "react-native-paper";
-import { Container } from "../../styles/styled-components";
+import { Container, Separador } from "../../styles/styled-components";
 import Button_Component from "../../components/Button_Component";
 import { useState } from "react"
 import { set } from "mongoose";
-
 import React from "react";
+import axios from "axios";
 
-class App extends React.Component {
+
+class Home extends React.Component {
  
 
   constructor(props){
     super(props)
     const parametros = this.getHashParams()
-    const token = parametros.access_token
+    this.token = parametros.access_token
+      console.log(this.token)
   }
-  
+ 
   getHashParams() {
       var hashParams = {};
       var e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -23,18 +25,25 @@ class App extends React.Component {
       while ( e = r.exec(q)) {
          hashParams[e[1]] = decodeURIComponent(e[2]);
       }
-      
+   console.log(this.token);
       return hashParams;
   }
+  
+  topTracksLorde = () => {
+    
+  //  axios.get("https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks?country=BR", {
+      
+  //     headers:{
+  //       Authorization: `${this.token}`
+  //     }
+  //   }).then( res => res)
 
 
-  fazerLogin(){
-    window.location.href = "http://localhost:8888"
+   
+    
   }
 
-  
-  
-
+ 
 
   render(){
 
@@ -42,7 +51,20 @@ class App extends React.Component {
 
       <Container> 
         <View> 
-          <Button_Component title="teste" funcOnPress={ () => fazerLogin()} /> 
+          <Button_Component title="teste" funcOnPress={ 
+            () =>  window.location.href = "http://localhost:8887"} /> 
+
+            <Separador/>
+
+            <Button_Component title="buscar tracks" funcOnPress={ 
+              () => {
+                this.topTracksLorde()
+              } } />
+            <Separador /> 
+
+              <Button_Component title="teste router" funcOnPress={ () => {
+                window.location.href = "http://localhost:3000/apiSpotify/token"
+              }} /> 
         </View>
         </Container>
       
@@ -53,4 +75,4 @@ class App extends React.Component {
 
 }
 
-export default App
+export default Home

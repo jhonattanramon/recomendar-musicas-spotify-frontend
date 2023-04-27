@@ -1,2 +1,8 @@
+const router =  require('express').Router();
 
-const axios = require('axios')
+const spotifyController = require("../controllers/spotifyApiController")
+
+router.route('/token').get( ( req, res) => spotifyController.token( req, res) )
+
+
+module.exports = router;

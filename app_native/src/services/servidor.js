@@ -21,8 +21,11 @@ const conn = require('./db/conn')
 conn()
 
 const routes = require('./routes/router')
+const routesSpotify = require('./routes/spotify')
 
 app.use('/api', routes)
+app.use('/apiSpotify', routesSpotify)
+
 
 app.listen(port, (req, res ) => {
   console.log('servidor online');
