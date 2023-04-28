@@ -8,9 +8,11 @@ import Login_Page from "./src/pages/Login";
 import Cadastro_page from "./src/pages/Cadastro";
 import Bem_vindo from "./src/pages/Bem-vindo";
 import HomePage from "./src/pages/Home";
+import Profile from "./src/pages/Profile";
 //
 import { colors } from "./src/styles/colors";
 import { MyTheme } from "./src/styles/theme";
+
 
 const App = () => {
 
@@ -44,7 +46,7 @@ const App = () => {
         />
 
         <Stack.Screen 
-        name="Bem-vindo"
+        name="bem-vindo"
          component={Bem_vindo}
          options={
           {
@@ -55,6 +57,17 @@ const App = () => {
          <Stack.Screen 
          name='home'
          component={HomePage} />
+
+         <Stack.Screen 
+         name="profile"
+         component={Profile} 
+         options={ 
+          {
+            headerShown:false
+          }
+         }
+         
+         />
 
          </Stack.Navigator>
     </NavigationContainer>

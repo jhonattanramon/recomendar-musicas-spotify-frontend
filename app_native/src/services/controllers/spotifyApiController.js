@@ -15,14 +15,14 @@ const spotifyController =  {
 
     try{
         
-      axios.get("https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks?country=BR", {
+     await axios.get("https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks?country=BR", {
       
       headers:{
     
-        Authorization: `BQCZhXQb9n5eVXvyvnGEwwU_IQtzzxQ9H_TIApLXdetsZjggxY7wRz1t2Z_BFwDhm2k39seenURwMiLnEmQdiVApcUzJxifHR0HXeoLiMyRLnJZOwapWDvzV4qwxbB0ZFjguxNJL4UzQ9TIfmjUrWK54IwL1Fg8tmNLvQSsz8DI7F47YcNKFKFbIbma1-hM4guBBNlRTwviH5H9Lzqk`, 
+        Authorization: `Bearer BQBrUf18R0iOttmbIoMhYcO83O5DLqcj6NCpF2H0cBQRwP52hgHkEWVEiVXZZnjFTzQf3PfrHT4X2X7oYYoDKITl6PTtZvtjcc0lOqAYSYElWCfPDq1wdevl4YAhovpk7-sfZPgUiScx4Prfp1yR7J_YZs7B2Fksx9EqmqNpK47Jgwxp90zWzNv7WTVCJ55jdQc4W6molMBwC4rKhk0`, 
         json: true
       }
-    }).then( res => console.log(res))
+    }).then( dados => console.log(dados.data))
 
     
 
@@ -31,8 +31,30 @@ const spotifyController =  {
       
 
     }catch(err){
+      console.log(err);
+    }
+  },
+
+
+  user: async (req, res) => {
+    
+    try{
+
+              
+     await axios.get("https://api.spotify.com/v1/me", {
+      
+     headers:{
+   
+       Authorization: `Bearer BQDkQxR_qCSOOERs379YJdvo4KJ2T7y2O1cWF5goqxZUMdo4BW9d-2nX5gjdWFI_lKk9_97FUX4wfCzXwqNSWtxKbgXjCiQ7PEeqd1jQAv3ol1QeKgqtyH808z1Bp-uraLX5ZK67D4M41VGsspndGUM2_UdgbYEEwHA0WmqBz_ACAeH5NCItt9hGBeuPpyNI70NDCTcXehD0meJzCzM`, 
+       json: true
+     }
+   }).then( dados => console.log(dados.data))
+
+
+    }catch(err){
       console.log('err');
     }
+
   }
 }
 

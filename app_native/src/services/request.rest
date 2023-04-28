@@ -29,5 +29,7 @@ Content-Type: application/json
   "confirmPassword": "123456"
 }
 
-### 
+### token
 GET http://localhost:3000/apiSpotify/token
+### 
+GET http://localhost:3000/apiSpotify/user
