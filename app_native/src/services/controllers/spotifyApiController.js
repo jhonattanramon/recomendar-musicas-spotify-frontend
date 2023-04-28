@@ -40,15 +40,19 @@ const spotifyController =  {
     
     try{
 
-              
-     await axios.get("https://api.spotify.com/v1/me", {
+
       
-     headers:{
-   
-       Authorization: `Bearer BQDkQxR_qCSOOERs379YJdvo4KJ2T7y2O1cWF5goqxZUMdo4BW9d-2nX5gjdWFI_lKk9_97FUX4wfCzXwqNSWtxKbgXjCiQ7PEeqd1jQAv3ol1QeKgqtyH808z1Bp-uraLX5ZK67D4M41VGsspndGUM2_UdgbYEEwHA0WmqBz_ACAeH5NCItt9hGBeuPpyNI70NDCTcXehD0meJzCzM`, 
-       json: true
-     }
-   }).then( dados => console.log(dados.data))
+      console.log('res');
+
+              
+  //   const response =  await axios.get("https://api.spotify.com/v1/me", {
+      
+  //    headers:{
+  //      Authorization: `Bearer BQDkQxR_qCSOOERs379YJdvo4KJ2T7y2O1cWF5goqxZUMdo4BW9d-2nX5gjdWFI_lKk9_97FUX4wfCzXwqNSWtxKbgXjCiQ7PEeqd1jQAv3ol1QeKgqtyH808z1Bp-uraLX5ZK67D4M41VGsspndGUM2_UdgbYEEwHA0WmqBz_ACAeH5NCItt9hGBeuPpyNI70NDCTcXehD0meJzCzM`, 
+  //      json: true
+  //    }
+  //  }).then( dados => dados.data)
+  //  return response
 
 
     }catch(err){

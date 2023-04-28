@@ -13,6 +13,9 @@ class Home extends React.Component {
     const parametros = this.getHashParams();
     this.token = parametros.access_token;
     console.log(this.token);
+    
+    
+    
   }
 
   getHashParams() {
@@ -24,7 +27,16 @@ class Home extends React.Component {
       hashParams[e[1]] = decodeURIComponent(e[2]);
     }
     console.log(this.token);
+    
     return hashParams;
+
+
+    
+  }
+
+  testeDeFunçao(){
+    
+    console.log(this.token);
   }
 
   topTracksLorde = () => {
@@ -42,12 +54,12 @@ class Home extends React.Component {
 
   useRouter = () => {
     axios
-      .get("https://api.spotify.com/v1/me", {
+      .get(" http://localhost:3000/apiSpotify/user", {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
       })
-      .then((res) => console.log(res));
+      .then((res) => console.log('res'));
   };
 
   render() {
@@ -56,7 +68,12 @@ class Home extends React.Component {
         <View>
           <Button_Component
             title="auth"
-            funcOnPress={() => (window.location.href = "http://localhost:8887")}
+            funcOnPress={() =>{
+              this.testeDeFunçao()
+              (window.location.href = "http://localhost:8887")
+            }
+            } 
+              
           />
 
           <Separador />
