@@ -1,7 +1,9 @@
 
 import React from "react";
 import { SafeAreaView } from "react-native";
+import { Button } from "react-native-paper";
 import { WebView } from 'react-native-webview'
+import { Linking } from "react-native";
 
 
 
@@ -11,10 +13,9 @@ class Auth extends React.Component {
     const parametros = this.getHashParams();
     this.token = parametros.access_token;
     console.log(this.token);
-    
-    
-    
   }
+
+  
 
   getHashParams() {
     var hashParams = {};
@@ -36,13 +37,8 @@ class Auth extends React.Component {
   render(){
 
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-        <WebView
-          source={
-            { 
-        uri: "http://localhost:8080"
-        }}/> 
-      </SafeAreaView>
+        <> 
+        </>
       )
   }
 
