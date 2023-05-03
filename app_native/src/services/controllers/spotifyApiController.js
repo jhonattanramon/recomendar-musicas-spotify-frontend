@@ -7,6 +7,17 @@ const axios = require('axios').default
 
 const spotifyController =  {
 
+  auth: async (req, res, next) => {
+      console.log('auth');
+    try{
+        (window.location.href = "http://localhost:8887")
+    }catch(err){
+      console.log(err);
+    }
+
+
+  },
+
 
   token: async (req, res) => {
 
@@ -15,7 +26,7 @@ const spotifyController =  {
 
     try{
         
-     await axios.get("https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks?country=BR", {
+     await axios.get("http://localhost:8887", {
       
       headers:{
     
@@ -38,22 +49,23 @@ const spotifyController =  {
 
   user: async (req, res) => {
     
+  
     try{
-
-
-      
       console.log('res');
 
               
-  //   const response =  await axios.get("https://api.spotify.com/v1/me", {
+      const response = await axios.get("https://api.spotify.com/v1/me", {
       
-  //    headers:{
-  //      Authorization: `Bearer BQDkQxR_qCSOOERs379YJdvo4KJ2T7y2O1cWF5goqxZUMdo4BW9d-2nX5gjdWFI_lKk9_97FUX4wfCzXwqNSWtxKbgXjCiQ7PEeqd1jQAv3ol1QeKgqtyH808z1Bp-uraLX5ZK67D4M41VGsspndGUM2_UdgbYEEwHA0WmqBz_ACAeH5NCItt9hGBeuPpyNI70NDCTcXehD0meJzCzM`, 
-  //      json: true
-  //    }
-  //  }).then( dados => dados.data)
-  //  return response
+     headers:{
+       Authorization: `${req.headers.authorization}`, 
+       json: true
+     }
+   }).then( dados => dados.data)
 
+   console.log(response);
+
+  res.writeHead(200, { "Content-Type": "application/json"})
+  res.send(response)
 
     }catch(err){
       console.log('err');

@@ -9,8 +9,9 @@ const Infor = () => {
 
   useEffect(() => {
     const load = async () => {
+      console.log('loading...');
       await axios
-        .get("https://api.spotify.com/v1/me", {
+        .get("http://localhost:3000/apiSpotify/user", {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },

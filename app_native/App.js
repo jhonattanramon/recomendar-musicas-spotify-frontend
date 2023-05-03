@@ -22,7 +22,7 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="home"
+        initialRouteName="Login"
         screenOptions={{
           headerShown: true,
         }}

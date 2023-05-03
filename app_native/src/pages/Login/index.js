@@ -3,29 +3,41 @@ import { Title } from "react-native-paper";
 import Button_Component from "../../components/Button_Component";
 import Input_Component from "../../components/Input_Component";
 import TextButton from "../../components/TextButton";
+import Auth from "../Auth";
+
+
+import axios from "axios";
+import { SafeAreaView } from "react-native";
+import { WebView } from 'react-native-webview';
+import { Modal, Portal, Provider } from "react-native-paper";
+
+
 
 import {
   Separador,
   Container,
   SectionCenter,
   NewText,
-  TitleText
-
+  TitleText,
 } from "../../styles/styled-components";
 
 const Login_Page = ({ navigation }) => {
 
-  const navigationLogin = () => {
-    return navigation.navigate("");
-  };
+  
 
+  const AuthLogin = async () => {
+  console.log('aqui');
+    <SafeAreaView> 
+      <WebView source={{ uri: 'http://localhost:8887'}}/>
+    </SafeAreaView>
+  };
 
   return (
     <Container>
       <SectionCenter>
         <View>
-            <NewText>Seu login</NewText>
-            <TitleText>Login</TitleText>
+          <NewText>Seu login</NewText>
+          <TitleText>Login</TitleText>
         </View>
 
         <View>
@@ -46,13 +58,21 @@ const Login_Page = ({ navigation }) => {
         <Separador />
 
         <View>
-          <Button_Component funcOnPress={navigationLogin} title="Login" />
+          <Button_Component funcOnPress={AuthLogin} title="Login" />
         </View>
-        <View style={{flexDirection:'row', justifyContent:'space-between', padding: 2}}> 
-        <TextButton title="Cadastro" onPressFunc={ () => navigation.navigate('cadastro')} /> 
-        <TextButton title="Esqueceu a Senha ?"  /> 
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            padding: 2,
+          }}
+        >
+          <TextButton
+            title="Cadastro"
+            onPressFunc={() => navigation.navigate("cadastro")}
+          />
+          <TextButton title="Esqueceu a Senha ?" />
         </View>
-    
       </SectionCenter>
     </Container>
   );
