@@ -8,12 +8,17 @@ const Infor = () => {
   console.log(dataApi);
 
   useEffect(() => {
+<<<<<<< Updated upstream
     const load = async () => {
       
+=======
+    const load = async ()  => {
+      console.log('loading...');
+>>>>>>> Stashed changes
       await axios
         .get("http://localhost:3000/apiSpotify/user", {
           headers: {
-            Authorization: `Bearer ${this.token}`,
+            Authorization: `Bearer AQAwIYEcOXDsp_HuTa2by3Qp6rVpX5jHW8UTj49VLcIMHlNOjwuCwy6e8t0H8fjBWsB6gZ3eDX9ReHy8TtcAizOnh4IivVT59t9qZzyzXQVRdbhMiPr4Vuz8pwtCYmndrKY`,
           },
         })
         .then((data) => {

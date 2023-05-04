@@ -35,7 +35,11 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
+<<<<<<< Updated upstream
         initialRouteName=""
+=======
+        initialRouteName="profile"
+>>>>>>> Stashed changes
         screenOptions={{
           headerShown: true,
         }}
@@ -69,7 +73,14 @@ const App = () => {
 
          <Stack.Screen 
          name='home'
-         component={HomePage} />
+         component={HomePage}
+         options={
+          {
+            headerShown:false
+          }
+
+        }
+         />
 
          <Stack.Screen 
          name="profile"

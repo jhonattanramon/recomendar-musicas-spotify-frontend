@@ -8,6 +8,8 @@ import { Linking } from "react-native";
 
 
 class Auth extends React.Component {
+
+
   constructor(props) {
     super(props);
     const parametros = this.getHashParams();
@@ -24,13 +26,9 @@ class Auth extends React.Component {
       q = window.location.hash.substring(1);
     while ((e = r.exec(q))) {
       hashParams[e[1]] = decodeURIComponent(e[2]);
-    }
-    console.log(this.token);
-    
-    return hashParams;
-
-
-    
+    }    
+    console.log(this.token)
+    return hashParams; 
   }
 
 
@@ -38,6 +36,7 @@ class Auth extends React.Component {
 
     return (
         <> 
+
         </>
       )
   }

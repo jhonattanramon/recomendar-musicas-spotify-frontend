@@ -50,24 +50,23 @@ const spotifyController =  {
 
 
   user: async (req, res) => {
+
+    console.log(req.headers.authorization);
     
-  
     try{
       console.log('res');
-
-              
-      const response = await axios.get("https://api.spotify.com/v1/me", {
+          
+     await axios.get("https://api.spotify.com/v1/me", {
       
      headers:{
-       Authorization: `${req.headers.authorization}`, 
+       Authorization: ``, 
        json: true
      }
-   }).then( dados => dados.data)
-
+   }).then( dados => console.log(dados) )
    console.log(response);
 
   res.writeHead(200, { "Content-Type": "application/json"})
-  res.send(response)
+  res.status(200).send({ res: response})
 
     }catch(err){
       console.log('err');
