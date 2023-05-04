@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import {
   Container,
   NewText,
@@ -6,90 +6,156 @@ import {
   SectionCenter,
   Separador,
   Title,
-  TitleText
+  TitleText,
 } from "../../styles/styled-components";
 import Button_Component from "../../components/Button_Component";
 import Input_Component from "../../components/Input_Component";
 import TextButton from "../../components/TextButton";
 import { useState } from "react";
 import { colors } from "../../styles/colors";
-import HeaderComponent from "../../patterns/header";
 
-const Cadastro_page = ({navigation}) => {
+import axios from 'axios'
+
+
+const Cadastro_page = ({ navigation }) => {
   //states
-  const [name, setName] = useState()
-  const [sobrenome, setSobrenome]= useState()
-  const [email, setEmail] = useState()
-  const [senha, setSenha] = useState()
+  const [name, setName] = useState("");
+  const [sobrenome, setSobrenome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const onAddName = (valueName) => setName(valueName);
+  const onAddSobrenome = (valueSobrenome) => setSobrenome(valueSobrenome);
+  const onAddEmail = (valueEmail) => setEmail(valueEmail);
+  const onAddSenha = (valueSenha) => setSenha(valueSenha);
+  const onConfirmPassword = (valuePassword) =>
+    setConfirmPassword(valuePassword);
 
 
-
-  const onAddName = (valueName) => setName(valueName)
-  const onAddSobrenome = (valueSobrenome) => setSobrenome(valueSobrenome)
-  const onAddEmail = (valueEmail) => setEmail(valueEmail)
-  const onAddSenha = (valueSenha) => setSenha(valueSenha)
 
 
   const valueRegisterUser = {
     name: name,
     sobrenome: sobrenome,
     email: email,
-    senha: senha
-  }
+    password: senha,
+    confirmPassword: confirmPassword,
+  };
+
+  const ValueUserJson = JSON.stringify(valueRegisterUser);
+
+  const checkForm = () => {
+    if (
+      !valueRegisterUser.name ||
+      !valueRegisterUser.sobrenome ||
+      !valueRegisterUser.email ||
+      !valueRegisterUser.password ||
+      !valueRegisterUser.confirmPassword
+    ) {
+      Alert.alert("Campo vazio! preencha as informações antes prosseguir");
+
+      alert('"Campo vazio! preencha as informações antes prosseguir"')
+      return;
+    }
+
+    if(valueRegisterUser.email){
+      const reg =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+      if (!reg.test(valueRegisterUser.email)) {
+        Alert.alert("Email inválido! preencha corretamente");
+        alert('"Email inválido! preencha corretamente"')
+        return;
+      }
+    }
+
+    if (valueRegisterUser.password !== valueRegisterUser.confirmPassword) {
+      Alert.alert("Senhas não são iguais! check o campo de senhas.");
+      alert("Senhas não são iguais! check o campo de senhas.")
+      return;
+    }
+
+    const baseUrlUser = 'http://localhost:3000'
 
 
-  console.log(valueRegisterUser);
+    axios.get(`${baseUrlUser}/api/users`).then( res => console.log(res))
+
+    axios.post(`${baseUrlUser}/api/users`, {
+      name: valueRegisterUser.name,
+      sobrenome: valueRegisterUser.sobrenome,
+      email: valueRegisterUser.email,
+      password: valueRegisterUser.password
+    }).then( () => {
+      console.log('user registration');
+      Alert.alert('usuario registrado')}
+      )
+    
+
+ 
+   
+
+  
+    
+  };
 
   return (
     <Container>
       <SectionCenter>
         <Section>
- 
-
-        <View> 
-          <NewText>Realize seu</NewText>
-          <TitleText style={{color:colors.complement.secondary }}> 
-             CADASTRO
-          </TitleText>
-
-          <Separador />
-
-        </View>
-
           <View>
-            <Input_Component
-            
-            
-             labelName="Nome"
-             onChange={ (valueText) =>{
-                  onAddName(valueText)
-             } }
-             
-             />
-
-            <Input_Component
-             labelName="Sobrenome"
-             onChange={ (valueText) => {
-                  onAddSobrenome(valueText)
-             }} />
-          </View>
-
-          <View>
-            <Input_Component 
-            labelName="Email"
-            onChange={ (valueText) => {
-              onAddEmail(valueText)
-            }} />
+            <NewText>Realize seu</NewText>
+            <TitleText style={{ color: colors.complement.secondary }}>
+              CADASTRO
+            </TitleText>
           </View>
 
           <View>
             <Input_Component
-             labelName="Senha"
-            textAffix={true}
-            secureTextEntry={true}
-            onChange={ (valueText) => {
-              onAddSenha(valueText)
-            }}
+              labelName="Nome"
+              inputMode='text'
+              onChange={(valueText) => {
+
+                onAddName(valueText);
+              }}
+            />
+
+            <Input_Component
+              labelName="Sobrenome"
+              inputMode='text'
+              onChange={(valueText) => {
+                onAddSobrenome(valueText);
+              }}
+            />
+          </View>
+
+          <View>
+            <Input_Component
+              labelName="Email"
+              inputMode='email'
+              onChange={(valueText) => {
+                onAddEmail(valueText);
+              }}
+            />
+          </View>
+
+          <View>
+            <Input_Component
+              labelName="Senha"
+              textAffix={true}
+              secureTextEntry={true}
+              onChange={(valueText) => {
+                onAddSenha(valueText);
+              }}
+            />
+          </View>
+
+          <View>
+            <Input_Component
+              labelName="Confirme Senha"
+              secureTextEntry={true}
+              onChange={(valueText) => {
+                onConfirmPassword(valueText);
+              }}
             />
           </View>
         </Section>
@@ -99,21 +165,17 @@ const Cadastro_page = ({navigation}) => {
         <Section>
           <View>
             <Button_Component
-              funcOnPress={ () => {
-                navigation.navigate('login')
+              funcOnPress={() => {
+                checkForm();
               }}
-             title="Realizar Cadastro"
-             
-             />
+              title="Realizar Cadastro"
+            />
           </View>
         </Section>
 
-      <View> 
-      <TextButton title='Login' onPressFunc={ () => navigation.navigate('login') } />
-      </View>
-
-
-        
+        <View>
+          <TextButton title="Login" onPressFunc={() => {}} />
+        </View>
       </SectionCenter>
     </Container>
   );

@@ -2,11 +2,12 @@ import { Button, View, StyleSheet, Pressable, Text } from "react-native"
 import { colors } from "../styles/colors"
 const Button_Component = ({
     title,
-    funcOnPress,}) =>{
+    funcOnPress
+    ,}) =>{
 
 
     return (
-      <Pressable style={styles.Button} onPress={funcOnPress}> 
+      <Pressable style={styles.Button}  onPress={funcOnPress}> 
         <Text style={styles.TextButton}>{title}</Text>
       </Pressable>
     )
