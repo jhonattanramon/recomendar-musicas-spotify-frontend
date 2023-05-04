@@ -35,11 +35,7 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-<<<<<<< Updated upstream
         initialRouteName=""
-=======
-        initialRouteName="profile"
->>>>>>> Stashed changes
         screenOptions={{
           headerShown: true,
         }}

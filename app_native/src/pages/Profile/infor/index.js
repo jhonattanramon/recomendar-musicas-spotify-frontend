@@ -8,13 +8,8 @@ const Infor = () => {
   console.log(dataApi);
 
   useEffect(() => {
-<<<<<<< Updated upstream
-    const load = async () => {
-      
-=======
     const load = async ()  => {
       console.log('loading...');
->>>>>>> Stashed changes
       await axios
         .get("http://localhost:3000/apiSpotify/user", {
           headers: {
