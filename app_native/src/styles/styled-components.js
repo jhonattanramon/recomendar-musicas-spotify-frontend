@@ -18,6 +18,7 @@ export const SectionCenter = styled.View`
   width: 70%;
   justify-content: center;
   margin: 0 auto;
+
 `;
 export const HeaderStyle = styled.View`
   background: #222;
@@ -26,7 +27,7 @@ export const HeaderStyle = styled.View`
 export const TitleText = styled.Text`
   font-size: 37;
   font-weight: bold;
-  color: ${colors.complement.secondary}
+  color: ${colors.complement.secondary};
 
 `;
 
@@ -38,9 +39,24 @@ export const NewText = styled.Text`
 
 export const Header = styled.View`
 position:absolute;
-top: 5%
+top: 5%;
+`;
 
+export const Avatar  = styled.View`
+background: ${colors.secondary};
+border-Radius: 50%;
+width: 120px;
+height: 120px;
 
+  Text: {
+    font-weight: bold;
+    font-size: 10;
+    color: ${colors.complement.secondary};
+    position: relative;
+    top: 50%;
+    left: 50%;
+    
 
+  }
 
-`
+`;
