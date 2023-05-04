@@ -13,6 +13,7 @@ var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var {ClassToken} = require('../AcessToken')
 
 var client_id = process.env.CLIENT_ID_SPOTIFY // Your client id
 var client_secret = process.env.CLIENT_SECRET_SPOTIFY; // Your secret
@@ -102,7 +103,10 @@ app.get('/callback', function(req, res) {
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
           console.log(body);
+          
         });
+
+          new ClassToken(access_token, refresh_token)
 
         // we can also pass the token to the browser to make requests from there
         res.redirect('http://localhost:19006/#' +

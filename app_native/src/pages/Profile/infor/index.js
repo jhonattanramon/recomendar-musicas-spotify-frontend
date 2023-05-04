@@ -9,7 +9,7 @@ const Infor = () => {
 
   useEffect(() => {
     const load = async () => {
-      console.log('loading...');
+      
       await axios
         .get("http://localhost:3000/apiSpotify/user", {
           headers: {

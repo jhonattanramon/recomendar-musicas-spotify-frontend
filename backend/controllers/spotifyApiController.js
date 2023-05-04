@@ -10,7 +10,9 @@ const spotifyController =  {
   auth: async (req, res, next) => {
       console.log('auth');
     try{
+      
         (window.location.href = "http://localhost:8887")
+
     }catch(err){
       console.log(err);
     }

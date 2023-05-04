@@ -3,15 +3,6 @@ import { Title } from "react-native-paper";
 import Button_Component from "../../components/Button_Component";
 import Input_Component from "../../components/Input_Component";
 import TextButton from "../../components/TextButton";
-import Auth from "../Auth";
-
-
-import axios from "axios";
-import { SafeAreaView } from "react-native";
-import { WebView } from 'react-native-webview';
-import { Modal, Portal, Provider } from "react-native-paper";
-
-
 
 import {
   Separador,
@@ -20,18 +11,24 @@ import {
   NewText,
   TitleText,
 } from "../../styles/styled-components";
+import { useEffect, useState } from "react";
 
-const Login_Page = ({ navigation }) => {
+const Login_Page = ({ navigation}) => {
+
+  const [teste, setTeste] = useState()
+ 
+
+  useEffect( () => {
+
+    const load = () => {
+      
+    }
+
+    load()
+
+  }, [])
 
   
-
-  const AuthLogin = async () => {
-  console.log('aqui');
-    <SafeAreaView> 
-      <WebView source={{ uri: 'http://localhost:8887'}}/>
-    </SafeAreaView>
-  };
-
   return (
     <Container>
       <SectionCenter>
@@ -58,7 +55,9 @@ const Login_Page = ({ navigation }) => {
         <Separador />
 
         <View>
-          <Button_Component funcOnPress={AuthLogin} title="Login" />
+          <Button_Component funcOnPress={() => {
+            (window.location.href = "http://localhost:8887")
+          }} title="Login" />
         </View>
         <View
           style={{

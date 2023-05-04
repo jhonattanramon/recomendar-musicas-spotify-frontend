@@ -16,13 +16,26 @@ import { MyTheme } from "./src/styles/theme";
 
 const App = () => {
 
+  class access_token{
+    constructor(token){
+      this.token = token
+    }
+
+    
+    reqService(){
+      (window.location.href = "http://localhost:8887")
+    }
+  }
 
   const Stack = createNativeStackNavigator();
+
+  
+
 
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName=""
         screenOptions={{
           headerShown: true,
         }}
