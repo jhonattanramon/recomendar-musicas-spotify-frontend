@@ -4,9 +4,6 @@ const bcrypt = require("bcrypt");
 const path = require('path');
 const cors = require('cors');
 
-
-
-
 const app = express()
 const port = 3000
 
@@ -23,8 +20,11 @@ conn()
 const routes = require('./routes/router')
 const routesSpotify = require('./routes/spotify')
 
+
 app.use('/api', routes)
 app.use('/apiSpotify', routesSpotify)
+
+
 
 
 app.listen(port, (req, res ) => {

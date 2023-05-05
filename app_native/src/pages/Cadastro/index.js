@@ -45,7 +45,7 @@ const Cadastro_page = ({ navigation }) => {
 
   const ValueUserJson = JSON.stringify(valueRegisterUser);
 
-  const checkForm = () => {
+  const checkForm = async () => {
     if (
       !valueRegisterUser.name ||
       !valueRegisterUser.sobrenome ||
@@ -78,9 +78,8 @@ const Cadastro_page = ({ navigation }) => {
     const baseUrlUser = 'http://localhost:3000'
 
 
-    axios.get(`${baseUrlUser}/api/users`).then( res => console.log(res))
 
-    axios.post(`${baseUrlUser}/api/users`, {
+   await axios.post(`${baseUrlUser}/api/users`, {
       name: valueRegisterUser.name,
       sobrenome: valueRegisterUser.sobrenome,
       email: valueRegisterUser.email,
@@ -89,6 +88,9 @@ const Cadastro_page = ({ navigation }) => {
       console.log('user registration');
       Alert.alert('usuario registrado')}
       )
+
+     
+
     
 
  
@@ -174,7 +176,7 @@ const Cadastro_page = ({ navigation }) => {
         </Section>
 
         <View>
-          <TextButton title="Login" onPressFunc={() => {}} />
+          <TextButton title="Login" onPressFunc={() => {navigation.navigate('login')}} />
         </View>
       </SectionCenter>
     </Container>

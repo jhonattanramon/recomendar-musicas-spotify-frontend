@@ -5,6 +5,7 @@ import Button_Component from "../../components/Button_Component";
 import { useState } from "react";
 import { set } from "mongoose";
 import React from "react";
+import axios from "axios";
 
 
 const Home = () =>  {
@@ -14,7 +15,10 @@ const Home = () =>  {
   
     return (
       <Container>
-       
+      
+        <Button_Component funcOnPress={ () => {
+          axios
+        }} /> 
       </Container>
     );
   }
