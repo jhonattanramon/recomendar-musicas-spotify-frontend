@@ -15,10 +15,13 @@ const Home = () =>  {
   
     return (
       <Container>
-      
-        <Button_Component funcOnPress={ () => {
-          axios
-        }} /> 
+      <Button_Component funcOnPress={ () => { 
+
+        axios.get("http://localhost:8887/apiSpotify/artists", {
+          
+        })
+      }} /> 
+       
       </Container>
     );
   }

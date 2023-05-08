@@ -3,6 +3,7 @@ const { json } = require("express");
 const { RegisterUser: RegisterModel } = require("../models/RegisterUser");
 const axios = require('axios').default
 var $ = require('jquery')
+require('dotenv/config')
 
 
 const spotifyController =  {
@@ -11,21 +12,21 @@ const spotifyController =  {
       console.log('auth');
     try{
       
-      (function() {
 
+      
         /**
          * Obtains parameters from the hash of the URL
          * @return Object
          */
-        function getHashParams() {
-          var hashParams = {};
-          var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.hash.substring(1);
-          while ( e = r.exec(q)) {
-             hashParams[e[1]] = decodeURIComponent(e[2]);
-          }
-          return hashParams;
-        }
+        // function getHashParams() {
+        //   var hashParams = {};
+        //   var e, r = /([^&;=]+)=?([^&;]*)/g,
+        //       q = window.location.hash.substring(1);
+        //   while ( e = r.exec(q)) {
+        //      hashParams[e[1]] = decodeURIComponent(e[2]);
+        //   }
+        //   return hashParams;
+        // }
 
         // var userProfileSource = document.getElementById('user-profile-template').innerHTML,
         //     userProfileTemplate = Handlebars.compile(userProfileSource),
@@ -35,7 +36,7 @@ const spotifyController =  {
         //     oauthTemplate = Handlebars.compile(oauthSource),
         //     oauthPlaceholder = document.getElementById('oauth');
 
-        var params = getHashParams();
+       // var params = getHashParams();
 
         var access_token = params.access_token,
             refresh_token = params.refresh_token,
@@ -85,15 +86,18 @@ const spotifyController =  {
           //   });
           // }, false);
         }
-        
-      })();
 
-    }catch(err){
+        
+        
+
+
+    }
+  }catch(err){
       console.log(err);
     }
 
 
-  }
+  
 },
 
 
@@ -148,6 +152,32 @@ const spotifyController =  {
       console.log('err');
     }
 
+  },
+
+  getAllApi: async (req, res) => {
+
+    try{
+
+      
+
+      
+
+      // spotfyApi.setAccessToken(`${req.headers.authorization}`)
+      
+      // spotfyApi.getArtistAlbums( )
+
+      console.log(req.headers.authorization);
+
+      await axios.get('https://api.spotify.com/v1/me/following?type=artist', {
+        headers:{
+          Authorization: `Bearer ${req.headers.authorization}`,
+          json: true
+        }
+      }).then( 
+        dados => console.log(dados))
+      }catch(err){
+        console.log('errorrrrr');
+      }
   }
 }
 

@@ -44,6 +44,8 @@ app.use(express.static(__dirname + '/public'))
 
 app.get('/login', function(req, res) {
 
+  console.log("login");
+
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
@@ -106,7 +108,7 @@ app.get('/callback', function(req, res) {
           
         });
 
-          new ClassToken(access_token, refresh_token)
+        
 
         // we can also pass the token to the browser to make requests from there
         res.redirect('http://localhost:19006/#' +

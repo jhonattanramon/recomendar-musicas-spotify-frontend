@@ -19,7 +19,7 @@ const App = () => {
 
   const Stack = createNativeStackNavigator();
 
-  
+  const varivelDeDesenvolvimento = "teste"
 
 
   return (

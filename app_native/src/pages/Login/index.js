@@ -10,25 +10,65 @@ import {
   SectionCenter,
   NewText,
   TitleText,
+  Section,
 } from "../../styles/styled-components";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { get } from "jquery";
 
 const Login_Page = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [access, setAccess] = useState(false);
+  const [token, setToken] = useState()
+  console.log( token);
 
-  useEffect(() => {
-    const load = () => {
-      if (access) {
-        navigation.navigate("home");
+  // useEffect(() => {
+  //   const load = () => {
+  //     if (access) {
+  //       navigation.navigate("home");
+  //     }
+  //   };
+
+  //   load();
+  // }, [access]);
+
+ 
+    useEffect(() => {
+
+    
+        
+        function getHashParams() {
+          var hashParams = {};
+          var e, r = /([^&;=]+)=?([^&;]*)/g,
+          q = window.location.hash.substring(1);
+          while ( e = r.exec(q)) {
+             hashParams[e[1]] = decodeURIComponent(e[2]);
+            }
+            return hashParams;
+          }
+          
+          
+          
+          const paramentros = getHashParams()
+          console.log(paramentros);
+          setToken(paramentros)
+          
+
       }
-    };
+     ,[]
+    )
 
-    load();
-  }, [access]);
+
+    const authSpotify = () => { (window.location.href = "http://localhost:8887")}
+     
+      
+   
+
+    
+  
+
 
   const checkLogin = async () => {
 
@@ -43,19 +83,25 @@ const Login_Page = ({ navigation }) => {
 
       if (!reg.test(email)) {
         Alert.alert("Email inválido! preencha corretamente");
-        alert('"Email inválido! preencha corretamente"')
+        alert('Email inválido! preencha corretamente')
         return;
       }
     }
 
-    const baseUrl = "http://localhost:3000";
+  
+    //await axios.get(`${baseUrl}/apiSpotify/auth`).then( res => console.log(res))
     
-    await axios
-      .post(`${baseUrl}/api/conect`, {
-        email: email,
-        senha: senha,
-      })
-      .then((response) => setAccess(response.data.access));
+
+    if( token.access_token ){
+        
+    await axios.get(`http://localhost:3000/apiSpotify/getAllApi`, {
+      headers: {
+              Authorization: `${token.access_token}`,
+            },
+    }).then( res => console.log(res))
+
+    }
+
   };
 
   return (
@@ -90,23 +136,35 @@ const Login_Page = ({ navigation }) => {
         <View>
           <Button_Component
             funcOnPress={() => {
+              
               checkLogin();
+              //load()
             }}
             title="Login"
           />
+          
         </View>
+
+          
+          
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            padding: 2,
+            
           }}
         >
           <TextButton
             title="Cadastro"
             onPressFunc={() => navigation.navigate("cadastro")}
           />
+
+          <TextButton title="auth spotify"
+          onPressFunc={ () => { authSpotify() }}
+          />  
+
           <TextButton title="Esqueceu a Senha ?" />
+
         </View>
       </SectionCenter>
     </Container>
