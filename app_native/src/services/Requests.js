@@ -1,7 +1,4 @@
-
-
-
-const axios = require('axios').default
+import axios from "axios";
 
   let teste;
 
@@ -24,7 +21,7 @@ class Requests {
     const result = await axios
       .get(`http://localhost:3001/apiSpotify/playlist`, {
         headers: {
-          Authorization: `Bearer ${teste.access_token}`,
+          Authorization: `${teste.access_token}`,
         },
       })
       .then((res) => res);
@@ -39,6 +36,4 @@ class Requests {
 
 
 }
-module.exports =  { Requests, tokenTst} ;
-
-
+export { Requests, tokenTst} ;

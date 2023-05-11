@@ -75,7 +75,7 @@ const Cadastro_page = ({ navigation }) => {
       return;
     }
 
-    const baseUrlUser = 'http://localhost:3000'
+    const baseUrlUser = 'http://localhost:3001'
 
 
 

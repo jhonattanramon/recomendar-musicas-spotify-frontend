@@ -1,0 +1,24 @@
+import { Image } from "react-native";
+import { Avatar } from "react-native-paper";
+import { Square } from "../styles/styled-components";
+const ImagemComponent = ({ url }) => {
+  const uri =
+    url ||
+    "https://images.unsplash.com/photo-1616356607338-fd87169ecf1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
+
+  return (
+    <Square>
+      <Image
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: 20,
+        }}
+        resizeMode="contain"
+        source={{ uri: uri }}
+      />
+    </Square>
+  );
+};
+
+export default ImagemComponent;

@@ -14,7 +14,6 @@ const LoginSchema = new Schema({
     required: true
   },
  
-
 },
 {
   timestamps: true

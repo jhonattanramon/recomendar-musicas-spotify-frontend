@@ -6,5 +6,6 @@ router.route('/token').get( ( req, res) => spotifyController.token( req, res) )
 router.route('/user').get( ( req, res) => spotifyController.user( req, res) )
 router.route('/auth').get( ( req, res) => spotifyController.auth( req, res))
 router.route('/getAllApi').get((req, res) => spotifyController.getAllApi( req, res))
+router.route('/playlist').get((req,res) => spotifyController.playlist( req, res))
 
 module.exports = router;

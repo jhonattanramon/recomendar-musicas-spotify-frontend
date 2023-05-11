@@ -15,93 +15,72 @@ import {
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { get } from "jquery";
+import { Requests, tokenTst } from "../../services/Requests";
 
 const Login_Page = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [access, setAccess] = useState(false);
-  const [token, setToken] = useState()
-  console.log( token);
+  const [token, setToken] = useState();
 
-  // useEffect(() => {
-  //   const load = () => {
-  //     if (access) {
-  //       navigation.navigate("home");
-  //     }
-  //   };
 
-  //   load();
-  // }, [access]);
 
- 
-    useEffect(() => {
+  const urlBase = "http://localhost:3001";
 
-    
-        
-        function getHashParams() {
-          var hashParams = {};
-          var e, r = /([^&;=]+)=?([^&;]*)/g,
-          q = window.location.hash.substring(1);
-          while ( e = r.exec(q)) {
-             hashParams[e[1]] = decodeURIComponent(e[2]);
-            }
-            return hashParams;
-          }
-          
-          
-          
-          const paramentros = getHashParams()
-          console.log(paramentros);
-          setToken(paramentros)
-          
-
+  useEffect(() => {
+    function getHashParams() {
+      var hashParams = {};
+      var e,
+        r = /([^&;=]+)=?([^&;]*)/g,
+        q = window.location.hash.substring(1);
+      while ((e = r.exec(q))) {
+        hashParams[e[1]] = decodeURIComponent(e[2]);
       }
-     ,[]
-    )
-
-
-    const authSpotify = () => { (window.location.href = "http://localhost:8887")}
-     
-      
-   
-
-    
-  
-
-
-  const checkLogin = async () => {
-
-
-    if(!email || !senha ){
-      return alert('campo vazio')
+      return hashParams;
     }
 
-    if(email){
-      
-      const reg =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    const paramentros = getHashParams();
+
+    setToken(paramentros);
+  }, []);
+
+  useEffect(() => {
+    if (access) {
+      navigation.navigate("home");
+    }
+  }, [access]);
+
+  const authSpotify = () => {
+    window.location.href = "http://localhost:8887";
+  };
+
+  const checkLogin = async () => {
+    if (!email || !senha) {
+      return alert("campo vazio");
+    }
+
+    if (email) {
+      const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
       if (!reg.test(email)) {
         Alert.alert("Email inválido! preencha corretamente");
-        alert('Email inválido! preencha corretamente')
+        alert("Email inválido! preencha corretamente");
         return;
       }
+
+      // axios.post(`${urlBase}/api/conect`, {
+      //   email: email,
+      //   password: senha
+      // }).then( res => setAccess(res.data.access))
     }
 
-  
-    //await axios.get(`${baseUrl}/apiSpotify/auth`).then( res => console.log(res))
-    
-
-    if( token.access_token ){
-        
-    await axios.get(`http://localhost:3000/apiSpotify/getAllApi`, {
-      headers: {
-              Authorization: `${token.access_token}`,
-            },
-    }).then( res => console.log(res))
-
-    }
-
+    await axios
+      .get(`${urlBase}/apiSpotify/auth`, {
+        headers: {
+          Authorization: `${token.access_token}`
+        }
+      })
+      .then((res) => console.log(res));
   };
 
   return (
@@ -136,22 +115,17 @@ const Login_Page = ({ navigation }) => {
         <View>
           <Button_Component
             funcOnPress={() => {
-              
               checkLogin();
               //load()
             }}
             title="Login"
           />
-          
         </View>
 
-          
-          
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            
           }}
         >
           <TextButton
@@ -159,12 +133,14 @@ const Login_Page = ({ navigation }) => {
             onPressFunc={() => navigation.navigate("cadastro")}
           />
 
-          <TextButton title="auth spotify"
-          onPressFunc={ () => { authSpotify() }}
-          />  
+          <TextButton
+            title="auth spotify"
+            onPressFunc={() => {
+              authSpotify();
+            }}
+          />
 
           <TextButton title="Esqueceu a Senha ?" />
-
         </View>
       </SectionCenter>
     </Container>

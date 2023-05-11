@@ -9,10 +9,11 @@ import Cadastro_page from "./src/pages/Cadastro";
 import Bem_vindo from "./src/pages/Bem-vindo";
 import HomePage from "./src/pages/Home";
 import Profile from "./src/pages/Profile";
+import pageDeTestes from "./src/pages/pageDeTestes";
 //
 import { colors } from "./src/styles/colors";
 import { MyTheme } from "./src/styles/theme";
-
+import { GlobalStyle } from "./src/styles/styled-components";
 
 const App = () => {
 
@@ -23,7 +24,8 @@ const App = () => {
 
 
   return (
-    <NavigationContainer theme={MyTheme}>
+    <NavigationContainer 
+    theme={MyTheme}>
       <Stack.Navigator
         initialRouteName="login"
         screenOptions={{
@@ -77,6 +79,11 @@ const App = () => {
           }
          }
          
+         />
+
+         <Stack.Screen 
+        name="pageDeTeste"
+        component={pageDeTestes}
          />
 
          </Stack.Navigator>

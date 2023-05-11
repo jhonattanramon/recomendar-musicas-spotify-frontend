@@ -1,6 +1,8 @@
 import styled from "styled-components/native";
 import { colors } from "./colors";
 
+
+
 export const Container = styled.View`
   width: 100%;
   flex: 1;
@@ -18,6 +20,7 @@ export const SectionCenter = styled.View`
   width: 70%;
   justify-content: center;
   margin: 0 auto;
+  
 
 `;
 export const HeaderStyle = styled.View`
@@ -60,3 +63,20 @@ height: 120px;
   }
 
 `;
+
+export const Square = styled.View`
+
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  
+
+`;
+
+export const Card = styled.View`
+  width: 230px;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  background-color: ${colors.blur.primary};
+`
