@@ -8,27 +8,20 @@ import PlaylistCard from "../../patterns/playlists";
 import Button_component from "../../components/Button_Component"
 import axios from "axios";
 
-import {Requests, tokenTst } from "../../services/Requests"
 
 const Home = () => {
-
-
-
-  const req = new Requests()  
-
-  const [responseApi, setResponseApi] = useState()
-
-  console.log(responseApi);
-
-  const teste = responseApi ? responseApi.images[0].url : responseApi
 
   useEffect(
     () => {
      const requisicaoDeTeste = async () => {
-        const playlistDeTeste  = await req.playlist()
-        console.log(playlistDeTeste);
-        setResponseApi(playlistDeTeste.data)
+
+      await axios
+      .get(`http://localhost:3001/apiSpotify/obterGeneros`)
+      .then((res) => console.log(res));
       }
+
+
+      
 
     requisicaoDeTeste()
       
@@ -44,7 +37,7 @@ const Home = () => {
       <SectionCenter>
 
           
-        <PlaylistCard url={teste} />
+        <PlaylistCard  />
 
         <Button_component title="buscar" funcOnPress={ () => {
           

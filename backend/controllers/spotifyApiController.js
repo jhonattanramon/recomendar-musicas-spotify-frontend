@@ -5,17 +5,13 @@ const axios = require("axios").default;
 var $ = require("jquery");
 require("dotenv/config");
 const { Requests, tokenTst } = require("../api/AcessToken");
+const { ok } = require("assert");
 
 const spotifyController = {
   auth: async (req, res, next) => {
     try {
-      tokenTst = req.headers.authorization;
-
-      const resquest = new Requests();
-
-      const playlistDeTeste = await resquest.playlist();
-
-      console.log(playlistDeTeste);
+      tokenTst.token(req.headers.authorization);
+      res.status(200).json("ok");
     } catch (err) {
       console.log("errr");
     }
@@ -84,21 +80,42 @@ const spotifyController = {
     }
   },
   playlist: async (req, res) => {
-    // console.log(req.headers.authorization);
-
     try {
-      const playlist = await axios
-        .get("https://api.spotify.com/v1/playlists/37i9dQZF1DX0FOF1IUWK1W", {
-          headers: {
-            Authorization: `Bearer ${req.headers.authorization}`,
-            json: true,
-          },
-        })
-        .then((dados) => dados.data);
-
+      const classReq = new Requests();
+      const playlist = await classReq.playlist();
+      console.log(playlist);
       res.status(200).json(playlist);
     } catch (err) {
       console.log("playlist err");
+    }
+  },
+  artistasDoUsuario: async (req, res) => {
+    try {
+      const classReq = new Requests();
+      const artistasDoUsuario = await classReq.artistasDoUsuario();
+    } catch (err) {
+      console.log("artistasDoUsuario");
+    }
+  },
+
+  obterVariosArtistas: async (req, res) => {
+    try {
+      const classReq = new Requests();
+      const artistas = await classReq.obterVariosArtistas();
+
+      res.status(200).json(artistas);
+    } catch (err) {
+      console.log("obterVariosArtistas");
+    }
+  },
+
+  obterGeneros: async (req, res) => {
+    try{
+      const classReq = new Requests();
+      const generos =  await classReq.obterGeneros()
+      
+    }catch(err){
+      console.log('obterGeneros');
     }
   },
 };

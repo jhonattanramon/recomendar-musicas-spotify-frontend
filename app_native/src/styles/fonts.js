@@ -15,4 +15,6 @@ import { colors } from "./colors"
       textTransform: "capitalize",
 
     }
+
+    
   }

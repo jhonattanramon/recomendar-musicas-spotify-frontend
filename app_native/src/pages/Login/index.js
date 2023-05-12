@@ -15,7 +15,6 @@ import {
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Requests, tokenTst } from "../../services/Requests";
 
 const Login_Page = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -67,20 +66,20 @@ const Login_Page = ({ navigation }) => {
         alert("Email inválido! preencha corretamente");
         return;
       }
+      
+          await axios
+            .get(`${urlBase}/apiSpotify/auth`, {
+              headers: {
+                Authorization: `${token.access_token}`
+              }
+            })
+            .then((res) => console.log(res));
 
-      // axios.post(`${urlBase}/api/conect`, {
-      //   email: email,
-      //   password: senha
-      // }).then( res => setAccess(res.data.access))
+              await axios.post(`${urlBase}/api/conect`, {
+              email: email,
+              password: senha
+            }).then( res => setAccess(res.data.access))
     }
-
-    await axios
-      .get(`${urlBase}/apiSpotify/auth`, {
-        headers: {
-          Authorization: `${token.access_token}`
-        }
-      })
-      .then((res) => console.log(res));
   };
 
   return (
