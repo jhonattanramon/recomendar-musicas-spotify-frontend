@@ -22,13 +22,13 @@ const routesSpotify = require('./routes/spotify')
 
 
 app.use('/api', routes)
-app.use('/apiSpotify', routesSpotify)
+app.use('/apispotify', routesSpotify)
 
 
 
 
 app.listen(port, (req, res ) => {
-  console.log('servidor online');
+  console.log(`porta:${port} servidor online`);
 })
 
 

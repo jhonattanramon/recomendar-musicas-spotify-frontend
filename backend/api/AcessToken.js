@@ -9,8 +9,8 @@ const tokenTst = {
 const urlBaseSpotify = "https://api.spotify.com/v1";
 
 const listaDeArtistas = [
-  "1a3fr7NdeBT4JlGj6YlbDL",
-  "05qCf6M7E7AxizHVmrcPqh",
+  "5nP8x4uEFjAAmDzwOEc9b8",
+  "68PYmgkbRP1qZnEWOry7sB",
   "5InVWl8IZB8zFAoNa5roKm",
 ];
 
@@ -21,8 +21,9 @@ class Requests {
 
   async playlist() {
     try {
+      console.log(tokenG);
       const result = await axios
-        .get(`https://api.spotify.com/v1/playlists/37i9dQZF1DX0FOF1IUWK1W`, {
+        .get(`${urlBaseSpotify}/playlists/37i9dQZF1DX0FOF1IUWK1W`, {
           headers: {
             Authorization: `Bearer ${tokenG}`,
           },
@@ -36,28 +37,11 @@ class Requests {
       console.log("playlist error");
     }
   }
-
-  async artistasDoUsuario() {
-    try {
-      const result = await axios
-        .get(`https://api.spotify.com/v1/me/following?type=artist`, {
-          headers: {
-            Authorization: `Bearer ${tokenG}`,
-          },
-        })
-        .then((res) => res.data);
-
-      console.log(result);
-    } catch (err) {
-      console.log("errrr");
-    }
-  }
-
   async obterVariosArtistas() {
     try {
       const result = await axios
         .get(
-          `${urlBaseSpotify}/artists?ids=${listaDeArtistas[0]},${listaDeArtistas[1]},${listaDeArtistas[2]}`,
+          `https://api.spotify.com/v1/artists?ids=${listaDeArtistas[0]},${listaDeArtistas[1]}`,
           {
             headers: {
               Authorization: `Bearer ${tokenG}`,
@@ -66,22 +50,45 @@ class Requests {
         )
         .then((res) => res.data);
 
+      console.log(result);
+
       return result;
     } catch (err) {
-      console.log("errrr");
+      console.log("obterVariosArtistas");
     }
   }
 
   async obterGeneros() {
     try {
+      console.log("try generos");
       const result = await axios
-        .get(`${urlBaseSpotify}recommendations/available-genre-seeds`, {
+        .get(`${urlBaseSpotify}/recommendations/available-genre-seeds`, {
           headers: {
             Authorization: `Bearer ${tokenG}`,
           },
         })
         .then((res) => res.data);
-    } catch (err) { console.log('obterGeneros');}
+      console.log(result);
+    } catch (err) {
+      console.log("obterGeneros");
+    }
+  }
+
+  async playlistsEmDestaque() {
+    try {
+      console.log(tokenG);
+      const result = await axios
+        .get(`${urlBaseSpotify}/browse/featured-playlists?coutry=BR&timestamp=2023-01-01T09%3A00%3A00&limit=20`, 
+        {
+          headers:{
+            Authorization: `Bearer ${tokenG}`,
+          }
+        })
+        .then((res) => res.data);
+          return result
+    } catch (err) {
+      console.log("err playsDestaques");
+    }
   }
 }
 module.exports = { Requests, tokenTst };

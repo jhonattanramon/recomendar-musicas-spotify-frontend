@@ -45,7 +45,7 @@ const Login_Page = ({ navigation }) => {
 
   useEffect(() => {
     if (access) {
-      navigation.navigate("home");
+      navigation.navigate("pageDeTeste");
     }
   }, [access]);
 

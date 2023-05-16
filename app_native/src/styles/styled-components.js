@@ -2,11 +2,11 @@ import styled from "styled-components/native";
 import { colors } from "./colors";
 
 
-
+//Scopes
 export const Container = styled.View`
-  width: 100%;
   flex: 1;
   background: ${colors.complement.primary};
+  overflow: hidden;
 `;
 
 export const Separador = styled.View`
@@ -25,19 +25,6 @@ export const SectionCenter = styled.View`
 `;
 export const HeaderStyle = styled.View`
   background: #222;
-`;
-
-export const TitleText = styled.Text`
-  font-size: 37;
-  font-weight: bold;
-  color: ${colors.complement.secondary};
-
-`;
-
-export const NewText = styled.Text` 
-  font-size: 15;
-  font-weight: bold;
-  color: ${colors.tertiary};
 `;
 
 export const Header = styled.View`
@@ -80,3 +67,27 @@ export const Card = styled.View`
   align-items: center;
   background-color: ${colors.blur.primary};
 `
+
+
+//Fonts
+export const TitleText = styled.Text`
+  font-size: 37;
+  font-weight: bold;
+  color: ${colors.complement.secondary};
+
+`;
+
+export const NewText = styled.Text` 
+  font-size: 15;
+  font-weight: bold;
+  color: ${colors.tertiary};
+`;
+
+export const SubText = styled.Text`
+  font-size: 25;
+  font-weight: bold;
+  color: ${colors.complement.secondary};
+  
+
+`
+

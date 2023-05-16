@@ -10,10 +10,14 @@ import Bem_vindo from "./src/pages/Bem-vindo";
 import HomePage from "./src/pages/Home";
 import Profile from "./src/pages/Profile";
 import pageDeTestes from "./src/pages/pageDeTestes";
+import PlaylistPage from "./src/pages/Playlist";
+
 //
 import { colors } from "./src/styles/colors";
 import { MyTheme } from "./src/styles/theme";
 import { GlobalStyle } from "./src/styles/styled-components";
+import { playlist } from "../backend/controllers/spotifyApiController";
+
 
 const App = () => {
 
@@ -27,7 +31,7 @@ const App = () => {
     <NavigationContainer 
     theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="home"
         screenOptions={{
           headerShown: true,
         }}
@@ -80,6 +84,7 @@ const App = () => {
          }
          
          />
+
 
          <Stack.Screen 
         name="pageDeTeste"

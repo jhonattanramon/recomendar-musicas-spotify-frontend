@@ -5,48 +5,29 @@ import {
 } from "../../styles/styled-components";
 import React, { useEffect, useState } from "react";
 import PlaylistCard from "../../patterns/playlists";
-import Button_component from "../../components/Button_Component"
+import Button_component from "../../components/Button_Component";
+import Loading from "../../components/loading";
 import axios from "axios";
-
+import TopPlaylist from "../../patterns/TopPlaylist";
 
 const Home = () => {
-
-  useEffect(
-    () => {
-     const requisicaoDeTeste = async () => {
-
+  const [playlists, setPlaylists] = useState([]);
+  console.log(playlists);
+  useEffect(() => {
+    const requisicaoDeTeste = async () => {
       await axios
-      .get(`http://localhost:3001/apiSpotify/obterGeneros`)
-      .then((res) => console.log(res));
-      }
+        .get("http://localhost:3001/apispotify/playlistsEmDestaque")
+        .then(({ data, message }) => setPlaylists(data.playlists.items));
+    };
+    requisicaoDeTeste();
+  }, []);
+  return( 
+  <Container>
 
+    <TopPlaylist array={playlists}/> 
 
-      
-
-    requisicaoDeTeste()
-      
-    },[]
+  </Container>
   )
- 
-
-
-
-
-  return (
-    <Container>
-      <SectionCenter>
-
-          
-        <PlaylistCard  />
-
-        <Button_component title="buscar" funcOnPress={ () => {
-          
-        
-        }}/> 
-      
-      </SectionCenter>
-    </Container>
-  );
 };
 
 export default Home;

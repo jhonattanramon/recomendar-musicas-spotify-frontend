@@ -7,6 +7,10 @@ require("dotenv/config");
 const { Requests, tokenTst } = require("../api/AcessToken");
 const { ok } = require("assert");
 
+
+const classReq = new Requests()
+
+
 const spotifyController = {
   auth: async (req, res, next) => {
     try {
@@ -59,24 +63,12 @@ const spotifyController = {
     }
   },
 
-  getAllApi: async (req, res) => {
+  playlistsEmDestaque: async (req, res) => {
     try {
-      // spotfyApi.setAccessToken(`${req.headers.authorization}`)
-
-      // spotfyApi.getArtistAlbums( )
-
-      console.log(req.headers.authorization);
-
-      await axios
-        .get("https://api.spotify.com/v1/playlists/37i9dQZF1DZ06evO0aGty0", {
-          headers: {
-            Authorization: `Bearer ${req.headers.authorization}`,
-            json: true,
-          },
-        })
-        .then((dados) => console.log(dados));
-    } catch (err) {
-      console.log("errorrrrr");
+         const destaquesPlaylists =  await classReq.playlistsEmDestaque();
+          res.status(200).json(destaquesPlaylists)
+    }catch(err){
+      console.log('getAll');
     }
   },
   playlist: async (req, res) => {
@@ -87,14 +79,6 @@ const spotifyController = {
       res.status(200).json(playlist);
     } catch (err) {
       console.log("playlist err");
-    }
-  },
-  artistasDoUsuario: async (req, res) => {
-    try {
-      const classReq = new Requests();
-      const artistasDoUsuario = await classReq.artistasDoUsuario();
-    } catch (err) {
-      console.log("artistasDoUsuario");
     }
   },
 

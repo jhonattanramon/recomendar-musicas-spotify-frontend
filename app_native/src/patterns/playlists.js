@@ -1,4 +1,4 @@
-import { View, Image, Text } from "react-native";
+import { View, Image, Text, Pressable, StyleSheet } from "react-native";
 import {
   Container,
   SectionCenter,
@@ -8,8 +8,10 @@ import {
 import ImagemComponent from "../components/Imagem";
 import { colors } from "../styles/colors";
 import { fontStyleds } from "../styles/fonts";
+import TextButton from "../components/TextButton";
 
-const PlaylistCard = ({ url}) => {
+const PlaylistCard = ({ url, titulo , descricao }) => {
+  console.log(url);
   return (
     <Card>
       <Square>
@@ -23,12 +25,25 @@ const PlaylistCard = ({ url}) => {
             flex: 1,
           }}
         >
-          <Text style={fontStyleds.fontDefault}>#primeira playlist</Text>
-          <Text style={fontStyleds.subsFont}>decrição</Text>
+          <Pressable onPress={ () => {
+
+          }}>
+            <Text style={ styles.titulo}>{titulo}</Text>  
+          </Pressable> 
+          <Text style={fontStyleds.subsFont}>{descricao}</Text>
         </View>
       </Square>
     </Card>
   );
 };
 
+
+const styles = StyleSheet.create({
+    titulo:{
+      color: colors.complement.secondary,
+      fontWeight: "bold",
+      
+    }
+    
+})
 export default PlaylistCard;
