@@ -16,7 +16,6 @@ import PlaylistPage from "./src/pages/Playlist";
 import { colors } from "./src/styles/colors";
 import { MyTheme } from "./src/styles/theme";
 import { GlobalStyle } from "./src/styles/styled-components";
-import { playlist } from "../backend/controllers/spotifyApiController";
 
 
 const App = () => {
@@ -90,6 +89,17 @@ const App = () => {
         name="pageDeTeste"
         component={pageDeTestes}
          />
+
+         <Stack.Screen
+         name="playlist"
+         component={PlaylistPage}
+
+         options={
+          {
+            headerShown:false
+          }
+         }
+         /> 
 
          </Stack.Navigator>
     </NavigationContainer>

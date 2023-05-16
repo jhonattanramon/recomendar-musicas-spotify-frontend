@@ -3,14 +3,14 @@ import {
   SectionCenter,
   Separador,
 } from "../../styles/styled-components";
-import React, { useEffect, useState } from "react";
-import PlaylistCard from "../../patterns/playlists";
+import { useEffect, useState } from "react";
+import PlaylistCard from "../../components/CardPlaylists";
 import Button_component from "../../components/Button_Component";
 import Loading from "../../components/loading";
 import axios from "axios";
 import TopPlaylist from "../../patterns/TopPlaylist";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [playlists, setPlaylists] = useState([]);
   console.log(playlists);
   useEffect(() => {
@@ -21,13 +21,11 @@ const Home = () => {
     };
     requisicaoDeTeste();
   }, []);
-  return( 
-  <Container>
-
-    <TopPlaylist array={playlists}/> 
-
-  </Container>
-  )
+  return (
+    <Container>
+      <TopPlaylist array={playlists} navigation={navigation} />
+    </Container>
+  );
 };
 
 export default Home;

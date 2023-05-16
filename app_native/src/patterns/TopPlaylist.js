@@ -2,11 +2,9 @@ import { Title } from "react-native-paper";
 import { colors } from "../styles/colors";
 import { Section, TitleText, SubText } from "../styles/styled-components";
 import { View, StyleSheet, Text, FlatList } from "react-native";
-import PlaylistCard from "./playlists";
+import PlaylistCard from "../components/CardPlaylists";
 
-const TopPlaylist = ({ array }) => {
-
-  console.log(array);
+const TopPlaylist = ({ array, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={{ padding: 3 }}>
@@ -17,7 +15,11 @@ const TopPlaylist = ({ array }) => {
           horizontal={true}
           data={array}
           renderItem={({ item, index, separators }) => (
-            <PlaylistCard titulo={item.name} url={item.images[0].url} />
+            <PlaylistCard
+              navigation={navigation}
+              titulo={item.name}
+              url={item.images[0].url}
+            />
           )}
         />
       </View>

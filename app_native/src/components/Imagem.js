@@ -14,7 +14,7 @@ const ImagemComponent = ({ url }) => {
           height: "100%",
           borderRadius: 20,
         }}
-        resizeMode="contain"
+        resizeMode="cover"
         source={{ uri: uri }}
       />
     </Square>
