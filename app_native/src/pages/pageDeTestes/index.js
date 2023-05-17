@@ -1,13 +1,16 @@
 import PlaylistCard from "../../components/CardPlaylists";
 import { Container } from "../../styles/styled-components";
 import Button_Component from "../../components/Button_Component";
+import Track from "../../components/Track";
 import { Button } from "react-native-paper";
 import axios from "axios";
 
 const Teste = ({ navigation }) => {
   return (
     <Container>
-      <PlaylistCard url="https://i.scdn.co/image/ab67706f00000003fb5cdf879d33a0e46f1ce3d6" />
+
+      <Track /> 
+
       <Button_Component
         title="teste1"
         funcOnPress={async () => {

@@ -19,6 +19,7 @@ const TopPlaylist = ({ array, navigation }) => {
               navigation={navigation}
               titulo={item.name}
               url={item.images[0].url}
+              item={item}
             />
           )}
         />

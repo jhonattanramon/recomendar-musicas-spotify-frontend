@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
 import { colors } from "./colors";
 
-
 //Scopes
 export const Container = styled.View`
   flex: 1;
@@ -20,44 +19,36 @@ export const SectionCenter = styled.View`
   width: 70%;
   justify-content: center;
   margin: 0 auto;
-  
-
 `;
 export const HeaderStyle = styled.View`
   background: #222;
 `;
 
 export const Header = styled.View`
-position:absolute;
-top: 5%;
+  position: absolute;
+  top: 5%;
 `;
 
-export const Avatar  = styled.View`
-background: ${colors.secondary};
-border-Radius: 50%;
-width: 120px;
-height: 120px;
+export const Avatar = styled.View`
+  background: ${colors.secondary};
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
 
-  Text: {
+  text: {
     font-weight: bold;
     font-size: 10;
     color: ${colors.complement.secondary};
     position: relative;
     top: 50%;
     left: 50%;
-    
-
   }
-
 `;
 
 export const Square = styled.View`
-
   width: 100%;
   height: 100%;
   flex: 1;
-  
-
 `;
 
 export const Card = styled.View`
@@ -66,18 +57,16 @@ export const Card = styled.View`
   justify-content: center;
   align-items: center;
   background-color: ${colors.blur.primary};
-`
-
+`;
 
 //Fonts
 export const TitleText = styled.Text`
   font-size: 37;
   font-weight: bold;
   color: ${colors.complement.secondary};
-
 `;
 
-export const NewText = styled.Text` 
+export const NewText = styled.Text`
   font-size: 15;
   font-weight: bold;
   color: ${colors.tertiary};
@@ -87,7 +76,11 @@ export const SubText = styled.Text`
   font-size: 25;
   font-weight: bold;
   color: ${colors.complement.secondary};
-  
+`;
 
+export const ViewImageTrack = styled.View`
+    width:70;
+    height:70;
+
+    
 `
-

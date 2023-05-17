@@ -73,7 +73,7 @@ const Login_Page = ({ navigation }) => {
                 Authorization: `${token.access_token}`
               }
             })
-            .then((res) => console.log(res));
+            .then((res) => res);
 
               await axios.post(`${urlBase}/api/conect`, {
               email: email,

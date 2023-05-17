@@ -102,6 +102,15 @@ const spotifyController = {
       console.log('obterGeneros');
     }
   },
+  tracksPlaylist: async (req, res) => {
+    try{
+      console.log(req.headers.hreftracks);
+     const tracks =  await classReq.tracksPlaylist(req.headers.hreftracks)
+      res.status(200).json(tracks)
+    }catch(err){
+      console.log("tracks err");
+    }
+  }
 };
 
 module.exports = spotifyController;

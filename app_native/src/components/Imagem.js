@@ -12,7 +12,7 @@ const ImagemComponent = ({ url }) => {
         style={{
           width: "100%",
           height: "100%",
-          borderRadius: 20,
+          
         }}
         resizeMode="cover"
         source={{ uri: uri }}

@@ -90,5 +90,20 @@ class Requests {
       console.log("err playsDestaques");
     }
   }
+
+  async tracksPlaylist(url){
+    try{
+        const result = await axios.get(url, {
+          headers:{
+            Authorization: `Bearer ${tokenG}`,
+          }
+        }).then( res => res.data)
+
+        
+        return result
+    }catch(err){
+      console.log("tracks");
+    }
+  }
 }
 module.exports = { Requests, tokenTst };

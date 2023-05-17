@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 
-//Pages 
+//Pages
 import Login_Page from "./src/pages/Login";
 import Cadastro_page from "./src/pages/Cadastro";
 import Bem_vindo from "./src/pages/Bem-vindo";
@@ -17,18 +17,13 @@ import { colors } from "./src/styles/colors";
 import { MyTheme } from "./src/styles/theme";
 import { GlobalStyle } from "./src/styles/styled-components";
 
-
 const App = () => {
-
-
   const Stack = createNativeStackNavigator();
 
-  const varivelDeDesenvolvimento = "teste"
-
+  const varivelDeDesenvolvimento = "teste";
 
   return (
-    <NavigationContainer 
-    theme={MyTheme}>
+    <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
         initialRouteName="home"
         screenOptions={{
@@ -38,70 +33,53 @@ const App = () => {
         <Stack.Screen
           options={{
             title: "Seu login",
-            headerShown:false
+            headerShown: false,
           }}
           name="login"
           component={Login_Page}
         />
-        <Stack.Screen 
-        name="cadastro"
-        component={Cadastro_page}
-        options={
-          {
-           headerShown:false
-          }
-        }
+        <Stack.Screen
+          name="cadastro"
+          component={Cadastro_page}
+          options={{
+            headerShown: false,
+          }}
         />
 
-        <Stack.Screen 
-        name="bem-vindo"
-         component={Bem_vindo}
-         options={
-          {
-            headerShown:false
-          }
-         } />
+        <Stack.Screen
+          name="bem-vindo"
+          component={Bem_vindo}
+          options={{
+            headerShown: false,
+          }}
+        />
 
-         <Stack.Screen 
-         name='home'
-         component={HomePage}
-         options={
-          {
-            headerShown:false
-          }
+        <Stack.Screen
+          name="home"
+          component={HomePage}
+          options={{
+            headerShown: false,
+          }}
+        />
 
-        }
-         />
+        <Stack.Screen
+          name="profile"
+          component={Profile}
+          options={{
+            headerShown: false,
+          }}
+        />
 
-         <Stack.Screen 
-         name="profile"
-         component={Profile} 
-         options={ 
-          {
-            headerShown:false
-          }
-         }
-         
-         />
-
-
-         <Stack.Screen 
-        name="pageDeTeste"
-        component={pageDeTestes}
-         />
-
-         <Stack.Screen
-         name="playlist"
-         component={PlaylistPage}
-
-         options={
-          {
-            headerShown:false
-          }
-         }
-         /> 
-
-         </Stack.Navigator>
+        <Stack.Screen
+          name="playlist"
+          component={PlaylistPage}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen name="pageDeTeste"
+         component={pageDeTestes} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

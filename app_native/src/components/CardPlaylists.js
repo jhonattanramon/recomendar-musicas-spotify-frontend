@@ -11,7 +11,7 @@ import { fontStyleds } from "../styles/fonts";
 import TextButton from "./TextButton";
 
 const PlaylistCard = (props) => {
-  console.log(props);
+  
   return (
     <Card>
       <Square>
@@ -27,7 +27,7 @@ const PlaylistCard = (props) => {
         >
           <Pressable
             onPress={() => {
-              props.navigation.push("playlist", {
+              props.navigation.navigate("playlist", {
                 data: props
               });
             }}
