@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server.auth": "nodemon ./api/spotify/auth.js",
-    "server": "nodemon ./server.js"
+    "server": "nodemon ./servidor.js"
   },
   "author": "",
   "license": "ISC",

@@ -9,7 +9,6 @@ const Teste = ({ navigation }) => {
   return (
     <Container>
 
-      <Track /> 
 
       <Button_Component
         title="teste1"
