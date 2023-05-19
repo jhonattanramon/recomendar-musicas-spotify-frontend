@@ -21,14 +21,18 @@ const Playlist = ({ route }) => {
   console.log(tracks);
   useEffect(() => {
     const load = async () => {
-      await axios
+     const result =  await  axios
         .get("http://localhost:3001/apispotify/tracksplaylist", {
           headers: {
             hrefTracks: route.params.data.item.tracks.href,
           },
         })
         .then(({ data }) => setTracks(data.items));
-    };
+
+        console.log(result);
+      };
+
+
 
     load();
   }, []);

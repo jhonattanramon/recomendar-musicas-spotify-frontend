@@ -15,6 +15,7 @@ import {
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Requisicoes, accessToken } from "../../services/requisições/req";
 
 const Login_Page = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -23,8 +24,9 @@ const Login_Page = ({ navigation }) => {
   const [token, setToken] = useState();
 
 
-
-  const urlBase = "http://localhost:3001";
+  const urlBaseDev = "http://localhost:3001";
+  const urlBaseProduct = "https://appnative-backend.onrender.com";
+  const urlBaseAuth = "https://appnative-backend-auth.onrender.com";
 
   useEffect(() => {
     function getHashParams() {
@@ -41,6 +43,8 @@ const Login_Page = ({ navigation }) => {
     const paramentros = getHashParams();
 
     setToken(paramentros);
+
+    accessToken.getToken(paramentros.access_token);
   }, []);
 
   useEffect(() => {
@@ -50,7 +54,7 @@ const Login_Page = ({ navigation }) => {
   }, [access]);
 
   const authSpotify = () => {
-    window.location.href = "http://localhost:8887";
+    window.location.href = `${urlBaseAuth}`;
   };
 
   const checkLogin = async () => {
@@ -66,19 +70,11 @@ const Login_Page = ({ navigation }) => {
         alert("Email inválido! preencha corretamente");
         return;
       }
-      
-          await axios
-            .get(`${urlBase}/apiSpotify/auth`, {
-              headers: {
-                Authorization: `${token.access_token}`
-              }
-            })
-            .then((res) => res);
 
-              await axios.post(`${urlBase}/api/conect`, {
-              email: email,
-              password: senha
-            }).then( res => setAccess(res.data.access))
+      const requisicoes = new Requisicoes();
+
+      await requisicoes.autenticacao();
+      setAccess(await requisicoes.connect({ email: email, password: senha }));
     }
   };
 

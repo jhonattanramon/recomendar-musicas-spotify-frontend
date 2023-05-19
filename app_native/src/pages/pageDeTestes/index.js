@@ -13,7 +13,7 @@ const Teste = ({ navigation }) => {
       <Button_Component
         title="teste1"
         funcOnPress={async () => {
-          await axios.get("http://localhost:3001/apispotify/obtergeneros");
+          await axios.get("https://appnative-backend.onrender.com/apispotify/obtergeneros");
         }}
       />
       <Button_Component
@@ -30,6 +30,13 @@ const Teste = ({ navigation }) => {
           navigation.navigate("home");
         }}
       />
+
+      <Button_Component
+        title="teste4"
+        funcOnPress={ async() => {
+          await axios.get("https://appnative-backend.onrender.com/api/users").then( res => console.log(res))
+        }}
+      /> 
     </Container>
   );
 };

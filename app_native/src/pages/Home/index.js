@@ -9,15 +9,16 @@ import Button_component from "../../components/Button_Component";
 import Loading from "../../components/loading";
 import axios from "axios";
 import TopPlaylist from "../../patterns/TopPlaylist";
+import { Requisicoes, accessToken } from "../../services/requisições/req";
 
 const Home = ({ navigation }) => {
   const [playlists, setPlaylists] = useState([]);
-  console.log(playlists);
+
   useEffect(() => {
     const requisicaoDeTeste = async () => {
-      await axios
-        .get("http://localhost:3001/apispotify/playlistsEmDestaque")
-        .then(({ data, message }) => setPlaylists(data.playlists.items));
+      const requisicoes = new Requisicoes();
+      const { data } = await requisicoes.playlistEmDestaque();
+      setPlaylists(data.playlists.items);
     };
     requisicaoDeTeste();
   }, []);
