@@ -16,20 +16,18 @@ import { useEffect, useState } from "react";
 import Track from "../../components/Track";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { Requisicoes } from "../../services/requisições/req";
+
 const Playlist = ({ route }) => {
   const [tracks, setTracks] = useState([]);
-  console.log(tracks);
+
+  const requisicoes  = new Requisicoes();
+
+
   useEffect(() => {
     const load = async () => {
-     const result =  await  axios
-        .get("http://localhost:3001/apispotify/tracksplaylist", {
-          headers: {
-            hrefTracks: route.params.data.item.tracks.href,
-          },
-        })
-        .then(({ data }) => setTracks(data.items));
-
-        console.log(result);
+        const playlist = requisicoes.playlistEmDestaque()
+        set
       };
 
 

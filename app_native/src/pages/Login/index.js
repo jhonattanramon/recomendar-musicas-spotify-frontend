@@ -22,6 +22,7 @@ const Login_Page = ({ navigation }) => {
   const [senha, setSenha] = useState("");
   const [access, setAccess] = useState(false);
   const [token, setToken] = useState();
+  const [loading, setLooading] = useState(false);
 
 
   const urlBaseDev = "http://localhost:3001";
@@ -74,7 +75,10 @@ const Login_Page = ({ navigation }) => {
       const requisicoes = new Requisicoes();
 
       await requisicoes.autenticacao();
-      setAccess(await requisicoes.connect({ email: email, password: senha }));
+      const conect = await requisicoes.connect({ email: email, password: senha });
+
+      console.log(conect);
+
     }
   };
 
@@ -109,7 +113,9 @@ const Login_Page = ({ navigation }) => {
 
         <View>
           <Button_Component
+          loading={loading}
             funcOnPress={() => {
+              setLooading(!loading)
               checkLogin();
               //load()
             }}
