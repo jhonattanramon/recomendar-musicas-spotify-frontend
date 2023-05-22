@@ -26,7 +26,7 @@ export class Requisicoes {
 
   async connect({ email, password }) {
     const response = await axios
-      .post(`${urlBaseDev}/api/conect`, {
+      .post(`${urlBaseProduct}/api/conect`, {
         email: email,
         password: password,
       })
@@ -43,7 +43,7 @@ export class Requisicoes {
   }
 
   async tracks(urlTrack){
-    const response = await axios.get(`${urlBaseDev}/apispotify/tracksplaylist`,{
+    const response = await axios.get(`${urlBaseProduct}/apispotify/tracksplaylist`,{
       headers:{
         hreftracks: urlTrack
       }
