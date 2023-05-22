@@ -1,8 +1,9 @@
 import { View, Text, Pressable } from "react-native";
 import { Title } from "react-native-paper";
-import Button_Component from "../../components/Button_Component";
-import Input_Component from "../../components/Input_Component";
+import Button_Component from "../../components/ButtonComponent";
+import Input_Component from "../../components/InputComponent";
 import TextButton from "../../components/TextButton";
+import ButtonIcon from "../../components/ButtonIcon";
 
 import {
   Separador,
@@ -23,7 +24,6 @@ const Login_Page = ({ navigation }) => {
   const [access, setAccess] = useState(false);
   const [token, setToken] = useState();
   const [loading, setLooading] = useState(false);
-
 
   const urlBaseDev = "http://localhost:3001";
   const urlBaseProduct = "https://appnative-backend.onrender.com";
@@ -70,16 +70,18 @@ const Login_Page = ({ navigation }) => {
         Alert.alert("Email inválido! preencha corretamente");
         alert("Email inválido! preencha corretamente");
         return;
-      }
-
+      }else{
+        setLooading(!loading);
       const requisicoes = new Requisicoes();
-
       await requisicoes.autenticacao();
-      const conect = await requisicoes.connect({ email: email, password: senha });
+      const conect = await requisicoes.connect({
+        email: email,
+        password: senha,
+      });
 
-      setAccess(conect.data)
-
-    }
+      setAccess(conect.data);
+      }
+    } 
   };
 
   return (
@@ -113,9 +115,9 @@ const Login_Page = ({ navigation }) => {
 
         <View>
           <Button_Component
-          loading={loading}
+            loading={loading}
             funcOnPress={() => {
-              setLooading(!loading)
+             
               checkLogin();
               //load()
             }}
@@ -135,7 +137,7 @@ const Login_Page = ({ navigation }) => {
           />
 
           <TextButton
-            title="auth spotify"
+            title="Login Spotify"
             onPressFunc={() => {
               authSpotify();
             }}

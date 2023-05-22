@@ -11,7 +11,8 @@ import { Container } from "../../styles/styled-components";
 import { TitleText } from "../../styles/styled-components";
 
 import ImagemComponent from "../../components/Imagem";
-import axios from "axios";
+import Loading from "../../components/loading";
+
 import { useEffect, useState } from "react";
 import Track from "../../components/Track";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -22,14 +23,37 @@ const Playlist = ({ route }) => {
   const [tracks, setTracks] = useState([]);
 
   const requisicoes  = new Requisicoes();
-
-  console.log(route);
-
+  const TracksArea = () => {
+    if(tracks.length > 0){
+      return(
+        <ScrollView >
+        <FlatList
+          data={tracks}
+          renderItem={({ item }) => (
+            <Track
+            item={item}
+            imagem={item.track.album.images[1].url}
+              titulo={item.track.name}
+              album={item.track.album.name}
+              artista={item.track.artists}
+              tempoDeReproducao={item.track.duration_ms}
+              navigation={route.params.data.navigation}
+              />
+              )}
+              />
+      </ScrollView>
+  
+      )
+    }else{
+      return(
+        <Loading /> 
+      )
+    }
+  }
 
   useEffect(() => {
     const load = async () => {
-        const {data} = await requisicoes.tracks(route.params.data.item.tracks.href)
-        console.log(data);
+        const {data} = await requisicoes.tracksPlaylist(route.params.data.item.tracks.href)
         setTracks(data.items)
       };
 
@@ -48,23 +72,10 @@ const Playlist = ({ route }) => {
         <View style={styles.viewTituloPlaylist}>
           <TitleText >{route.params.data.titulo}</TitleText>
         </View>
-      </View>
+      </View> 
 
       <SafeAreaView style={styles.containerTracks}>
-        <ScrollView >
-          <FlatList
-            data={tracks}
-            renderItem={({ item }) => (
-              <Track
-                imagem={item.track.album.images[1].url}
-                titulo={item.track.name}
-                album={item.track.album.name}
-                artista={item.track.artists}
-                tempoDeReproducao={item.track.duration_ms}
-              />
-            )}
-          />
-        </ScrollView>
+          <TracksArea /> 
       </SafeAreaView>
     </Container>
   );
@@ -89,7 +100,9 @@ const styles = StyleSheet.create({
 
   containerTracks:{
     flex: 1,
-     paddingHorizontal: 10 
+     paddingHorizontal: 10, 
+     justifyContent:"center",
+     alignItems:"center"
   },
   viewTituloPlaylist:{
       padding:7

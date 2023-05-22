@@ -1,6 +1,6 @@
 import PlaylistCard from "../../components/CardPlaylists";
 import { Container } from "../../styles/styled-components";
-import Button_Component from "../../components/Button_Component";
+import Button_Component from "../../components/ButtonComponent";
 import Track from "../../components/Track";
 import { Button } from "react-native-paper";
 import axios from "axios";
@@ -8,12 +8,12 @@ import axios from "axios";
 const Teste = ({ navigation }) => {
   return (
     <Container>
-
-
       <Button_Component
         title="teste1"
         funcOnPress={async () => {
-          await axios.get("https://appnative-backend.onrender.com/apispotify/obtergeneros");
+          await axios.get(
+            "https://appnative-backend.onrender.com/apispotify/obtergeneros"
+          );
         }}
       />
       <Button_Component
@@ -33,10 +33,12 @@ const Teste = ({ navigation }) => {
 
       <Button_Component
         title="teste4"
-        funcOnPress={ async() => {
-          await axios.get("https://appnative-backend.onrender.com/api/users").then( res => console.log(res))
+        funcOnPress={async () => {
+          await axios
+            .get("https://appnative-backend.onrender.com/api/users")
+            .then((res) => console.log(res));
         }}
-      /> 
+      />
     </Container>
   );
 };

@@ -16,7 +16,7 @@ const styles = StyleSheet.create(
         colorText:{
           color: colors.secondary,
           fontWeight:'bold',
-          padding:5
+          
         }
       }
   )

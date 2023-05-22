@@ -5,7 +5,7 @@ import {
 } from "../../styles/styled-components";
 import { useEffect, useState } from "react";
 import PlaylistCard from "../../components/CardPlaylists";
-import Button_component from "../../components/Button_Component";
+import Button_component from "../../components/ButtonComponent";
 import Loading from "../../components/loading";
 import axios from "axios";
 import TopPlaylist from "../../patterns/TopPlaylist";

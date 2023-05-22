@@ -8,14 +8,13 @@ import {
   Title,
   TitleText,
 } from "../../styles/styled-components";
-import Button_Component from "../../components/Button_Component";
-import Input_Component from "../../components/Input_Component";
+import Button_Component from "../../components/ButtonComponent";
+import Input_Component from "../../components/InputComponent";
 import TextButton from "../../components/TextButton";
 import { useState } from "react";
 import { colors } from "../../styles/colors";
 
-import axios from 'axios'
-
+import axios from "axios";
 
 const Cadastro_page = ({ navigation }) => {
   //states
@@ -31,9 +30,6 @@ const Cadastro_page = ({ navigation }) => {
   const onAddSenha = (valueSenha) => setSenha(valueSenha);
   const onConfirmPassword = (valuePassword) =>
     setConfirmPassword(valuePassword);
-
-
-
 
   const valueRegisterUser = {
     name: name,
@@ -55,49 +51,39 @@ const Cadastro_page = ({ navigation }) => {
     ) {
       Alert.alert("Campo vazio! preencha as informações antes prosseguir");
 
-      alert('"Campo vazio! preencha as informações antes prosseguir"')
+      alert('"Campo vazio! preencha as informações antes prosseguir"');
       return;
     }
 
-    if(valueRegisterUser.email){
-      const reg =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (valueRegisterUser.email) {
+      const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
       if (!reg.test(valueRegisterUser.email)) {
         Alert.alert("Email inválido! preencha corretamente");
-        alert('"Email inválido! preencha corretamente"')
+        alert('"Email inválido! preencha corretamente"');
         return;
       }
     }
 
     if (valueRegisterUser.password !== valueRegisterUser.confirmPassword) {
       Alert.alert("Senhas não são iguais! check o campo de senhas.");
-      alert("Senhas não são iguais! check o campo de senhas.")
+      alert("Senhas não são iguais! check o campo de senhas.");
       return;
     }
 
-    const baseUrlUser = 'http://localhost:3001'
+    const baseUrlUser = "http://localhost:3001";
 
-
-
-   await axios.post(`${baseUrlUser}/api/users`, {
-      name: valueRegisterUser.name,
-      sobrenome: valueRegisterUser.sobrenome,
-      email: valueRegisterUser.email,
-      password: valueRegisterUser.password
-    }).then( () => {
-      console.log('user registration');
-      Alert.alert('usuario registrado')}
-      )
-
-     
-
-    
-
- 
-   
-
-  
-    
+    await axios
+      .post(`${baseUrlUser}/api/users`, {
+        name: valueRegisterUser.name,
+        sobrenome: valueRegisterUser.sobrenome,
+        email: valueRegisterUser.email,
+        password: valueRegisterUser.password,
+      })
+      .then(() => {
+        console.log("user registration");
+        Alert.alert("usuario registrado");
+      });
   };
 
   return (
@@ -114,16 +100,15 @@ const Cadastro_page = ({ navigation }) => {
           <View>
             <Input_Component
               labelName="Nome"
-              inputMode='text'
+              inputMode="text"
               onChange={(valueText) => {
-
                 onAddName(valueText);
               }}
             />
 
             <Input_Component
               labelName="Sobrenome"
-              inputMode='text'
+              inputMode="text"
               onChange={(valueText) => {
                 onAddSobrenome(valueText);
               }}
@@ -133,7 +118,7 @@ const Cadastro_page = ({ navigation }) => {
           <View>
             <Input_Component
               labelName="Email"
-              inputMode='email'
+              inputMode="email"
               onChange={(valueText) => {
                 onAddEmail(valueText);
               }}
@@ -176,7 +161,12 @@ const Cadastro_page = ({ navigation }) => {
         </Section>
 
         <View>
-          <TextButton title="Login" onPressFunc={() => {navigation.navigate('login')}} />
+          <TextButton
+            title="Login"
+            onPressFunc={() => {
+              navigation.navigate("login");
+            }}
+          />
         </View>
       </SectionCenter>
     </Container>

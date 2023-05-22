@@ -11,6 +11,7 @@ import HomePage from "./src/pages/Home";
 import Profile from "./src/pages/Profile";
 import pageDeTestes from "./src/pages/pageDeTestes";
 import PlaylistPage from "./src/pages/Playlist";
+import Track from "./src/pages/Track";
 
 //
 import { colors } from "./src/styles/colors";
@@ -77,8 +78,14 @@ const App = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen name="pageDeTeste"
-         component={pageDeTestes} />
+        <Stack.Screen
+        name="track"
+        component={Track}
+        options={{
+          headerShown: false,
+        }}
+        />
+        <Stack.Screen name="pageDeTeste" component={pageDeTestes} />
       </Stack.Navigator>
     </NavigationContainer>
   );

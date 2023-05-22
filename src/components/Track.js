@@ -1,16 +1,31 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import { ViewImageTrack } from "../styles/styled-components";
 import ImagemComponent from "./Imagem";
 import { colors } from "../styles/colors";
 import { useEffect, useState } from "react";
 
-const Track = ({ imagem, titulo, album, artista, tempoDeReproducao }) => {
+const Track = ({
+  item,
+  imagem,
+  titulo,
+  album,
+  artista,
+  tempoDeReproducao,
+  navigation,
+}) => {
+  const [tempoRep, setTempoRep] = useState(0);
 
-  const [ tempoRep,  setTempoRep ] = useState(0)
+  const navigationTrack = (urlTrack) => {
+    navigation.navigate("track", {
+      url: urlTrack,
+    });
+  };
 
-  useEffect( () => {
-     setTempoRep( (( tempoDeReproducao / 60000) % 60).toFixed(2).replace(".", ":") )
-  },[])
+  useEffect(() => {
+    setTempoRep(
+      ((tempoDeReproducao / 60000) % 60).toFixed(2).replace(".", ":")
+    );
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -33,7 +48,13 @@ const Track = ({ imagem, titulo, album, artista, tempoDeReproducao }) => {
         </View>
 
         <View style={styles.viewText}>
-          <Text style={styles.textTitulo}>{titulo}</Text>
+          <Pressable
+            onPress={() => {
+              navigationTrack(item.track.href);
+            }}
+          >
+            <Text style={styles.textTitulo}>{titulo}</Text>
+          </Pressable>
         </View>
 
         <View style={styles.viewText}>
@@ -71,9 +92,8 @@ const styles = StyleSheet.create({
     color: colors.complement.secondary,
     fontSize: "70%",
     textTransform: "capitalize",
-    textAlignVertical:"center",
-    textAlign:"center"
-
+    textAlignVertical: "center",
+    textAlign: "center",
   },
   viewText: {
     flex: 1,
@@ -83,7 +103,7 @@ const styles = StyleSheet.create({
   textTitulo: {
     color: colors.complement.secondary,
     fontSize: "69%",
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
 });
 

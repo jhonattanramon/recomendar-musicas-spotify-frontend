@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const urlBaseProduct = "https://appnative-backend.onrender.com";
-const urlBaseDev = "http://localhost:3002"
+const urlBaseDev = "http://localhost:3002";
 export const accessToken = {
   token: "",
   getToken: (token) => (accessToken.token = token),
@@ -20,7 +20,7 @@ export class Requisicoes {
         .then((res) => res);
       return response;
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
@@ -31,7 +31,7 @@ export class Requisicoes {
         password: password,
       })
       .then((res) => res);
-      console.log(response);
+    console.log(response);
     return response;
   }
 
@@ -42,14 +42,29 @@ export class Requisicoes {
     return response;
   }
 
-  async tracks(urlTrack){
-    const response = await axios.get(`${urlBaseProduct}/apispotify/tracksplaylist`,{
-      headers:{
-        hreftracks: urlTrack
-      }
-    })
-    .then(res => res)
+  async tracksPlaylist(urlTrack) {
+    const response = await axios
+      .get(`${urlBaseProduct}/apispotify/tracksplaylist`, {
+        headers: {
+          hreftracks: urlTrack,
+        },
+      })
+      .then((res) => res);
     console.log(response);
+    return response;
+  }
+
+  async track(url){
+    console.log(url);
+    const response = await axios
+    .get(`${urlBaseDev}/apispotify/track`, {
+      headers:{
+        hreftrack: url
+      }
+    }).then( res => res)
+
+    console.log(response);
+
     return response
   }
 }
