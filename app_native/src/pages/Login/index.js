@@ -77,7 +77,7 @@ const Login_Page = ({ navigation }) => {
       await requisicoes.autenticacao();
       const conect = await requisicoes.connect({ email: email, password: senha });
 
-      console.log(conect);
+      setAccess(conect.data)
 
     }
   };

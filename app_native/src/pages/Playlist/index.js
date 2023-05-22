@@ -19,15 +19,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Requisicoes } from "../../services/requisições/req";
 
 const Playlist = ({ route }) => {
-  const [tracks, setTracks] = useState([]);
+  const [tracksT, setTracks] = useState([]);
 
   const requisicoes  = new Requisicoes();
+
+  console.log(route);
 
 
   useEffect(() => {
     const load = async () => {
-        const playlist = requisicoes.playlistEmDestaque()
-        set
+        const track = await requisicoes.tracks(route.params.data.item.tracks.href)
+        console.log(track);
       };
 
 
@@ -50,7 +52,7 @@ const Playlist = ({ route }) => {
       <SafeAreaView style={styles.containerTracks}>
         <ScrollView >
           <FlatList
-            data={tracks}
+            data={tracksT}
             renderItem={({ item }) => (
               <Track
                 imagem={item.track.album.images[1].url}
