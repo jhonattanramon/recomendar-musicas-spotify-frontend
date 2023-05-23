@@ -23,6 +23,7 @@ const Playlist = ({ route }) => {
   const [tracks, setTracks] = useState([]);
 
   const requisicoes  = new Requisicoes();
+
   const TracksArea = () => {
     if(tracks.length > 0){
       return(
@@ -54,7 +55,8 @@ const Playlist = ({ route }) => {
   useEffect(() => {
     const load = async () => {
         const {data} = await requisicoes.tracksPlaylist(route.params.data.item.tracks.href)
-        setTracks(data.items)
+        console.log(data);
+        // setTracks(data.items)
       };
 
 

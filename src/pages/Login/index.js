@@ -28,6 +28,7 @@ const Login_Page = ({ navigation }) => {
   const urlBaseDev = "http://localhost:3001";
   const urlBaseProduct = "https://appnative-backend.onrender.com";
   const urlBaseAuth = "https://appnative-backend-auth.onrender.com";
+  const urlBaseauthDev = "http://localhost:8887"
 
   useEffect(() => {
     function getHashParams() {
@@ -78,6 +79,8 @@ const Login_Page = ({ navigation }) => {
         email: email,
         password: senha,
       });
+
+
 
       setAccess(conect.data);
       }

@@ -4,6 +4,8 @@ import { Requisicoes } from "../../services/requisições/req";
 
 const TrackPage =  ({route, navigation}) => {
 
+
+  console.log(route);
   const requisicoes =  new Requisicoes();
 
 
