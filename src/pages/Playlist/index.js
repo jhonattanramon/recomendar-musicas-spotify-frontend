@@ -55,8 +55,7 @@ const Playlist = ({ route }) => {
   useEffect(() => {
     const load = async () => {
         const {data} = await requisicoes.tracksPlaylist(route.params.data.item.tracks.href)
-        console.log(data);
-        // setTracks(data.items)
+         setTracks(data.items);
       };
 
 

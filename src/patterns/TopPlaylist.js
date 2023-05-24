@@ -3,29 +3,43 @@ import { colors } from "../styles/colors";
 import { Section, TitleText, SubText } from "../styles/styled-components";
 import { View, StyleSheet, Text, FlatList } from "react-native";
 import PlaylistCard from "../components/CardPlaylists";
+import Loading from "../components/loading";
 
 const TopPlaylist = ({ array, navigation }) => {
-  return (
-    <View style={styles.container}>
-      <View style={{ padding: 3 }}>
-        <SubText> Top Playlist</SubText>
+  if (array.length > 0) {
+    return (
+      <View style={styles.container}>
+        <View style={{ padding: 3 }}>
+          <SubText> Top Playlist</SubText>
+        </View>
+        <View style={styles.backgroundCard}>
+          <FlatList
+            horizontal={true}
+            data={array}
+            renderItem={({ item, index, separators }) => (
+              <PlaylistCard
+                navigation={navigation}
+                titulo={item.name}
+                url={item.images[0].url}
+                item={item}
+              />
+            )}
+          />
+        </View>
       </View>
-      <View style={styles.backgroundCard}>
-        <FlatList
-          horizontal={true}
-          data={array}
-          renderItem={({ item, index, separators }) => (
-            <PlaylistCard
-              navigation={navigation}
-              titulo={item.name}
-              url={item.images[0].url}
-              item={item}
-            />
-          )}
-        />
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <View style={{ padding: 3 }}>
+          <SubText> Top Playlist</SubText>
+        </View>
+        <View style={styles.backgroundCard}>
+          <Loading />
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
 };
 
 const styles = StyleSheet.create({

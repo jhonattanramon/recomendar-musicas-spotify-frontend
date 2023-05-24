@@ -18,7 +18,10 @@ const Home = ({ navigation }) => {
     const requisicaoDeTeste = async () => {
       const requisicoes = new Requisicoes();
       const { data } = await requisicoes.playlistEmDestaque();
-      setPlaylists(data.playlists.items);
+
+      data.playlists.items.length  ?
+      setPlaylists(data.playlists.items): 
+      playlists 
     };
     requisicaoDeTeste();
   }, []);
