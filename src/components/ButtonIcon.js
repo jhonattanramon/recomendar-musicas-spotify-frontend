@@ -1,13 +1,18 @@
-import { Button} from "react-native-paper"
+import { Button, IconButton } from "react-native-paper";
+import { colors } from "../styles/colors";
 
-const ButtonIcon = () => {
-
-  return(
-      <Button
-      style={{ width: 100, height:100}}
-      icon="camera">
-          teste
-      </Button> 
-  )
-}
-export default ButtonIcon
+const ButtonIcon = ({ title, icon, size }) => {
+  return (
+    <IconButton
+      style={{}}
+      icon={`${icon}`}
+      iconColor={colors.primary}
+      size={size}
+      animated={true}
+      mode="none"
+    >
+      {title}
+    </IconButton>
+  );
+};
+export default ButtonIcon;

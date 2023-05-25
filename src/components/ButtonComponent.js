@@ -23,21 +23,17 @@ const Button_Component = ({
     )
 }
 
-const styles = StyleSheet.create(
-    {
-        ButtonStyle: {
-            backgroundColor: colors.primary,
-            padding: 14,
-            borderRadius: 4,
+const styles = StyleSheet.create({
+  ButtonStyle: {
+    backgroundColor: colors.primary,
+    padding: 7,
+    borderRadius: 4,
+  },
 
-             
-        },
-
-        TextButton: {
-           color: colors.complement.secondary,
-        }
-    }
-)
+  TextButton: {
+    color: colors.complement.secondary,
+  },
+});
 
 
 export default Button_Component

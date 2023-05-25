@@ -84,3 +84,6 @@ export const ViewImageTrack = styled.View`
 
     
 `
+export const TextDefault = styled.Text`
+  color: ${colors.complement.secondary};
+`;
