@@ -73,7 +73,7 @@ const TrackPage = ({ route, navigation }) => {
 
             <Section>
               <View style={styles.viewTime}>
-                <ButtonIcon icon="clock-outline" size={20} />
+                <ButtonIcon icon="clock-time-eight" size={20} />
                 <Text style={styles.textSegundary}>2:00</Text>
               </View>
             </Section>

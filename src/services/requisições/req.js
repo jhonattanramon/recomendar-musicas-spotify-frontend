@@ -3,39 +3,34 @@ import axios from "axios";
 const urlBaseProduct = "https://appnative-backend.onrender.com";
 const urlBaseDev = "http://localhost:3004";
 
-let tokenG;
-
-export const accessToken = {
-  getToken: (token) => {
-    tokenG = token;
-  },
-};
-
 export class Requisicoes {
   constructor() {}
+
+  //fazendo teste com essa função, por enquanto.
   async autenticacao() {
     try {
       const response = await axios
-        .get(`${urlBaseProduct}/apispotify/auth`, {
+        .get(`${urlBaseDev}/apispotify/auth`, {
           headers: {
             Authorization: `${tokenG}`,
           },
         })
         .then((res) => res);
+      console.log(response);
       return response;
     } catch (err) {
-      console.log(err);
+      return err.response;
     }
   }
 
-  async connect({ email, password }) {
+  async login({ email, password }) {
     const response = await axios
-      .post(`${urlBaseProduct}/api/conect`, {
+      .post(`${urlBaseProduct}/api/login`, {
         email: email,
         password: password,
       })
-      .then((res) => res);
-
+      .then((res) => res)
+      .catch((err) => err);
     return response;
   }
 

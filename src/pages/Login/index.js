@@ -28,26 +28,26 @@ const Login_Page = ({ navigation }) => {
   const urlBaseDev = "http://localhost:3001";
   const urlBaseProduct = "https://appnative-backend.onrender.com";
   const urlBaseAuth = "https://appnative-backend-auth.onrender.com";
-  const urlBaseauthDev = "http://localhost:8887"
+  const urlBaseAuthDev = "http://localhost:8887";
 
-  useEffect(() => {
-    function getHashParams() {
-      var hashParams = {};
-      var e,
-        r = /([^&;=]+)=?([^&;]*)/g,
-        q = window.location.hash.substring(1);
-      while ((e = r.exec(q))) {
-        hashParams[e[1]] = decodeURIComponent(e[2]);
-      }
-      return hashParams;
-    }
+  // useEffect(() => {
+  //   function getHashParams() {
+  //     var hashParams = {};
+  //     var e,
+  //       r = /([^&;=]+)=?([^&;]*)/g,
+  //       q = window.location.hash.substring(1);
+  //     while ((e = r.exec(q))) {
+  //       hashParams[e[1]] = decodeURIComponent(e[2]);
+  //     }
+  //     return hashParams;
+  //   }
 
-    const paramentros = getHashParams();
+  //   const paramentros = getHashParams();
 
-    setToken(paramentros);
+  //   setToken(paramentros);
 
-    accessToken.getToken(paramentros.access_token);
-  }, []);
+  //   accessToken.getToken(paramentros.access_token);
+  // }, []);
 
   useEffect(() => {
     if (access) {
@@ -68,23 +68,28 @@ const Login_Page = ({ navigation }) => {
       const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
       if (!reg.test(email)) {
-        Alert.alert("Email inválido! preencha corretamente");
+        Alert.alert("Email inválido! pr eencha corretamente");
         alert("Email inválido! preencha corretamente");
         return;
-      }else{
+      } else {
         setLooading(!loading);
-      const requisicoes = new Requisicoes();
-      await requisicoes.autenticacao();
-      const conect = await requisicoes.connect({
-        email: email,
-        password: senha,
-      });
+        const requisicoes = new Requisicoes();
+        //const auth = await requisicoes.autenticacao();
+        const conect = await requisicoes.login({
+          email: email,
+          password: senha,
+        });
 
+        console.log(conect.data.access);
 
+        // if (conect.response.status === 401) {
+        //   alert(`${conect.response.data.access}`);
+        //   setLooading(!loading);
+        // }
 
-      setAccess(conect.data);
+        setAccess(conect.data.access);
       }
-    } 
+    }
   };
 
   return (
@@ -120,7 +125,6 @@ const Login_Page = ({ navigation }) => {
           <Button_Component
             loading={loading}
             funcOnPress={() => {
-             
               checkLogin();
               //load()
             }}
