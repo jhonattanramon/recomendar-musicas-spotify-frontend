@@ -19,9 +19,11 @@ const Home = ({ navigation }) => {
       const requisicoes = new Requisicoes();
       const { data } = await requisicoes.playlistEmDestaque();
 
-      data.playlists.items.length  ?
-      setPlaylists(data.playlists.items): 
-      playlists 
+      console.log(data);
+
+      if (data !== "") {
+        setPlaylists(data.playlists.items);
+      }
     };
     requisicaoDeTeste();
   }, []);

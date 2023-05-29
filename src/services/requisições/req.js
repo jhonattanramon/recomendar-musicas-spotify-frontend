@@ -10,7 +10,7 @@ export class Requisicoes {
   async autenticacao() {
     try {
       const response = await axios
-        .get(`${urlBaseDev}/apispotify/auth`, {
+        .get(`${urlBaseProduct}/apispotify/auth`, {
           headers: {
             Authorization: `${tokenG}`,
           },

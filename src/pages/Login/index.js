@@ -56,7 +56,7 @@ const Login_Page = ({ navigation }) => {
   }, [access]);
 
   const authSpotify = () => {
-    window.location.href = `${urlBaseAuth}`;
+    window.location.href = `${urlBaseAuthDev}`;
   };
 
   const checkLogin = async () => {
@@ -74,19 +74,12 @@ const Login_Page = ({ navigation }) => {
       } else {
         setLooading(!loading);
         const requisicoes = new Requisicoes();
-        //const auth = await requisicoes.autenticacao();
         const conect = await requisicoes.login({
           email: email,
           password: senha,
         });
 
         console.log(conect.data.access);
-
-        // if (conect.response.status === 401) {
-        //   alert(`${conect.response.data.access}`);
-        //   setLooading(!loading);
-        // }
-
         setAccess(conect.data.access);
       }
     }
