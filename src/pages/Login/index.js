@@ -15,7 +15,6 @@ import {
 } from "../../styles/styled-components";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Requisicoes, accessToken } from "../../services/requisições/req";
 
 const Login_Page = ({ navigation }) => {
@@ -57,6 +56,10 @@ const Login_Page = ({ navigation }) => {
 
   const authSpotify = () => {
     window.location.href = `${urlBaseAuthDev}`;
+  };
+
+  const pageAutenticacao = () => {
+    navigation.navigate("auth");
   };
 
   const checkLogin = async () => {
@@ -139,7 +142,7 @@ const Login_Page = ({ navigation }) => {
           <TextButton
             title="Login Spotify"
             onPressFunc={() => {
-              authSpotify();
+              pageAutenticacao();
             }}
           />
 

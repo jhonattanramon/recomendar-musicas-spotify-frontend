@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const Track = ({
   item,
+  id,
   imagem,
   titulo,
   album,
@@ -28,7 +29,7 @@ const Track = ({
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View key={id} style={styles.container}>
       <View
         style={{
           flexDirection: "row",
@@ -90,7 +91,8 @@ const styles = StyleSheet.create({
 
   text: {
     color: colors.complement.secondary,
-    fontSize: "70%",
+    //fontSize: "70%",
+    fontSize: 10,
     textTransform: "capitalize",
     textAlignVertical: "center",
     textAlign: "center",
@@ -102,7 +104,8 @@ const styles = StyleSheet.create({
   },
   textTitulo: {
     color: colors.complement.secondary,
-    fontSize: "69%",
+    fontSize: 10,
+    // fontSize: "69%",
     fontWeight: "bold",
   },
 });

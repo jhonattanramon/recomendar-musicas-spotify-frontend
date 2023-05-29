@@ -17,6 +17,7 @@ import Track from "./src/pages/AlbumTrack";
 import { colors } from "./src/styles/colors";
 import { MyTheme } from "./src/styles/theme";
 import { GlobalStyle } from "./src/styles/styled-components";
+import AutenticacaoToken from "./src/pages/autenticacaoToken";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -26,11 +27,18 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="bem-vindo"
         screenOptions={{
           headerShown: true,
         }}
       >
+        <Stack.Screen
+          name="bem-vindo"
+          component={Bem_vindo}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           options={{
             title: "Seu login",
@@ -42,14 +50,6 @@ const App = () => {
         <Stack.Screen
           name="cadastro"
           component={Cadastro_page}
-          options={{
-            headerShown: false,
-          }}
-        />
-
-        <Stack.Screen
-          name="bem-vindo"
-          component={Bem_vindo}
           options={{
             headerShown: false,
           }}
@@ -85,6 +85,15 @@ const App = () => {
             headerShown: false,
           }}
         />
+
+        <Stack.Screen
+          name="auth"
+          component={AutenticacaoToken}
+          options={{
+            headerShown: false,
+          }}
+        />
+
         <Stack.Screen name="pageDeTeste" component={pageDeTestes} />
       </Stack.Navigator>
     </NavigationContainer>
