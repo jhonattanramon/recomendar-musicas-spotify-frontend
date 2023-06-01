@@ -1,15 +1,16 @@
 import { Button, IconButton } from "react-native-paper";
 import { colors } from "../styles/colors";
 
-const ButtonIcon = ({ title, icon, size }) => {
+const ButtonIcon = ({ title, icon, size, color, onFunc, styleComp }) => {
   return (
     <IconButton
-      style={{}}
+      style={styleComp}
       icon={`${icon}`}
-      iconColor={colors.primary}
+      iconColor={color}
       size={size}
       animated={true}
       mode="none"
+      onPress={onFunc}
     >
       {title}
     </IconButton>

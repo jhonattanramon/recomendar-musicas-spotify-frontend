@@ -10,8 +10,20 @@ import {
   TitleText,
 } from "../../styles/styled-components";
 import { colors } from "../../styles/colors";
+import { Requisicoes } from "../../services/requisições/req";
+import { useState } from "react";
 
 const Bem_vindo = ({ navigation }) => {
+  const [email, setEmail] = useState();
+
+  const toLogin = async () => {
+    const requisicoes = new Requisicoes();
+
+    const access = await requisicoes.login({ email: email });
+
+    console.log(access);
+  };
+
   return (
     <Container>
       <SectionCenter>
@@ -22,11 +34,16 @@ const Bem_vindo = ({ navigation }) => {
           </View>
 
           <View>
-            <Input_Component placeholderName="seu email" />
+            <Input_Component
+              placeholderName="seu email"
+              onChange={(text) => {
+                setEmail(text);
+              }}
+            />
             <Separador />
             <Button_Component
               funcOnPress={() => {
-                navigation.navigate("login");
+                toLogin();
               }}
               title="continuar"
             />

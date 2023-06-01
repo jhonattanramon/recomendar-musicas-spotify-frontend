@@ -1,0 +1,86 @@
+import { TextInput } from "react-native-paper";
+import { View, Text, SafeAreaView } from "react-native";
+import { colors } from "../styles/colors";
+import ButtonIcon from "./ButtonIcon";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Section } from "../styles/styled-components";
+import { FlatList } from "react-native";
+import Track from "./Track";
+import Loading from "./loading";
+import { Requisicoes } from "../services/requisições/req";
+
+const PesquisaComponent = () => {
+  const [textoPesquisa, setTextoPesquisa] = useState();
+  const [tracks, setTraks] = useState(null);
+
+  const req = new Requisicoes();
+
+  const buscarTrack = async () => {
+    const { data } = await req.pesquisa(textoPesquisa);
+    setTraks(data);
+  };
+
+  console.log(tracks);
+  const ResultTrack = () => {
+    if (tracks != null) {
+      console.log(tracks.tracks);
+      return (
+        <SafeAreaView style={{ height: 270 }}>
+          <FlatList
+            data={tracks.tracks.items}
+            renderItem={({ item, index, seperators }) => (
+              <Track
+                id={item.id}
+                imagem={item.album.images[0].url}
+                titulo={item.name}
+                artista={item.artists}
+                tempoDeReproducao={item.duration_ms}
+              />
+            )}
+          />
+        </SafeAreaView>
+      );
+    } else {
+      return;
+    }
+  };
+
+  return (
+    <View style={{}}>
+      <Section
+        style={{
+          flexDirection: "row",
+          padding: 10,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <TextInput
+          mode="outlined"
+          outlineColor={colors.complement.secondary}
+          activeOutlineColor={colors.complement.secondary}
+          textColor={colors.complement.secondary}
+          placeholder="Buscar musica"
+          style={{ backgroundColor: colors.blur, flex: 1 }}
+          onChangeText={(text) => {
+            setTextoPesquisa(text);
+          }}
+        />
+
+        <ButtonIcon
+          icon="magnify"
+          color={colors.complement.secondary}
+          onFunc={() => {
+            buscarTrack();
+          }}
+        />
+      </Section>
+
+      <Section>
+        <ResultTrack />
+      </Section>
+    </View>
+  );
+};
+export default PesquisaComponent;

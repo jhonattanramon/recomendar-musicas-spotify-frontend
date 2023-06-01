@@ -1,7 +1,34 @@
 import styled from "styled-components/native";
 import { colors } from "./colors";
+import { Dimensions } from "react-native";
+import { useState, useEffect } from "react";
+import { Dimension } from "../components/Dimension";
+
+// const windowDimensions = Dimensions.get("window");
+// const screenDimensions = Dimensions.get("screen");
+
+// const [dimensions, setDimensions] = useState({
+//   window: windowDimensions,
+//   screen: screenDimensions,
+// });
+
+// useEffect(() => {
+//   const subscription = Dimensions.addEventListener(
+//     "change",
+//     ({ window, screen }) => {
+//       setDimensions({ window, screen });
+//     }
+//   );
+//   return () => subscription?.remove();
+// }),
+//   [Container];
 
 //Scopes
+// export const ContainerTeste = styled.View`
+//   width: ${};
+//   height: ${};
+// `
+
 export const Container = styled.View`
   flex: 1;
   background: ${colors.complement.primary};

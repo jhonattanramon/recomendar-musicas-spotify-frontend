@@ -1,11 +1,33 @@
-import PlaylistCard from "../../components/CardPlaylists";
 import { Container } from "../../styles/styled-components";
 import Button_Component from "../../components/ButtonComponent";
-import Track from "../../components/Track";
-import { Button } from "react-native-paper";
 import axios from "axios";
+import { Dimensions } from "react-native";
+import { useState, useEffect } from "react";
 
 const Teste = ({ navigation }) => {
+  const windowWidth = Dimensions.get("window").width;
+  const windowHeight = Dimensions.get("window").height;
+
+  const windowDimensions = Dimensions.get("window");
+  const screenDimensions = Dimensions.get("screen");
+
+  const [dimensions, setDimensions] = useState({
+    window: windowDimensions,
+    screen: screenDimensions,
+  });
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener(
+      "change",
+      ({ window, screen }) => {
+        setDimensions({ window, screen });
+      }
+    );
+    return () => subscription?.remove();
+  });
+
+  console.log(dimensions);
+
   return (
     <Container>
       <Button_Component

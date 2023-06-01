@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Dimensions } from "react-native";
 import { Title } from "react-native-paper";
 import Button_Component from "../../components/ButtonComponent";
 import Input_Component from "../../components/InputComponent";
@@ -16,8 +16,9 @@ import {
 
 import { useEffect, useState } from "react";
 import { Requisicoes, accessToken } from "../../services/requisições/req";
+import { Dimension } from "../../components/Dimension";
 
-const Login_Page = ({ navigation }) => {
+const Login_Page = ({ navigation, route, layout }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [access, setAccess] = useState(false);
@@ -54,7 +55,7 @@ const Login_Page = ({ navigation }) => {
     }
   }, [access]);
 
-  const authSpotify = () => {
+  const authSpotifyWeb = () => {
     window.location.href = `${urlBaseAuthDev}`;
   };
 
@@ -142,7 +143,7 @@ const Login_Page = ({ navigation }) => {
           <TextButton
             title="Login Spotify"
             onPressFunc={() => {
-              pageAutenticacao();
+              authSpotifyWeb();
             }}
           />
 

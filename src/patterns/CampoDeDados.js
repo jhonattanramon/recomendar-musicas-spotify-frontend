@@ -5,12 +5,12 @@ import { View, StyleSheet, Text, FlatList } from "react-native";
 import PlaylistCard from "../components/CardPlaylists";
 import Loading from "../components/loading";
 
-const TopPlaylist = ({ array, navigation }) => {
+const CampoDeDados = ({ array, navigation, title }) => {
   if (array.length > 0) {
     return (
       <View style={styles.container}>
         <View style={{ padding: 3 }}>
-          <SubText> Top Playlist</SubText>
+          <SubText>{title}</SubText>
         </View>
         <View style={styles.backgroundCard}>
           <FlatList
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TopPlaylist;
+export default CampoDeDados;

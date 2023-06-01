@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Requisicoes } from "../../services/requisições/req";
-import {
-  Container,
-  Section,
-  SectionCenter,
-  TitleText,
-  TextDefault,
-} from "../../styles/styled-components";
+import { Container, Section, TitleText } from "../../styles/styled-components";
 import ImagemComponent from "../../components/Imagem";
 import TempoDeReproducao from "../../components/TempoDeReproducao";
 import Loading from "../../components/loading";

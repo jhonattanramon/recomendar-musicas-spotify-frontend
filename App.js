@@ -8,26 +8,23 @@ import Login_Page from "./src/pages/Login";
 import Cadastro_page from "./src/pages/Cadastro";
 import Bem_vindo from "./src/pages/Bem-vindo";
 import HomePage from "./src/pages/Home";
-import Profile from "./src/pages/Profile";
+import ProfilePage from "./src/pages/Profile";
 import pageDeTestes from "./src/pages/pageDeTestes";
 import PlaylistPage from "./src/pages/Playlist";
 import Track from "./src/pages/AlbumTrack";
 
 //
-import { colors } from "./src/styles/colors";
 import { MyTheme } from "./src/styles/theme";
-import { GlobalStyle } from "./src/styles/styled-components";
 import AutenticacaoToken from "./src/pages/autenticacaoToken";
+import CriarPlaylist from "./src/pages/Criar playlist";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
 
-  const varivelDeDesenvolvimento = "teste";
-
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="bem-vindo"
+        initialRouteName="home"
         screenOptions={{
           headerShown: true,
         }}
@@ -36,6 +33,8 @@ const App = () => {
           name="bem-vindo"
           component={Bem_vindo}
           options={{
+            header: {},
+
             headerShown: false,
           }}
         />
@@ -65,7 +64,7 @@ const App = () => {
 
         <Stack.Screen
           name="profile"
-          component={Profile}
+          component={ProfilePage}
           options={{
             headerShown: false,
           }}
@@ -81,6 +80,14 @@ const App = () => {
         <Stack.Screen
           name="track"
           component={Track}
+          options={{
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="criarPlaylist"
+          component={CriarPlaylist}
           options={{
             headerShown: false,
           }}

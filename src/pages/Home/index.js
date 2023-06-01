@@ -1,15 +1,11 @@
-import {
-  Container,
-  SectionCenter,
-  Separador,
-} from "../../styles/styled-components";
+import { Container } from "../../styles/styled-components";
 import { useEffect, useState } from "react";
-import PlaylistCard from "../../components/CardPlaylists";
-import Button_component from "../../components/ButtonComponent";
-import Loading from "../../components/loading";
-import axios from "axios";
-import TopPlaylist from "../../patterns/TopPlaylist";
 import { Requisicoes, accessToken } from "../../services/requisições/req";
+import { View } from "react-native";
+import CampoDeDados from "../../patterns/CampoDeDados";
+import PesquisaComponent from "../../components/Pesquisa";
+import ButtonIcon from "../../components/ButtonIcon";
+import { colors } from "../../styles/colors";
 
 const Home = ({ navigation }) => {
   const [playlists, setPlaylists] = useState([]);
@@ -18,8 +14,10 @@ const Home = ({ navigation }) => {
     const requisicaoDeTeste = async () => {
       const requisicoes = new Requisicoes();
       const { data } = await requisicoes.playlistEmDestaque();
-
-      console.log(data);
+      const artistas = await requisicoes.pesquisaGenere({
+        genere: "pagode",
+        type: "artist",
+      });
 
       if (data !== "") {
         setPlaylists(data.playlists.items);
@@ -28,8 +26,37 @@ const Home = ({ navigation }) => {
     requisicaoDeTeste();
   }, []);
   return (
-    <Container>
-      <TopPlaylist array={playlists} navigation={navigation} />
+    <Container style={{}}>
+      <View>
+        <ButtonIcon
+          icon="face-man-outline"
+          color={colors.complement.secondary}
+          size={30}
+          styleComp={{ backgroundColor: colors.primary }}
+          onFunc={() => {
+            navigation.navigate("profile");
+          }}
+        />
+      </View>
+      <View style={{}}>
+        <PesquisaComponent />
+      </View>
+
+      <View style={{}}>
+        <CampoDeDados
+          title="Tops Playlists"
+          array={playlists}
+          navigation={navigation}
+        />
+      </View>
+
+      <View>
+        <CampoDeDados
+          title="conheça alguns artistas"
+          array={[]}
+          navigation={navigation}
+        />
+      </View>
     </Container>
   );
 };
