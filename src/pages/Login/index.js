@@ -82,8 +82,6 @@ const Login_Page = ({ navigation, route, layout }) => {
           email: email,
           password: senha,
         });
-
-        console.log(conect.data.access);
         setAccess(conect.data.access);
       }
     }

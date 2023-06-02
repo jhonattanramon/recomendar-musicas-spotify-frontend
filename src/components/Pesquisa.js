@@ -21,7 +21,6 @@ const PesquisaComponent = () => {
     setTraks(data);
   };
 
-  console.log(tracks);
   const ResultTrack = () => {
     if (tracks != null) {
       console.log(tracks.tracks);

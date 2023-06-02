@@ -28,7 +28,7 @@ const PlaylistCard = (props) => {
           <Pressable
             onPress={() => {
               props.navigation.navigate("playlist", {
-                data: props
+                data: props,
               });
             }}
           >

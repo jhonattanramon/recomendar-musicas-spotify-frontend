@@ -4,38 +4,39 @@ import {colors} from "../styles/colors"
 
 
 const Input_Component = ({
-    labelName,
-    placeholderName,
-    secureTextEntry,
-    inputMode,
-    onChange,
-    value,
-    onBlur
+  labelName,
+  placeholderName,
+  secureTextEntry,
+  inputMode,
+  onChange,
+  value,
+  onBlur,
+  style,
+  outlineStyle,
+  underlineStyle,
+  textColor,
 }) => {
-
-
-    return <TextInput
-
-  
-        mode="outlined"
-        placeholder={placeholderName}
-        outlineColor={colors.complement.secondary}
-        activeOutlineColor={colors.secondary}
-        activeUnderlineColor="#020617"
-        underlineColor="#020617"
-        secureTextEntry={secureTextEntry}
-        inputMode={inputMode}
-
-
-        value={value}
-        label={labelName}
-        onChangeText={onChange}
-        onBlur={onBlur}
-
-        
-         
-    /> 
-}
+  return (
+    <TextInput
+      mode="outlined"
+      placeholder={placeholderName}
+      outlineColor={colors.complement.secondary}
+      outlineStyle={outlineStyle}
+      underlineStyle={underlineStyle}
+      activeOutlineColor={colors.secondary}
+      activeUnderlineColor="#020617"
+      underlineColor="#020617"
+      secureTextEntry={secureTextEntry}
+      inputMode={inputMode}
+      style={style}
+      value={value}
+      label={labelName}
+      onChangeText={onChange}
+      onBlur={onBlur}
+      textColor={textColor}
+    />
+  );
+};
 
 
 

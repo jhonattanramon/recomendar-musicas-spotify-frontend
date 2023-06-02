@@ -75,6 +75,7 @@ export const Avatar = styled.View`
 export const Square = styled.View`
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   flex: 1;
 `;
 

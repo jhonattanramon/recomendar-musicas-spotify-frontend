@@ -9,18 +9,22 @@ import { colors } from "../../styles/colors";
 
 const Home = ({ navigation }) => {
   const [playlists, setPlaylists] = useState([]);
+  const [artistas, setArtistas] = useState([]);
 
   useEffect(() => {
     const requisicaoDeTeste = async () => {
       const requisicoes = new Requisicoes();
       const { data } = await requisicoes.playlistEmDestaque();
-      const artistas = await requisicoes.pesquisaGenere({
+      const { data: artistas } = await requisicoes.pesquisaGenere({
         genere: "pagode",
         type: "artist",
       });
 
+      console.log(artistas);
       if (data !== "") {
         setPlaylists(data.playlists.items);
+      } else if (artistas !== "") {
+        setArtistas(artistas.artists.items);
       }
     };
     requisicaoDeTeste();
@@ -53,7 +57,7 @@ const Home = ({ navigation }) => {
       <View>
         <CampoDeDados
           title="conheça alguns artistas"
-          array={[]}
+          array={artistas}
           navigation={navigation}
         />
       </View>

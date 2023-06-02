@@ -53,7 +53,7 @@ export class Requisicoes {
 
   async track(url) {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/track`, {
+      .get(`${urlBaseProduct}/,/track`, {
         headers: {
           hreftrack: url,
         },
@@ -63,12 +63,12 @@ export class Requisicoes {
     return res;
   }
 
-  async pesquisa({nameArtist, nameTrack}) {
+  async pesquisa({ nameArtist, nameTrack }) {
     const res = await axios
       .get(`${urlBaseDev}/apispotify/pesquisa`, {
         headers: {
           nameTrack: nameTrack,
-          nameArtist: nameArtist
+          nameArtist: nameArtist,
         },
       })
       .then((res) => res);
@@ -77,17 +77,17 @@ export class Requisicoes {
     return res;
   }
 
-  async pesquisaGenere({genere, type}){
-    console.log(genere);
+  async pesquisaGenere({ genere, type }) {
     const res = await axios
-    .get(`${urlBaseDev}/apispotify/pesquisagenere`,{
-      headers:{
-        genere: genere,
-        type: type
-      }
-    })
-    .then( res => res)
-    return res
+      .get(`${urlBaseDev}/apispotify/pesquisagenere`, {
+        headers: {
+          genere: genere,
+          type: type,
+        },
+      })
+      .then((res) => res);
+    console.log(res);
+    return res;
   }
 
   async informacoesUserSpotify() {
