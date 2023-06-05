@@ -1,8 +1,5 @@
 import styled from "styled-components/native";
 import { colors } from "./colors";
-import { Dimensions } from "react-native";
-import { useState, useEffect } from "react";
-import { Dimension } from "../components/Dimension";
 
 // const windowDimensions = Dimensions.get("window");
 // const screenDimensions = Dimensions.get("screen");

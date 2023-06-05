@@ -96,4 +96,12 @@ export class Requisicoes {
       .then((res) => res);
     return res;
   }
+
+  async getGeneros() {
+    const res = await axios
+      .get(`${urlBaseDev}/apispotify/obtergeneros`)
+      .then((res) => res);
+    console.log(res);
+    return res;
+  }
 }

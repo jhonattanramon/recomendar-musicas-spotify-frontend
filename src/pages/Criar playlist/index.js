@@ -1,24 +1,30 @@
-import { View, TextInput } from "react-native";
-import ButtonIcon from "../../components/ButtonIcon";
-import PesquisaComponent from "../../components/Pesquisa";
+import { StyleSheet, TextInput, View, Text } from "react-native";
 import { colors } from "../../styles/colors";
-import { Container, TitleText } from "../../styles/styled-components";
-import { StyleSheet } from "react-native";
+import { Container, Section, TitleText } from "../../styles/styled-components";
 import Input_Component from "../../components/InputComponent";
+import { Requisicoes } from "../../services/requisições/req";
+import { useEffect, useState } from "react";
 
 const CriarPlaylist = () => {
-  const ButtonPlus = () => {
-    return (
-      <View style={styles.buttonPlus}>
-        <ButtonIcon
-          icon="plus"
-          size={100}
-          color={colors.complement.secondary}
-          styleComp={styles.iconButton}
-        />
-      </View>
-    );
-  };
+  const [generos, setGeneros] = useState();
+  const [nameTracker, setNameTracker] = useState("");
+
+  console.log(nameTracker);
+  console.log(generos);
+  const req = new Requisicoes();
+
+  useEffect(() => {
+    const load = async () => {
+      const { data } = await req.getGeneros();
+      console.log(data);
+      setGeneros(data);
+    };
+    load();
+  }, []);
+
+  // const reqMusica = async () => {
+  //   const tracks = await req.pesquisa();
+  // };
 
   const AddMusicas = () => {
     return (
@@ -27,22 +33,15 @@ const CriarPlaylist = () => {
           flex: 1,
         }}
       >
-        <View style={{ flexDirection: "row", padding: 7 }}>
+        <Section style={{ flexDirection: "row", padding: 7 }}>
           <Input_Component
             style={{
               backgroundColor: "none",
               flex: 2,
             }}
-            textColor={colors.complement.secondary}
+            onChange={(text) => setNameTracker(text)}
           />
-
-          <ButtonIcon
-            icon="filter"
-            color={colors.complement.secondary}
-            styleComp={{ backgroundColor: colors.blur }}
-            onFunc={() => {}}
-          />
-        </View>
+        </Section>
       </View>
     );
   };
@@ -52,8 +51,13 @@ const CriarPlaylist = () => {
       <View style={styles.center}>
         <TitleText>CRIE SUA PLAYLIST</TitleText>
       </View>
+      <Section>
+        <AddMusicas />
+      </Section>
 
-      <AddMusicas />
+      <Section>
+        <Text> teste </Text>
+      </Section>
     </Container>
   );
 };
