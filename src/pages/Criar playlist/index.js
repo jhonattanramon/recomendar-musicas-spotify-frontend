@@ -9,41 +9,19 @@ const CriarPlaylist = () => {
   const [generos, setGeneros] = useState();
   const [nameTracker, setNameTracker] = useState("");
 
-  console.log(nameTracker);
-  console.log(generos);
-  const req = new Requisicoes();
-
   useEffect(() => {
-    const load = async () => {
+    (async () => {
+      const req = new Requisicoes();
       const { data } = await req.getGeneros();
       console.log(data);
       setGeneros(data);
-    };
-    load();
+    })();
   }, []);
 
-  // const reqMusica = async () => {
-  //   const tracks = await req.pesquisa();
-  // };
-
-  const AddMusicas = () => {
-    return (
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
-        <Section style={{ flexDirection: "row", padding: 7 }}>
-          <Input_Component
-            style={{
-              backgroundColor: "none",
-              flex: 2,
-            }}
-            onChange={(text) => setNameTracker(text)}
-          />
-        </Section>
-      </View>
-    );
+  const reqMusica = async (nameTracker) => {
+    const req = new Requisicoes();
+    const tracks = await req.pesquisaTrack(nameTracker);
+    console.log(tracks);
   };
 
   return (
@@ -52,7 +30,16 @@ const CriarPlaylist = () => {
         <TitleText>CRIE SUA PLAYLIST</TitleText>
       </View>
       <Section>
-        <AddMusicas />
+        <Input_Component
+          style={{
+            backgroundColor: "none",
+            flex: 2,
+          }}
+          onChange={(text) => {
+            setNameTracker(text);
+            setTimeout(() => reqMusica(text), 1000);
+          }}
+        />
       </Section>
 
       <Section>

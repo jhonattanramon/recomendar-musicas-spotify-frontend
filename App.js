@@ -7,7 +7,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Login_Page from "./src/pages/Login";
 import Cadastro_page from "./src/pages/Cadastro";
 import Bem_vindo from "./src/pages/Bem-vindo";
-import HomePage from "./src/pages/Home";
+import Home from "./src/pages/Home";
 import ProfilePage from "./src/pages/Profile";
 import pageDeTestes from "./src/pages/pageDeTestes";
 import PlaylistPage from "./src/pages/Playlist";
@@ -24,7 +24,7 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="criarPlaylist"
+        initialRouteName="login"
         screenOptions={{
           headerShown: true,
         }}
@@ -56,7 +56,7 @@ const App = () => {
 
         <Stack.Screen
           name="home"
-          component={HomePage}
+          component={Home}
           options={{
             headerShown: false,
           }}

@@ -90,6 +90,18 @@ export class Requisicoes {
     return res;
   }
 
+  async pesquisaTrack(nameTrack) {
+    const res = await axios
+      .get(`${urlBaseDev}/apispotify/pesquisatrack`, {
+        headers: {
+          nameTrack: nameTrack,
+        },
+      })
+      .then((res) => res);
+    console.log(res);
+    return res;
+  }
+
   async informacoesUserSpotify() {
     const res = await axios
       .get(`${urlBaseProduct}/apispotify/user`)

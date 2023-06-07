@@ -32,7 +32,6 @@ const Input_Component = ({
       value={value}
       label={labelName}
       onChangeText={onChange}
-      onBlur={onBlur}
       textColor={textColor}
     />
   );

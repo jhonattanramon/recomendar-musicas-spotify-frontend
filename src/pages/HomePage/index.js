@@ -6,14 +6,8 @@ import CampoDeDados from "../../patterns/CampoDeDados";
 import PesquisaComponent from "../../components/Pesquisa";
 import ButtonIcon from "../../components/ButtonIcon";
 import { colors } from "../../styles/colors";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomePage from "../HomePage";
-import CriarPlaylist from "../Criar playlist";
-import ProfileComponent from "../Profile";
 
-const Home = ({ navigation }) => {
-  const Tab = createBottomTabNavigator();
-
+const HomePage = ({ navigation }) => {
   const [playlists, setPlaylists] = useState([]);
   const [artistas, setArtistas] = useState([]);
 
@@ -36,17 +30,39 @@ const Home = ({ navigation }) => {
     requisicaoDeTeste();
   }, []);
   return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: { position: "absolute" },
-        headerShown: false,
-      }}
-    >
-      <Tab.Screen name="home" component={HomePage} />
-      <Tab.Screen name="Criar Playlist" component={CriarPlaylist} />
-      <Tab.Screen name="Perfil" component={ProfileComponent} />
-    </Tab.Navigator>
+    <Container style={{}}>
+      <View>
+        <ButtonIcon
+          icon="face-man-outline"
+          color={colors.complement.secondary}
+          size={30}
+          styleComp={{ backgroundColor: colors.primary }}
+          onFunc={() => {
+            navigation.navigate("profile");
+          }}
+        />
+      </View>
+      <View style={{}}>
+        <PesquisaComponent />
+      </View>
+
+      <View style={{}}>
+        <CampoDeDados
+          title="Tops Playlists"
+          array={playlists}
+          navigation={navigation}
+        />
+      </View>
+
+      <View>
+        <CampoDeDados
+          title="conheça alguns artistas"
+          array={artistas}
+          navigation={navigation}
+        />
+      </View>
+    </Container>
   );
 };
 
-export default Home;
+export default HomePage;
