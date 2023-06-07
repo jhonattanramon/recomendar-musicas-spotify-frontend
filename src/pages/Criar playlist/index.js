@@ -1,13 +1,23 @@
 import { StyleSheet, TextInput, View, Text } from "react-native";
 import { colors } from "../../styles/colors";
-import { Container, Section, TitleText } from "../../styles/styled-components";
+import {
+  Container,
+  Section,
+  SubText,
+  TitleText,
+} from "../../styles/styled-components";
 import Input_Component from "../../components/InputComponent";
 import { Requisicoes } from "../../services/requisições/req";
 import { useEffect, useState } from "react";
+import Track from "../../components/Track";
+import ButtonIcon from "../../components/ButtonIcon";
 
 const CriarPlaylist = () => {
   const [generos, setGeneros] = useState();
   const [nameTracker, setNameTracker] = useState("");
+  const [track, setTrack] = useState([]);
+
+  console.log(track.tracks);
 
   useEffect(() => {
     (async () => {
@@ -20,31 +30,89 @@ const CriarPlaylist = () => {
 
   const reqMusica = async (nameTracker) => {
     const req = new Requisicoes();
-    const tracks = await req.pesquisaTrack(nameTracker);
-    console.log(tracks);
+    const { data } = await req.pesquisaTrack(nameTracker);
+    setTrack(data);
+  };
+
+  const AddTracks = () => {
+    return (
+      <View>
+        <Section>
+          <Input_Component
+            style={{
+              backgroundColor: "none",
+              flex: 2,
+            }}
+            onChange={(text) => {
+              setNameTracker(text);
+              setTimeout(() => reqMusica(text), 1000);
+            }}
+          />
+        </Section>
+
+        <Section>
+          {track?.tracks?.items?.map((item) => {
+            return (
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  margin: 10,
+                }}
+              >
+                <Track
+                  id={item.id}
+                  imagem={item.album.images[0].url}
+                  titulo={item.name}
+                  artista={item.artists}
+                  tempoDeReproducao={item.duration_ms}
+                />
+                <ButtonIcon onFunc={() => {}} icon="plus" />
+              </View>
+            );
+          })}
+        </Section>
+      </View>
+    );
   };
 
   return (
     <Container>
-      <View style={styles.center}>
-        <TitleText>CRIE SUA PLAYLIST</TitleText>
+      <View
+        style={{
+          padding: 15,
+          borderBottomWidth: 1,
+          borderBottomColor: colors.complement.secondary,
+        }}
+      >
+        <SubText>Crie sua Playlist</SubText>
       </View>
-      <Section>
-        <Input_Component
-          style={{
-            backgroundColor: "none",
-            flex: 2,
-          }}
-          onChange={(text) => {
-            setNameTracker(text);
-            setTimeout(() => reqMusica(text), 1000);
-          }}
-        />
-      </Section>
 
-      <Section>
-        <Text> teste </Text>
-      </Section>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: colors.blur.primary,
+            height: 200,
+            width: 200,
+            borderRadius: "50%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ButtonIcon
+            onFunc={() => {}}
+            icon="plus"
+            size={150}
+            color={colors.primary}
+          />
+        </View>
+      </View>
     </Container>
   );
 };

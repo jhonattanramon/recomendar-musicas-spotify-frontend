@@ -17,6 +17,7 @@ import Track from "./src/pages/AlbumTrack";
 import { MyTheme } from "./src/styles/theme";
 import AutenticacaoToken from "./src/pages/autenticacaoToken";
 import CriarPlaylist from "./src/pages/Criar playlist";
+import Biblioteca from "./src/pages/Bibliteca";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -24,7 +25,7 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="criarPlaylist"
         screenOptions={{
           headerShown: true,
         }}
@@ -93,6 +94,13 @@ const App = () => {
           }}
         />
 
+        <Stack.Screen
+          name="biblioteca"
+          component={Biblioteca}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="auth"
           component={AutenticacaoToken}
