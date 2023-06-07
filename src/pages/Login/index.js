@@ -30,24 +30,7 @@ const Login_Page = ({ navigation, route, layout }) => {
   const urlBaseAuth = "https://appnative-backend-auth.onrender.com";
   const urlBaseAuthDev = "http://localhost:8887";
 
-  // useEffect(() => {
-  //   function getHashParams() {
-  //     var hashParams = {};
-  //     var e,
-  //       r = /([^&;=]+)=?([^&;]*)/g,
-  //       q = window.location.hash.substring(1);
-  //     while ((e = r.exec(q))) {
-  //       hashParams[e[1]] = decodeURIComponent(e[2]);
-  //     }
-  //     return hashParams;
-  //   }
 
-  //   const paramentros = getHashParams();
-
-  //   setToken(paramentros);
-
-  //   accessToken.getToken(paramentros.access_token);
-  // }, []);
 
   useEffect(() => {
     if (access) {
