@@ -11,23 +11,23 @@ const HomePage = ({ navigation }) => {
   const [playlists, setPlaylists] = useState([]);
   const [artistas, setArtistas] = useState([]);
 
+
   useEffect(() => {
-    const requisicaoDeTeste = async () => {
+    (async () => {
       const requisicoes = new Requisicoes();
-      const { data } = await requisicoes.playlistEmDestaque();
-      const { data: artistas } = await requisicoes.pesquisaGenere({
+      const { data: dataPlaylists } = await requisicoes.playlistEmDestaque();
+      const { data: dataArtistas } = await requisicoes.pesquisaGenere({
         genere: "pagode",
         type: "artist",
       });
 
-      console.log(artistas);
-      if (data !== "") {
-        setPlaylists(data.playlists.items);
-      } else if (artistas !== "") {
-        setArtistas(artistas.artists.items);
+      if (dataPlaylists) {
+        setPlaylists(dataPlaylists.playlists.items);
       }
-    };
-    requisicaoDeTeste();
+      if (dataArtistas) {
+        setArtistas(dataArtistas.artists.items);
+      }
+    })();
   }, []);
   return (
     <Container style={{}}>

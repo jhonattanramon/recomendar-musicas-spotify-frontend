@@ -35,14 +35,14 @@ export class Requisicoes {
 
   async playlistEmDestaque() {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/playlistsEmDestaque`)
+      .get(`${urlBaseDev}/apispotify/playlistsEmDestaque`)
       .then((res) => res);
     return res;
   }
 
   async tracksPlaylist(urlTrack) {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/tracksplaylist`, {
+      .get(`${urlBaseDev}/apispotify/tracksplaylist`, {
         headers: {
           hreftracks: urlTrack,
         },
@@ -53,13 +53,25 @@ export class Requisicoes {
 
   async track(url) {
     const res = await axios
-      .get(`${urlBaseProduct}/,/track`, {
+      .get(`${urlBaseDev}/,/track`, {
         headers: {
           hreftrack: url,
         },
       })
       .then((res) => res);
 
+    return res;
+  }
+
+  async tracksArtists(id) {
+    const res = await axios
+      .get(`${urlBaseDev}/apispotify/tracksartist`, {
+        headers: {
+          id: id,
+        },
+      })
+      .then((res) => res);
+    console.log(res);
     return res;
   }
 
@@ -86,7 +98,6 @@ export class Requisicoes {
         },
       })
       .then((res) => res);
-    console.log(res);
     return res;
   }
 

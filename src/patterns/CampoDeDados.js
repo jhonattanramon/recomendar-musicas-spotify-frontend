@@ -2,7 +2,7 @@ import { Title } from "react-native-paper";
 import { colors } from "../styles/colors";
 import { Section, TitleText, SubText } from "../styles/styled-components";
 import { View, StyleSheet, Text, FlatList } from "react-native";
-import PlaylistCard from "../components/CardPlaylists";
+import ListCard from "../components/ListCard";
 import Loading from "../components/loading";
 
 const CampoDeDados = ({ array, navigation, title }) => {
@@ -17,7 +17,7 @@ const CampoDeDados = ({ array, navigation, title }) => {
             horizontal={true}
             data={array}
             renderItem={({ item, index, separators }) => (
-              <PlaylistCard
+              <ListCard
                 navigation={navigation}
                 titulo={item.name}
                 url={item.images[0].url}

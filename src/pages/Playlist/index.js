@@ -5,34 +5,36 @@ import {
   ImageComponent,
   FlatList,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  Linking,
 } from "react-native";
+import { useEffect, useState } from "react";
 import { Container } from "../../styles/styled-components";
 import { TitleText } from "../../styles/styled-components";
-
 import ImagemComponent from "../../components/Imagem";
 import Loading from "../../components/loading";
-
-import { useEffect, useState } from "react";
 import Track from "../../components/Track";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { Requisicoes } from "../../services/requisições/req";
+import Button_Component from "../../components/ButtonComponent";
 
 const Playlist = ({ route }) => {
   const [tracks, setTracks] = useState([]);
-
   const requisicoes = new Requisicoes();
+
+  console.log(route);
 
   const TracksArea = () => {
     if (tracks.length > 0) {
       return (
         <SafeAreaView style={{ flex: 1, width: "100%" }}>
+          <TitleText>Faixas</TitleText>
           <FlatList
             data={tracks}
             renderItem={({ item }) => (
               <Track
-                id={item.id}
+                key={item.track.id}
+                id={item.track.id}
                 item={item}
                 imagem={item.track.album.images[1].url}
                 titulo={item.track.name}
@@ -51,15 +53,18 @@ const Playlist = ({ route }) => {
   };
 
   useEffect(() => {
-    const load = async () => {
+    (async () => {
       const { data } = await requisicoes.tracksPlaylist(
-        route.params.data.item.tracks.href
+        route.params.data.item.href
       );
-      setTracks(data.items);
-    };
-
-    load();
+      console.log(data);
+      setTracks(data.tracks.items);
+    })();
   }, []);
+
+  const ouvirSpotify = (url) => {
+    Linking.openURL(`${url}`);
+  };
 
   return (
     <Container>
@@ -70,6 +75,14 @@ const Playlist = ({ route }) => {
 
         <View style={styles.viewTituloPlaylist}>
           <TitleText>{route.params.data.titulo}</TitleText>
+        </View>
+        <View style={{ width: "100%" }}>
+          <Button_Component
+            funcOnPress={() => {
+              ouvirSpotify(route.params.data.item.external_urls.spotify);
+            }}
+            title="ouvir"
+          />
         </View>
       </View>
 

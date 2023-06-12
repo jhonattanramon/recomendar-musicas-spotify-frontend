@@ -10,8 +10,7 @@ import { colors } from "../styles/colors";
 import { fontStyleds } from "../styles/fonts";
 import TextButton from "./TextButton";
 
-const PlaylistCard = (props) => {
-  
+const ListCard = (props) => {
   return (
     <Card>
       <Square>
@@ -47,4 +46,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-export default PlaylistCard;
+export default ListCard;
