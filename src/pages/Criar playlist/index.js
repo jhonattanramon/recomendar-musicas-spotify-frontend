@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Text } from "react-native";
+import { StyleSheet, TextInput, View, Text, Pressable } from "react-native";
 import { colors } from "../../styles/colors";
 import {
   Container,
@@ -12,12 +12,10 @@ import { useEffect, useState } from "react";
 import Track from "../../components/Track";
 import ButtonIcon from "../../components/ButtonIcon";
 
-const CriarPlaylist = () => {
+const CriarPlaylist = ({ navigation }) => {
   const [generos, setGeneros] = useState();
   const [nameTracker, setNameTracker] = useState("");
   const [track, setTrack] = useState([]);
-
-  console.log(track.tracks);
 
   useEffect(() => {
     (async () => {
@@ -97,16 +95,16 @@ const CriarPlaylist = () => {
       >
         <View
           style={{
-            backgroundColor: colors.blur.primary,
             height: 200,
             width: 200,
-            borderRadius: "50%",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
           <ButtonIcon
-            onFunc={() => {}}
+            onFunc={() => {
+              navigation.navigate("addMusicas");
+            }}
             icon="plus"
             size={150}
             color={colors.primary}

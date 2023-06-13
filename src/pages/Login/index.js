@@ -39,7 +39,7 @@ const Login_Page = ({ navigation, route, layout }) => {
   }, [access]);
 
   const authSpotifyWeb = () => {
-    window.location.href = `${urlBaseAuthDev}`;
+    window.location.href = `${urlBaseAuth}`;
   };
 
   const pageAutenticacao = () => {

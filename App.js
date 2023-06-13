@@ -1,8 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-
+import "react-native-gesture-handler";
 //Pages
 import Login_Page from "./src/pages/Login";
 import Cadastro_page from "./src/pages/Cadastro";
@@ -18,6 +16,7 @@ import { MyTheme } from "./src/styles/theme";
 import AutenticacaoToken from "./src/pages/autenticacaoToken";
 import CriarPlaylist from "./src/pages/Criar playlist";
 import Biblioteca from "./src/pages/Bibliteca";
+import AddMusicas from "./src/pages/Criar playlist/AddMusicas";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -25,7 +24,7 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
-        initialRouteName="home"
+        initialRouteName="login"
         screenOptions={{
           headerShown: true,
         }}
@@ -97,6 +96,14 @@ const App = () => {
         <Stack.Screen
           name="biblioteca"
           component={Biblioteca}
+          options={{
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="addMusicas"
+          component={AddMusicas}
           options={{
             headerShown: false,
           }}

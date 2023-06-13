@@ -1,4 +1,3 @@
-import { Title } from "react-native-paper";
 import { colors } from "../styles/colors";
 import { Section, TitleText, SubText } from "../styles/styled-components";
 import { View, StyleSheet, Text, FlatList } from "react-native";
@@ -32,7 +31,7 @@ const CampoDeDados = ({ array, navigation, title }) => {
     return (
       <View style={styles.container}>
         <View style={{ padding: 3 }}>
-          <SubText> Top Playlist</SubText>
+          <SubText>{title}</SubText>
         </View>
         <View style={styles.backgroundCard}>
           <Loading />
@@ -47,7 +46,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 300,
     margin: 10,
-    borderRadius: 3,
   },
 
   backgroundCard: {

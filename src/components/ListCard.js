@@ -8,34 +8,34 @@ import {
 import ImagemComponent from "./Imagem";
 import { colors } from "../styles/colors";
 import { fontStyleds } from "../styles/fonts";
-import TextButton from "./TextButton";
 
 const ListCard = (props) => {
   return (
     <Card>
-      <Square>
-        <View style={{ flex: 2, padding: 7 }}>
-          <ImagemComponent url={props.url} />
-        </View>
+      <Pressable
+        style={{ flex: 1, width: "100%" }}
+        onPress={() => {
+          props.navigation.navigate("playlist", {
+            data: props,
+          });
+        }}
+      >
+        <Square>
+          <View style={{ flex: 2, padding: 7 }}>
+            <ImagemComponent url={props.url} />
+          </View>
 
-        <View
-          style={{
-            padding: 7,
-            flex: 1,
-          }}
-        >
-          <Pressable
-            onPress={() => {
-              props.navigation.navigate("playlist", {
-                data: props,
-              });
+          <View
+            style={{
+              padding: 7,
+              flex: 1,
             }}
           >
             <Text style={styles.titulo}>{props.titulo}</Text>
-          </Pressable>
-          <Text style={fontStyleds.subsFont}>{props.descricao}</Text>
-        </View>
-      </Square>
+            <Text style={fontStyleds.subsFont}>{props.descricao}</Text>
+          </View>
+        </Square>
+      </Pressable>
     </Card>
   );
 };

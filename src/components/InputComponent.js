@@ -15,6 +15,7 @@ const Input_Component = ({
   outlineStyle,
   underlineStyle,
   textColor,
+  contentStyle,
 }) => {
   return (
     <TextInput
@@ -33,6 +34,7 @@ const Input_Component = ({
       label={labelName}
       onChangeText={onChange}
       textColor={textColor}
+      contentStyle={contentStyle}
     />
   );
 };

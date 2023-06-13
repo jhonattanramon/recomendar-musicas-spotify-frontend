@@ -46,7 +46,7 @@ const PesquisaComponent = () => {
   };
 
   return (
-    <View style={{}}>
+    <View>
       <Section
         style={{
           flexDirection: "row",

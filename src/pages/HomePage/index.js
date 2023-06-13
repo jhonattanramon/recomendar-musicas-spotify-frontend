@@ -11,7 +11,6 @@ const HomePage = ({ navigation }) => {
   const [playlists, setPlaylists] = useState([]);
   const [artistas, setArtistas] = useState([]);
 
-
   useEffect(() => {
     (async () => {
       const requisicoes = new Requisicoes();
@@ -42,7 +41,7 @@ const HomePage = ({ navigation }) => {
           }}
         />
       </View>
-      <View style={{}}>
+      <View>
         <PesquisaComponent />
       </View>
 
