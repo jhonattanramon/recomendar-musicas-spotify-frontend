@@ -3,7 +3,7 @@ import PesquisaComponent from "../../components/Pesquisa";
 import { colors } from "../../styles/colors";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomePage from "../HomePage";
-import CriarPlaylist from "../Criar playlist";
+import CriarPlaylist from "../CriarPlaylist";
 import ProfileComponent from "../Profile";
 
 import { Ionicons } from "@expo/vector-icons";

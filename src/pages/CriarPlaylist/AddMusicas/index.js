@@ -5,8 +5,9 @@ import { colors } from "../../../styles/colors";
 import { useEffect, useState } from "react";
 import { Requisicoes } from "../../../services/requisições/req";
 import Track from "../../../components/Track";
+import Header from "../../../patterns/Header";
 
-const AddMusicas = () => {
+const AddMusicas = ({ navigation }) => {
   const [textoPesquisa, setTextoPesquisa] = useState("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
   console.log(resultadoPesquisa);
@@ -25,6 +26,8 @@ const AddMusicas = () => {
 
   return (
     <Container>
+      <Header navigation={navigation} />
+
       <View style={{ height: 100 }}>
         <Text> header</Text>
       </View>

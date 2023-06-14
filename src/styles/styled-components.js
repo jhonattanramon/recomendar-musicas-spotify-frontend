@@ -86,7 +86,7 @@ export const Card = styled.View`
 
 //Fonts
 export const TitleText = styled.Text`
-  font-size: 37;
+  font-size: 27;
   font-weight: bold;
   color: ${colors.complement.secondary};
 `;

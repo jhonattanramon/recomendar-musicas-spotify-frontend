@@ -13,20 +13,19 @@ const ButtonBasic = ({funcOnPress, title}) => {
 }
 
 const styles = StyleSheet.create({
-  
   text: {
     color: colors.complement.secondary,
-    fontSize:12,
+    fontSize: 12,
     paddingHorizontal: 13,
-    paddingVertical:5,
-    fontWeight:"bold"
+    paddingVertical: 5,
+    fontWeight: "bold",
   },
-  border:{
-    borderWidth:2,
+  border: {
+    borderWidth: 1.4,
     borderColor: colors.complement.secondary,
-    borderRadius: 7
-  }
-})
+    borderRadius: 7,
+  },
+});
 
 
 export default ButtonBasic
