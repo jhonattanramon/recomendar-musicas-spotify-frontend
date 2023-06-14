@@ -33,9 +33,7 @@ const Teste = ({ navigation }) => {
       <Button_Component
         title="teste1"
         funcOnPress={async () => {
-          await axios.get(
-            "https://appnative-backend.onrender.com/apispotify/obtergeneros"
-          );
+          await axios.get("https://appnative-backend.onrender.com/login");
         }}
       />
       <Button_Component
