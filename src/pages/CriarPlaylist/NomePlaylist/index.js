@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Button, Modal } from "react-native";
+import { View, StyleSheet, Text, Button, Modal, Alert } from "react-native";
 import {
   Section,
   Container,
@@ -6,17 +6,24 @@ import {
 } from "../../../styles/styled-components";
 import Input_Component from "../../../components/InputComponent";
 import ButtonBasic from "../../../components/ButtonBasic";
-import { useState } from "react/cjs/react.production.min";
-const NomePlaylist = ({ navigation, modalActive }) => {
+import { useState } from "react";
+
+const NomePlaylist = ({ navigation }) => {
+  const [nomePlaylist, setNomePlaylist] = useState("");
   const [modalActive, setmodalActive] = useState(false);
 
   return (
-    <Modal visible={modalActive}>
+    <Modal>
       <Container>
         <Section>
           <View style={{ margin: 10 }}>
             <TitleText> Dê um nome á sua playlist </TitleText>
-            <Input_Component style={styles.input} />
+            <Input_Component
+              onChange={(text) => {
+                setNomePlaylist(text);
+              }}
+              style={styles.input}
+            />
             <View
               style={{
                 flexDirection: "row",
@@ -31,7 +38,16 @@ const NomePlaylist = ({ navigation, modalActive }) => {
                 title="Cancelar"
               />
 
-              <ButtonBasic funcOnPress={() => {}} title="Avançar" />
+              <ButtonBasic
+                funcOnPress={() => {
+                  if (nomePlaylist !== "") {
+                    navigation.navigate("addMusicas");
+                  } else {
+                    Alert.alert("de um nome a sua Playlist");
+                  }
+                }}
+                title="Avançar"
+              />
             </View>
           </View>
         </Section>

@@ -103,7 +103,7 @@ const CriarPlaylist = ({ navigation }) => {
         >
           <ButtonIcon
             onFunc={() => {
-              navigation.navigate("nomePlaylist");
+              navigation.navigate("AddMusicas");
             }}
             icon="plus"
             size={150}

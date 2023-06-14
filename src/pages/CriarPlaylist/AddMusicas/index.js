@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Modal } from "react-native";
 import { Container, TitleText } from "../../../styles/styled-components";
 import Input_Component from "../../../components/InputComponent";
 import { colors } from "../../../styles/colors";
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Requisicoes } from "../../../services/requisições/req";
 import Track from "../../../components/Track";
 import Header from "../../../patterns/Header";
+import NomePlaylist from "../NomePlaylist";
 
 const AddMusicas = ({ navigation }) => {
   const [textoPesquisa, setTextoPesquisa] = useState("");
@@ -26,6 +27,7 @@ const AddMusicas = ({ navigation }) => {
 
   return (
     <Container>
+      <NomePlaylist />
       <Header navigation={navigation} />
 
       <View style={{ height: 100 }}>
