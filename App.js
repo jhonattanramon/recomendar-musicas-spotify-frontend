@@ -25,7 +25,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="home"
         screenOptions={{
           headerShown: true,
         }}
@@ -104,7 +104,7 @@ const App = () => {
           />
 
           <Stack.Screen
-            name="addMusicas"
+            name="AddMusicas"
             component={AddMusicas}
             options={{
               headerShown: false,

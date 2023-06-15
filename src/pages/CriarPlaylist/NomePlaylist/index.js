@@ -7,20 +7,42 @@ import {
 import Input_Component from "../../../components/InputComponent";
 import ButtonBasic from "../../../components/ButtonBasic";
 import { useState } from "react";
+import { colors } from "../../../styles/colors";
+import { Dimencoes } from "../../../styles/Dimencoes";
 
-const NomePlaylist = ({ navigation }) => {
-  const [nomePlaylist, setNomePlaylist] = useState("");
-  const [modalActive, setmodalActive] = useState(false);
+const NomePlaylist = ({ navigation, setNomePlaylist }) => {
+  const [modalActive, setModalActive] = useState(true);
+  const [ textPlaylist, setTextPlaylist ] = useState("")
+  
+  console.log(modalActive);
 
   return (
-    <Modal>
-      <Container>
-        <Section>
-          <View style={{ margin: 10 }}>
+    <Modal
+    animationType="fade"
+    transparent={false}
+    visible={modalActive}
+
+    >
+      <View
+      style={{
+        marginVertical: "50%",
+        marginHorizontal:"10%",
+        backgroundColor:colors.complement.primary,
+        height: 200,
+        borderRadius: Dimencoes.borderRadius,
+      }} 
+      >
+        <Section style={{ 
+          flex:1,
+          padding:10,
+          justifyContent:"center",
+          alignItems:"center",
+          }}>
+          <View style={{  }}>
             <TitleText> Dê um nome á sua playlist </TitleText>
             <Input_Component
               onChange={(text) => {
-                setNomePlaylist(text);
+                setTextPlaylist(text);
               }}
               style={styles.input}
             />
@@ -40,9 +62,10 @@ const NomePlaylist = ({ navigation }) => {
 
               <ButtonBasic
                 funcOnPress={() => {
-                  if (nomePlaylist !== "") {
-                    navigation.navigate("addMusicas");
+                  if (textPlaylist !== "") {
+                    setModalActive(false)
                   } else {
+                    alert("de um nome a sua playlist")
                     Alert.alert("de um nome a sua Playlist");
                   }
                 }}
@@ -51,7 +74,7 @@ const NomePlaylist = ({ navigation }) => {
             </View>
           </View>
         </Section>
-      </Container>
+      </View>
     </Modal>
   );
 };

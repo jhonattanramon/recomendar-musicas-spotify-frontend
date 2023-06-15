@@ -12,6 +12,7 @@ const AddMusicas = ({ navigation }) => {
   const [textoPesquisa, setTextoPesquisa] = useState("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
   console.log(resultadoPesquisa);
+  const [ nomePlaylist, setNomePlaylist] = useState("")
 
   const req = new Requisicoes();
 
@@ -27,11 +28,15 @@ const AddMusicas = ({ navigation }) => {
 
   return (
     <Container>
-      <NomePlaylist />
+      
+      <NomePlaylist setNomePlaylist={setNomePlaylist} />
+
       <Header navigation={navigation} />
 
+      
+
       <View style={{ height: 100 }}>
-        <Text> header</Text>
+        <Text>{nomePlaylist}</Text>
       </View>
       <View style={{ padding: 10 }}>
         <Input_Component
@@ -46,17 +51,19 @@ const AddMusicas = ({ navigation }) => {
           data={resultadoPesquisa}
           renderItem={({ item, index, separators }) => (
             <Track
-              key={item.id}
-              id={item.id}
+            key={item.id}
+            id={item.id}
               titulo={item.name}
               artista={item.artists}
               tempoDeReproducao={item.duration_ms}
               imagem={item.album.images[1].url}
               album={item.album.name}
-            />
-          )}
-        />
+              />
+              )}
+              />
+            <NomePlaylist />
       </View>
+              
     </Container>
   );
 };
