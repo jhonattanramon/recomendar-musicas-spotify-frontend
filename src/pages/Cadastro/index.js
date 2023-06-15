@@ -5,6 +5,7 @@ import {
   Section,
   SectionCenter,
   Separador,
+  SeparadorVertical,
   Title,
   TitleText,
 } from "../../styles/styled-components";
@@ -147,7 +148,7 @@ const Cadastro_page = ({ navigation }) => {
           </View>
         </Section>
 
-        <Separador />
+        <SeparadorVertical />
 
         <Section>
           <View>
@@ -160,7 +161,7 @@ const Cadastro_page = ({ navigation }) => {
           </View>
         </Section>
 
-        <View>
+        <View style={{ marginTop: 13 }}>
           <TextButton
             title="Login"
             onPressFunc={() => {

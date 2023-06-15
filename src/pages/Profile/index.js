@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import {
   Container,
   Separador,
+  SeparadorVertical,
   TitleText,
 } from "../../styles/styled-components";
 import AvatarComponent from "../../components/Avatar";
@@ -107,7 +108,7 @@ const ProfileComponent = () => {
           <AvatarComponent />
           <TitleText>JHON</TitleText>
 
-          <Separador />
+          <SeparadorVertical />
           <View
             style={{
               width: "100%",

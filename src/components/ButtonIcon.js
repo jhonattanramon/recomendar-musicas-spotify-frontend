@@ -11,9 +11,7 @@ const ButtonIcon = ({ title, icon, size, color, onFunc, styleComp }) => {
       animated={true}
       mode="none"
       onPress={onFunc}
-    >
-      {title}
-    </IconButton>
+    />
   );
 };
 export default ButtonIcon;

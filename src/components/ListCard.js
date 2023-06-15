@@ -13,7 +13,10 @@ const ListCard = (props) => {
   return (
     <Card>
       <Pressable
-        style={{ flex: 1, width: "100%" }}
+        style={{
+          flex: 1,
+          width: "100%",
+        }}
         onPress={() => {
           props.navigation.navigate("playlist", {
             data: props,

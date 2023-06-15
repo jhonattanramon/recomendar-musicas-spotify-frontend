@@ -1,10 +1,8 @@
-import { View, Text, Pressable, Dimensions } from "react-native";
-import { Title } from "react-native-paper";
+import { View, Text, Pressable, Dimensions, StyleSheet } from "react-native";
 import Button_Component from "../../components/ButtonComponent";
 import Input_Component from "../../components/InputComponent";
 import TextButton from "../../components/TextButton";
 import ButtonIcon from "../../components/ButtonIcon";
-
 import {
   Separador,
   Container,
@@ -12,11 +10,12 @@ import {
   NewText,
   TitleText,
   Section,
+  SeparadorVertical,
 } from "../../styles/styled-components";
-
 import { useEffect, useState } from "react";
 import { Requisicoes, accessToken } from "../../services/requisições/req";
-import { Dimension } from "../../components/Dimension";
+import { colors } from "../../styles/colors";
+import { Dimencoes } from "../../styles/dimencoes";
 
 const Login_Page = ({ navigation, route, layout }) => {
   const [email, setEmail] = useState("");
@@ -29,8 +28,6 @@ const Login_Page = ({ navigation, route, layout }) => {
   const urlBaseProduct = "https://appnative-backend.onrender.com";
   const urlBaseAuth = "https://appnative-backend-auth.onrender.com";
   const urlBaseAuthDev = "http://localhost:8887";
-
-
 
   useEffect(() => {
     if (access) {
@@ -80,6 +77,7 @@ const Login_Page = ({ navigation, route, layout }) => {
 
         <View>
           <Input_Component
+            style={{ padding: Dimencoes.padding }}
             placeholderName="Email"
             color={"#00000"}
             inputMode="email"
@@ -88,6 +86,7 @@ const Login_Page = ({ navigation, route, layout }) => {
           />
 
           <Input_Component
+            style={{ padding: Dimencoes.padding }}
             placeholderName="Senha"
             color={"#00000"}
             secureTextEntry={true}
@@ -97,7 +96,7 @@ const Login_Page = ({ navigation, route, layout }) => {
           />
         </View>
 
-        <Separador />
+        <SeparadorVertical />
 
         <View>
           <Button_Component
@@ -109,23 +108,28 @@ const Login_Page = ({ navigation, route, layout }) => {
             title="Login"
           />
         </View>
+        <View style={styles.spotify}>
+          <Pressable
+            style={{ flexDirection: "row", alignItems: "center" }}
+            onPress={() => {
+              authSpotifyWeb();
+            }}
+          >
+            <Text style={{ fontSize: Dimencoes.fontSize }}>Login Spotify</Text>
+            <ButtonIcon size={35} color={"#1ed760"} icon="spotify" />
+          </Pressable>
+        </View>
 
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
+            marginTop: 15,
           }}
         >
           <TextButton
             title="Cadastro"
             onPressFunc={() => navigation.navigate("cadastro")}
-          />
-
-          <TextButton
-            title="Login Spotify"
-            onPressFunc={() => {
-              pageAutenticacao();
-            }}
           />
 
           <TextButton title="Esqueceu a Senha ?" />
@@ -134,5 +138,15 @@ const Login_Page = ({ navigation, route, layout }) => {
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  spotify: {
+    backgroundColor: colors.complement.secondary,
+    borderRadius: Dimencoes.borderRadius,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 7,
+  },
+});
 
 export default Login_Page;

@@ -1,5 +1,11 @@
 import { colors } from "../styles/colors";
-import { Section, TitleText, SubText } from "../styles/styled-components";
+import {
+  Section,
+  TitleText,
+  SubText,
+  Separador,
+  SeperadorHorizontal,
+} from "../styles/styled-components";
 import { View, StyleSheet, Text, FlatList } from "react-native";
 import ListCard from "../components/ListCard";
 import Loading from "../components/loading";
@@ -16,12 +22,16 @@ const CampoDeDados = ({ array, navigation, title }) => {
             horizontal={true}
             data={array}
             renderItem={({ item, index, separators }) => (
-              <ListCard
-                navigation={navigation}
-                titulo={item.name}
-                url={item.images[0].url}
-                item={item}
-              />
+              <>
+                <ListCard
+                  navigation={navigation}
+                  titulo={item.name}
+                  url={item.images[0].url}
+                  item={item}
+                />
+
+                <SeperadorHorizontal />
+              </>
             )}
           />
         </View>
@@ -49,7 +59,6 @@ const styles = StyleSheet.create({
   },
 
   backgroundCard: {
-    backgroundColor: `${colors.blur.primary}`,
     flex: 1,
     padding: 7,
   },

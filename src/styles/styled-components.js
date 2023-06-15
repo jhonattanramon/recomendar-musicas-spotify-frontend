@@ -32,8 +32,12 @@ export const Container = styled.View`
   overflow: hidden;
 `;
 
-export const Separador = styled.View`
+export const SeparadorVertical = styled.View`
   margin: 10px 0;
+`;
+
+export const SeperadorHorizontal = styled.View`
+  margin: 0 10px;
 `;
 
 export const Section = styled.View``;
@@ -79,9 +83,6 @@ export const Square = styled.View`
 export const Card = styled.View`
   width: 230px;
   height: 300px;
-  justify-content: center;
-  align-items: center;
-  background-color: ${colors.blur.primary};
 `;
 
 //Fonts

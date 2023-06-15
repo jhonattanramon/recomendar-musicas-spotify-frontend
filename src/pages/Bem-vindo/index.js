@@ -8,6 +8,7 @@ import {
   Separador,
   NewText,
   TitleText,
+  SeparadorVertical,
 } from "../../styles/styled-components";
 import { colors } from "../../styles/colors";
 import { Requisicoes } from "../../services/requisições/req";
@@ -40,7 +41,7 @@ const Bem_vindo = ({ navigation }) => {
                 setEmail(text);
               }}
             />
-            <Separador />
+            <SeparadorVertical />
             <Button_Component
               funcOnPress={() => {
                 toLogin();
