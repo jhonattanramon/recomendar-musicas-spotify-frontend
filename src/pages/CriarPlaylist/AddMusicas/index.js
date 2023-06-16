@@ -36,11 +36,11 @@ const AddMusicas = ({ navigation , route}) => {
     <Container>
       <NomePlaylist
       navigation={navigation}
-      newPlaylist={newPlaylist}
+      setNomePlaylist={setNomePlaylist}
       />
       <Header navigation={navigation} />
             <View style={{  }}>
-        <Text>{nomePlaylist}</Text>
+        <TitleText>{nomePlaylist}</TitleText>
       </View>
       <View style={{ padding: 10 }}>
         <Input_Component
@@ -50,7 +50,7 @@ const AddMusicas = ({ navigation , route}) => {
           onChange={(text) => setTextoPesquisa(text)}
         />
       </View>
-      <View style={{height: 200, backgroundColor: colors.blur}}>
+      <View style={{height: "70%", backgroundColor: colors.blur}}>
         <FlatList
           data={resultadoPesquisa}
           renderItem={({ item, index, separators }) => (

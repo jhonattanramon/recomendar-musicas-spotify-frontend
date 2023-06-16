@@ -6,14 +6,18 @@ import {
 } from "../../../styles/styled-components";
 import Input_Component from "../../../components/InputComponent";
 import ButtonBasic from "../../../components/ButtonBasic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { colors } from "../../../styles/colors";
 import { Dimencoes } from "../../../styles/Dimencoes";
 
-const NomePlaylist = ({ navigation, visibilite , setVisibilite }) => {
+const NomePlaylist = ({ navigation, setNomePlaylist }) => {
   const [modalActive, setModalActive] = useState(true);
   const [ textPlaylist, setTextPlaylist ] = useState("")
   
+  useEffect( () =>{
+      setNomePlaylist(textPlaylist)
+  },[textPlaylist])
+
   return (
     <Modal
     animationType="fade"
