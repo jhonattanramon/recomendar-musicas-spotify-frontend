@@ -10,18 +10,21 @@ import { useState } from "react";
 import { colors } from "../../../styles/colors";
 import { Dimencoes } from "../../../styles/Dimencoes";
 
-const NomePlaylist = ({ navigation, setNomePlaylist }) => {
+const NomePlaylist = ({ navigation, visibilite , setVisibilite }) => {
   const [modalActive, setModalActive] = useState(true);
   const [ textPlaylist, setTextPlaylist ] = useState("")
-  
-  console.log(modalActive);
 
+  console.log("teste nome playlist");
   return (
     <Modal
     animationType="fade"
-    transparent={false}
+    transparent={true}
     visible={modalActive}
-
+    onRequestClose={ () => {
+      alert("modal seta fechado")
+      setModalActive(false)
+    }   
+  }
     >
       <View
       style={{
@@ -55,7 +58,7 @@ const NomePlaylist = ({ navigation, setNomePlaylist }) => {
             >
               <ButtonBasic
                 funcOnPress={() => {
-                  navigation.goBack();
+                  navigation.navigate("criarPlaylist");
                 }}
                 title="Cancelar"
               />
@@ -63,7 +66,7 @@ const NomePlaylist = ({ navigation, setNomePlaylist }) => {
               <ButtonBasic
                 funcOnPress={() => {
                   if (textPlaylist !== "") {
-                    setModalActive(false)
+                    setModalActive(!modalActive)
                   } else {
                     alert("de um nome a sua playlist")
                     Alert.alert("de um nome a sua Playlist");
