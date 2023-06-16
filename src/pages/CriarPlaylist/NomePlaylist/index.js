@@ -13,8 +13,7 @@ import { Dimencoes } from "../../../styles/Dimencoes";
 const NomePlaylist = ({ navigation, visibilite , setVisibilite }) => {
   const [modalActive, setModalActive] = useState(true);
   const [ textPlaylist, setTextPlaylist ] = useState("")
-
-  console.log("teste nome playlist");
+  
   return (
     <Modal
     animationType="fade"
@@ -58,7 +57,8 @@ const NomePlaylist = ({ navigation, visibilite , setVisibilite }) => {
             >
               <ButtonBasic
                 funcOnPress={() => {
-                  navigation.navigate("criarPlaylist");
+                  setModalActive(!modalActive)
+                  navigation.goBack("criarPlaylist");
                 }}
                 title="Cancelar"
               />

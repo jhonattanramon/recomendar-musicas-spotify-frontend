@@ -8,17 +8,20 @@ import Track from "../../../components/Track";
 import Header from "../../../patterns/Header";
 import NomePlaylist from "../NomePlaylist";
 import { Dimencoes } from "../../../styles/Dimencoes";
-const AddMusicas = ({ navigation }) => {
+import ButtonBasic from "../../../components/ButtonBasic";
+import Button_Component from "../../../components/ButtonComponent";
+
+const AddMusicas = ({ navigation , route}) => {
   const [textoPesquisa, setTextoPesquisa] = useState("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
   const [ nomePlaylist, setNomePlaylist] = useState("")
   const [ modalNomePlaylist, setModalNomePlaylist ] = useState(false)
 
-  console.log("teste");
   const req = new Requisicoes();
 
   useEffect(() => {
     (async () => {
+      console.log("requisicao");
       if (textoPesquisa !== "") {
         const { data } = await req.pesquisaTrack(textoPesquisa);
         console.log(data);
@@ -27,92 +30,16 @@ const AddMusicas = ({ navigation }) => {
     })();
   }, [textoPesquisa]);
 
-
-  const NomePlaylist = ({ navigation, visibilite , setVisibilite }) => {
-    const [modalActive, setModalActive] = useState(true);
-    const [ textPlaylist, setTextPlaylist ] = useState("")
-  
-    console.log("teste nome playlist");
-    return (
-      <Modal
-      animationType="fade"
-      transparent={true}
-      visible={modalActive}
-      onRequestClose={ () => {
-        alert("modal seta fechado")
-        setModalActive(false)
-      }   
-    }
-      >
-        <View
-        style={{
-          marginVertical: "50%",
-          marginHorizontal:"10%",
-          backgroundColor:colors.complement.primary,
-          height: 200,
-          borderRadius: Dimencoes.borderRadius,
-        }} 
-        >
-          <Section style={{ 
-            flex:1,
-            padding:10,
-            justifyContent:"center",
-            alignItems:"center",
-            }}>
-            <View style={{  }}>
-              <TitleText> Dê um nome á sua playlist </TitleText>
-              <Input_Component
-                onChange={(text) => {
-                  setTextPlaylist(text);
-                }}
-                style={styles.input}
-              />
-              <View
-                style={{
-                  flexDirection: "row",
-                  margin: 7,
-                  justifyContent: "space-around",
-                }}
-              >
-                <ButtonBasic
-                  funcOnPress={() => {
-                    navigation.navigate("criarPlaylist");
-                  }}
-                  title="Cancelar"
-                />
-  
-                <ButtonBasic
-                  funcOnPress={() => {
-                    if (textPlaylist !== "") {
-                      setModalActive(!modalActive)
-                    } else {
-                      alert("de um nome a sua playlist")
-                      Alert.alert("de um nome a sua Playlist");
-                    }
-                  }}
-                  title="Avançar"
-                />
-              </View>
-            </View>
-          </Section>
-        </View>
-      </Modal>
-    );
-  };
+  const { newPlaylist } = route.params
 
   return (
     <Container>
-      
-      <NomePlaylist 
-      setVisibilite={setModalNomePlaylist}
-      visibilite={modalNomePlaylist}
-      setNomePlaylist={setNomePlaylist} />
-
+      <NomePlaylist
+      navigation={navigation}
+      newPlaylist={newPlaylist}
+      />
       <Header navigation={navigation} />
-
-      
-
-      <View style={{ height: 100 }}>
+            <View style={{  }}>
         <Text>{nomePlaylist}</Text>
       </View>
       <View style={{ padding: 10 }}>
@@ -123,7 +50,7 @@ const AddMusicas = ({ navigation }) => {
           onChange={(text) => setTextoPesquisa(text)}
         />
       </View>
-      <View>
+      <View style={{height: 200, backgroundColor: colors.blur}}>
         <FlatList
           data={resultadoPesquisa}
           renderItem={({ item, index, separators }) => (
@@ -138,8 +65,10 @@ const AddMusicas = ({ navigation }) => {
               />
               )}
               />
-            <NomePlaylist />
+          
       </View>
+
+      <Button_Component title="criar"/> 
               
     </Container>
   );

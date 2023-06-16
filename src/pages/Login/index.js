@@ -124,7 +124,7 @@ const Login_Page = ({ navigation, route, layout }) => {
           <TextButton
             title="Login Spotify"
             onPressFunc={() => {
-              pageAutenticacao();
+              authSpotifyWeb();
             }}
           />
 
