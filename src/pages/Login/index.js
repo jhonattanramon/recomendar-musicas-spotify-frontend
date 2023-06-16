@@ -36,7 +36,7 @@ const Login_Page = ({ navigation, route, layout }) => {
   }, [access]);
 
   const authSpotifyWeb = () => {
-    window.location.href = `${urlBaseAuth}`;
+    window.location.href = `${urlBaseAuthDev}`;
   };
 
   const pageAutenticacao = () => {
@@ -130,13 +130,6 @@ const Login_Page = ({ navigation, route, layout }) => {
           <TextButton
             title="Cadastro"
             onPressFunc={() => navigation.navigate("cadastro")}
-          />
-
-          <TextButton
-            title="Login Spotify"
-            onPressFunc={() => {
-              authSpotifyWeb();
-            }}
           />
 
           <TextButton title="Esqueceu a Senha ?" />

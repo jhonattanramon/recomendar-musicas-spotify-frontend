@@ -4,7 +4,6 @@ import ButtonIcon from "../components/ButtonIcon";
 import { colors } from "../styles/colors";
 
 const Header = ({ navigation }) => {
-  console.log(navigation);
   return (
     <Section style={{ margin: 10 }}>
       <View>

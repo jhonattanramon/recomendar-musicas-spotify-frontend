@@ -1,4 +1,5 @@
 import axios from "axios";
+import CriarPlaylist from "../../pages/CriarPlaylist";
 
 const urlBaseProduct = "https://appnative-backend.onrender.com";
 const urlBaseDev = "http://localhost:3004";
@@ -126,6 +127,12 @@ export class Requisicoes {
     console.log(res);
     return res;
   }
-}
 
+  async criarPlaylist() {
+    const res = await axios
+      .get(`${urlBaseDev}/apispotify/criarplaylit`)
+      .then((res) => res);
+    return res;
+  }
+}
 

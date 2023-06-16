@@ -8,7 +8,7 @@ import Input_Component from "../../../components/InputComponent";
 import ButtonBasic from "../../../components/ButtonBasic";
 import { useEffect, useState } from "react";
 import { colors } from "../../../styles/colors";
-import { Dimencoes } from "../../../styles/Dimencoes";
+import { Dimencoes } from "../../../styles/dimencoes";
 
 const NomePlaylist = ({ navigation, setNomePlaylist }) => {
   const [modalActive, setModalActive] = useState(true);
