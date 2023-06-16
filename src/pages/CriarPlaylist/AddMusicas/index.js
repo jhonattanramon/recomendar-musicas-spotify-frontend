@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, FlatList, Modal } from "react-native";
-import { Container, TitleText } from "../../../styles/styled-components";
+import { Container, TitleText, Section } from "../../../styles/styled-components";
 import Input_Component from "../../../components/InputComponent";
 import { colors } from "../../../styles/colors";
 import { useEffect, useState } from "react";
@@ -7,16 +7,21 @@ import { Requisicoes } from "../../../services/requisições/req";
 import Track from "../../../components/Track";
 import Header from "../../../patterns/Header";
 import NomePlaylist from "../NomePlaylist";
+import { Dimencoes } from "../../../styles/Dimencoes";
+import ButtonBasic from "../../../components/ButtonBasic";
+import Button_Component from "../../../components/ButtonComponent";
 
-const AddMusicas = ({ navigation }) => {
+const AddMusicas = ({ navigation , route}) => {
   const [textoPesquisa, setTextoPesquisa] = useState("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
-  console.log(resultadoPesquisa);
+  const [ nomePlaylist, setNomePlaylist] = useState("")
+  const [ modalNomePlaylist, setModalNomePlaylist ] = useState(false)
 
   const req = new Requisicoes();
 
   useEffect(() => {
     (async () => {
+      console.log("requisicao");
       if (textoPesquisa !== "") {
         const { data } = await req.pesquisaTrack(textoPesquisa);
         console.log(data);
@@ -25,13 +30,17 @@ const AddMusicas = ({ navigation }) => {
     })();
   }, [textoPesquisa]);
 
+  const { newPlaylist } = route.params
+
   return (
     <Container>
-      <NomePlaylist />
+      <NomePlaylist
+      navigation={navigation}
+      setNomePlaylist={setNomePlaylist}
+      />
       <Header navigation={navigation} />
-
-      <View style={{ height: 100 }}>
-        <Text> header</Text>
+            <View style={{  }}>
+        <TitleText>{nomePlaylist}</TitleText>
       </View>
       <View style={{ padding: 10 }}>
         <Input_Component
@@ -41,22 +50,26 @@ const AddMusicas = ({ navigation }) => {
           onChange={(text) => setTextoPesquisa(text)}
         />
       </View>
-      <View>
+      <View style={{height: "70%", backgroundColor: colors.blur}}>
         <FlatList
           data={resultadoPesquisa}
           renderItem={({ item, index, separators }) => (
             <Track
-              key={item.id}
-              id={item.id}
+            key={item.id}
+            id={item.id}
               titulo={item.name}
               artista={item.artists}
               tempoDeReproducao={item.duration_ms}
               imagem={item.album.images[1].url}
               album={item.album.name}
-            />
-          )}
-        />
+              />
+              )}
+              />
+          
       </View>
+
+      <Button_Component title="criar"/> 
+              
     </Container>
   );
 };

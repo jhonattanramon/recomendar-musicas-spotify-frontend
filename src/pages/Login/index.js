@@ -132,6 +132,13 @@ const Login_Page = ({ navigation, route, layout }) => {
             onPressFunc={() => navigation.navigate("cadastro")}
           />
 
+          <TextButton
+            title="Login Spotify"
+            onPressFunc={() => {
+              authSpotifyWeb();
+            }}
+          />
+
           <TextButton title="Esqueceu a Senha ?" />
         </View>
       </SectionCenter>

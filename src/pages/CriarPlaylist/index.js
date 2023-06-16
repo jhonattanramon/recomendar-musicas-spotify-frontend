@@ -15,7 +15,7 @@ import ButtonIcon from "../../components/ButtonIcon";
 const CriarPlaylist = ({ navigation }) => {
   const [generos, setGeneros] = useState();
   const [nameTracker, setNameTracker] = useState("");
-  const [track, setTrack] = useState([]);
+  const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -29,7 +29,7 @@ const CriarPlaylist = ({ navigation }) => {
   const reqMusica = async (nameTracker) => {
     const req = new Requisicoes();
     const { data } = await req.pesquisaTrack(nameTracker);
-    setTrack(data);
+    setTracks(data);
   };
 
   const AddTracks = () => {
@@ -49,7 +49,7 @@ const CriarPlaylist = ({ navigation }) => {
         </Section>
 
         <Section>
-          {track?.tracks?.items?.map((item) => {
+          {tracks?.tracks?.items?.map((item) => {
             return (
               <View
                 style={{
@@ -103,7 +103,9 @@ const CriarPlaylist = ({ navigation }) => {
         >
           <ButtonIcon
             onFunc={() => {
-              navigation.navigate("AddMusicas");
+              navigation.navigate("AddMusicas", {
+                newPlaylist: true
+              });
             }}
             icon="plus"
             size={150}
