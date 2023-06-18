@@ -128,11 +128,23 @@ export class Requisicoes {
     return res;
   }
 
-  async criarPlaylist() {
+  async criarPlaylist(data) {
     const res = await axios
-      .get(`${urlBaseDev}/apispotify/criarplaylit`)
+      .post(`${urlBaseDev}/apispotify/criarplaylist`,{
+        data: data
+      })
       .then((res) => res);
     return res;
   }
+
+  async user(){
+    const res = await axios.get(`${urlBaseProduct}/apispotify/user`).then(
+      (res) => res
+    )
+    console.log(res);
+    return res
+  }
+
+
 }
 
