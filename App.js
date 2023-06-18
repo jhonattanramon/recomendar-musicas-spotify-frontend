@@ -17,7 +17,7 @@ import AutenticacaoToken from "./src/pages/autenticacaoToken";
 import CriarPlaylist from "./src/pages/CriarPlaylist";
 import Biblioteca from "./src/pages/Bibliteca";
 import AddMusicas from "./src/pages/CriarPlaylist/AddMusicas";
-import NomePlaylist from "./src/pages/CriarPlaylist/NomePlaylist";
+import paramsPlaylist from "./src/pages/CriarPlaylist/paramsPlaylist";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -127,7 +127,7 @@ const App = () => {
         >
           <Stack.Screen
             name="nomePlaylist"
-            component={NomePlaylist}
+            component={paramsPlaylist}
             options={{
               headerShown: false,
             }}

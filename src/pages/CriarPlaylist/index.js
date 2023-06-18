@@ -112,6 +112,11 @@ const CriarPlaylist = ({ navigation }) => {
             color={colors.primary}
           />
         </View>
+
+
+        <View> 
+          
+        </View>
       </View>
     </Container>
   );

@@ -16,6 +16,7 @@ const Input_Component = ({
   underlineStyle,
   textColor,
   contentStyle,
+  multiline
 }) => {
   return (
     <TextInput
@@ -35,6 +36,7 @@ const Input_Component = ({
       onChangeText={onChange}
       textColor={textColor}
       contentStyle={contentStyle}
+      multiline={multiline}
     />
   );
 };
