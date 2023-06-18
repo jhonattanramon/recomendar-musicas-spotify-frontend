@@ -1,3 +1,5 @@
 export const Dimencoes = {
-    borderRadius: 7  
-} 
+  padding: 7,
+  borderRadius: 7,
+  fontSize: 16,
+};
