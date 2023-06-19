@@ -20,18 +20,17 @@ import axios from "axios";
 const AddMusicas = ({ navigation }) => {
   const [textoPesquisa, setTextoPesquisa] = useState("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
-  const [nomePlaylist, setNomePlaylist] = useState("");
+  const [nomePlaylist, setNomePlaylist] = useState("teste");
   const [publica, setPublica] = useState(false);
   const [colaborativa, setColaborativa] = useState(false);
-  const [descricao, setDescriacao] = useState("");
+  const [descricao, setDescriacao] = useState("teste");
 
   const req = new Requisicoes();
 
   const dataPlaylist = {
-    'name': nomePlaylist,
-    'public': publica,
-    'collaborative': colaborativa,
-    'description': descricao,
+    name: nomePlaylist,
+    public: publica,
+    description: descricao,
   };
 
   useEffect(() => {

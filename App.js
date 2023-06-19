@@ -28,7 +28,7 @@ const App = () => {
         initialRouteName="login"
         screenOptions={{
           headerShown: true,
-        }}
+        }} 
       >
         <Stack.Group>
           <Stack.Screen
