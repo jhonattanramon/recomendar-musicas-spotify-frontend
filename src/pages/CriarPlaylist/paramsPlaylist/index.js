@@ -12,31 +12,40 @@ import { colors } from "../../../styles/colors";
 import { Dimencoes } from "../../../styles/dimencoes";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Button_Component from "../../../components/ButtonComponent";
+import { Requisicoes } from "../../../services/requisições/req";
+import ButtonIcon from "../../../components/ButtonIcon";
 
-const ParamsPlaylist = ({
-  navigation,
-  setNomePlaylist,
-  setColaborativa,
-  setDescricao,
-  setPublica,
-}) => {
+const ParamsPlaylist = ({ navigation }) => {
+  const req = new Requisicoes();
   const [modalActive, setModalActive] = useState(true);
-  const [textPlaylist, setTextPlaylist] = useState("");
+  const [ dataPlaylist, setDataPlaylist ] = useState({})
+  
 
-  useEffect(() => {
-    setNomePlaylist(textPlaylist);
-  }, [textPlaylist]);
+  const criarPlaylist = async ( ) => {
+    const result = await req.criarPlaylist(dataPlaylist);
+    console.log(result);
+  };
 
-  return (
-    <Modal
-      animationType="fade"
-      transparent={false}
-      visible={modalActive}
-      onRequestClose={() => {
-        alert("modal seta fechado");
-        setModalActive(false);
-      }}
-    >
+  const FormularioPlaylist = ({
+    setDataPlaylist
+  }) => {
+    const [nomePlaylist, setNomePlaylist] = useState("");
+    const [publica, setPublica] = useState(false);
+    const [colaborativa, setColaborativa] = useState(false);
+    const [descricao, setDescricao] = useState("");
+
+    
+   const data = {
+      name: nomePlaylist,
+      public: publica,
+      collanorative: colaborativa,
+      description: descricao,
+
+    };
+
+    console.log(data);
+  
+    return (
       <View
         style={{
           // marginVertical: "50%",
@@ -58,7 +67,7 @@ const ParamsPlaylist = ({
             <TitleText> Dê um nome á sua playlist </TitleText>
             <Input_Component
               onChange={(text) => {
-                setTextPlaylist(text);
+                setNomePlaylist(text);
               }}
               style={styles.input}
             />
@@ -86,20 +95,30 @@ const ParamsPlaylist = ({
                 multiline={true}
               />
             </View>
-            <View style={{ flexDirection: "column", columnGap:10, marginVertical: 10 }}>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View
+              style={{
+                flexDirection: "column",
+                columnGap: 10,
+                marginVertical: 10,
+              }}
+            >
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
+              >
                 <TextDefault>Playlist Publica</TextDefault>
                 <BouncyCheckbox
                   onPress={(inCheck) => {
                     setPublica(inCheck);
                   }}
-                  size={25}
+                  size={21}
                   unfillColor="none"
-                  fillColor={colors.primary}
+                  fillColor={colors.complement.secondary}
                 />
               </View>
 
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
+              >
                 <TextDefault>Playlist Colaborativa</TextDefault>
                 <BouncyCheckbox
                   onPress={(inCheck) => {
@@ -107,7 +126,7 @@ const ParamsPlaylist = ({
                   }}
                   size={25}
                   unfillColor="none"
-                  fillColor={colors.primary}
+                  fillColor={colors.complement.secondary}
                 />
               </View>
             </View>
@@ -131,19 +150,91 @@ const ParamsPlaylist = ({
             />
 
             <ButtonBasic
+              style={{
+                borderWidth: 1.4,
+                borderColor: colors.complement.secondary,
+                borderRadius: Dimencoes.borderRadius,
+                backgroundColor: colors.primary,
+              }}
+              titleStyle={{
+                color: colors.complement.secondary,
+                fontSize: 12,
+                paddingHorizontal: 13,
+                paddingVertical: 5,
+                fontWeight: "bold",
+              }}
               funcOnPress={() => {
-                if (textPlaylist !== "") {
+                if (nomePlaylist !== "") {
+                  setDataPlaylist(data)
+                  criarPlaylist();
                   setModalActive(!modalActive);
                 } else {
                   alert("de um nome a sua playlist");
                   Alert.alert("de um nome a sua Playlist");
                 }
               }}
-              title="Avançar"
+              title="Criar Playlist"
             />
           </View>
         </Section>
       </View>
+    );
+  };
+
+  const ResPlaylsitCriada = () => {
+    return (
+      <Container style={{ 
+        flex: 1,
+        justifyContent:"center",
+        alignItems:"center",
+        gap:4
+        }}>
+        <View style={
+          {
+            width: 300,
+            height: 300,
+            borderRadius: 150,
+            backgroundColor: colors.complement.secondary,
+            justifyContent: "center",
+            alignItems:"center"
+          }
+        }>
+          <ButtonIcon
+           color={colors.primary}
+           size={100} 
+           icon={"check-bold"}
+            />
+        </View>
+        <View> 
+          <Text
+          style={{ 
+            color: colors.complement.secondary,
+            textAlign: "center",
+            fontSize: Dimencoes.fontSize
+          }}
+          > 
+            Playlist Criada com Sucesso!
+          </Text>
+        </View>
+      </Container>
+    );
+  };
+
+  
+
+  return (
+    <Modal
+      animationType="fade"
+      transparent={false}
+      visible={modalActive}
+      onRequestClose={() => {
+        setModalActive(false);
+      }}
+    >
+       <FormularioPlaylist
+       setDataPlaylist={setDataPlaylist}
+        /> 
+      {/* <ResPlaylsitCriada /> */}
     </Modal>
   );
 };

@@ -104,7 +104,7 @@ const App = () => {
           />
 
           <Stack.Screen
-            name="AddMusicas"
+            name="addMusicas"
             component={AddMusicas}
             options={{
               headerShown: false,

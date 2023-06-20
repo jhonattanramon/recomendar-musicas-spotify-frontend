@@ -20,18 +20,10 @@ import axios from "axios";
 const AddMusicas = ({ navigation }) => {
   const [textoPesquisa, setTextoPesquisa] = useState("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
-  const [nomePlaylist, setNomePlaylist] = useState("teste");
-  const [publica, setPublica] = useState(false);
-  const [colaborativa, setColaborativa] = useState(false);
-  const [descricao, setDescriacao] = useState("teste");
 
   const req = new Requisicoes();
 
-  const dataPlaylist = {
-    name: nomePlaylist,
-    public: publica,
-    description: descricao,
-  };
+
 
   useEffect(() => {
     (async () => {
@@ -45,25 +37,15 @@ const AddMusicas = ({ navigation }) => {
   }, [textoPesquisa]);
 
 
-  const criarPlaylist = async() => {
-    const user = await req.user()
-    const result = await req.criarPlaylist(dataPlaylist)
-    
-  }
-
   return (
     <Container>
       <ParamsPlaylist
         navigation={navigation}
-        setNomePlaylist={setNomePlaylist}
-        setColaborativa={setColaborativa}
-        setDescricao={setDescriacao}
-        setPublica={setPublica}
       />
-      <Section>
+      <Section style={{flex:1}}>
         <Header navigation={navigation} />
         <View style={{}}>
-          <TitleText>{nomePlaylist}</TitleText>
+          <TitleText>{}</TitleText>
         </View>
         <View style={{ padding: 10 }}>
           <Input_Component
@@ -94,10 +76,12 @@ const AddMusicas = ({ navigation }) => {
             )}
           />
         </View>
-
-        <Button_Component
-        funcOnPress={ () => criarPlaylist()}
-        title={"Criar Playlist"} />
+        <View style={{ position: "absolute", bottom:"5%", width:"100%", padding: 7}}>
+          <Button_Component
+            funcOnPress={() => criarPlaylist()}
+            title={"Criar Playlist"}
+          />
+        </View>
       </Section>
     </Container>
   );

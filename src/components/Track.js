@@ -3,6 +3,7 @@ import { ViewImageTrack } from "../styles/styled-components";
 import ImagemComponent from "./Imagem";
 import { colors } from "../styles/colors";
 import { useEffect, useState } from "react";
+import ButtonIcon from "./ButtonIcon";
 
 const Track = ({
   item,
@@ -57,13 +58,8 @@ const Track = ({
             <Text style={styles.textTitulo}>{titulo}</Text>
           </Pressable>
         </View>
-
         <View style={styles.viewText}>
-          <Text style={styles.text}>{album}</Text>
-        </View>
-
-        <View style={styles.viewText}>
-          <Text style={styles.text}>
+          <Text style={styles.subText}>
             {artista.map(({ name }) => (
               <Text>
                 {name}
@@ -74,6 +70,18 @@ const Track = ({
         </View>
 
         <View style={styles.viewText}>
+          <Text style={styles.subText}>{album}</Text>
+        </View>
+
+
+        <View style={styles.viewText}>
+          {/* <ButtonIcon
+          style={{margin: 0}}
+          color={colors.primary}
+          icon={"clock-time-five"}
+          size={13}
+          
+          /> */}
           <Text style={styles.text}>{tempoRep}</Text>
         </View>
       </View>
@@ -87,27 +95,38 @@ const styles = StyleSheet.create({
     backgroundColor: colors.blur.primary,
     padding: 5,
     borderRadius: 3,
+    marginVertical:7,
+    marginHorizontal:5
   },
 
   text: {
     color: colors.complement.secondary,
-    //fontSize: "70%",
-    fontSize: 10,
+    fontSize: 12,
+    textTransform: "capitalize",
+    textAlignVertical: "center",
+    textAlign: "center",
+  },
+
+  subText:{
+    color: colors.complement.tertiary,
+    fontSize: 12,
     textTransform: "capitalize",
     textAlignVertical: "center",
     textAlign: "center",
   },
   viewText: {
     flex: 1,
-    flexWrap: "wrap",
-    padding: 2,
+    overflow: "hidden",
+    alignItems:"center"
+
+    
   },
   textTitulo: {
     color: colors.complement.secondary,
-    fontSize: 10,
-    // fontSize: "69%",
+    fontSize: 14,
     fontWeight: "bold",
   },
+
 });
 
 export default Track;
