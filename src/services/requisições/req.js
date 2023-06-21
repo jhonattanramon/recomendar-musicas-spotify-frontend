@@ -137,6 +137,17 @@ export class Requisicoes {
     return res;
   }
 
+  async adicionarMusicasPlaylist(prop){
+    console.log(prop);
+    const res = await axios
+    .post(`${urlBaseDev}/apispotify/adicionarmusicas`,
+    {
+      data: prop
+    }).then( res => res)
+    console.log(res);
+    return res
+  }
+
   async user(){
     const res = await axios
       .get(`${urlBaseDev}/apispotify/user`)

@@ -15,44 +15,40 @@ import Button_Component from "../../../components/ButtonComponent";
 import { Requisicoes } from "../../../services/requisições/req";
 import ButtonIcon from "../../../components/ButtonIcon";
 
-const ParamsPlaylist = ({ navigation }) => {
+const ParamsPlaylist = ({ navigation, setDataPlaylistCriada }) => {
   const req = new Requisicoes();
   const [modalActive, setModalActive] = useState(true);
-  const [ dataPlaylist, setDataPlaylist ] = useState({})
-  
+  const [stateResponsePlaylist, setStateResponsePlaylist] = useState(false);
 
-  const criarPlaylist = async ( ) => {
-    const result = await req.criarPlaylist(dataPlaylist);
-    console.log(result);
+  const criarPlaylist = async (dataPlaylist) => { 
+    const { data } = await req.criarPlaylist(dataPlaylist);
+    setDataPlaylistCriada(data.response)    
+    if( data.state){
+      setStateResponsePlaylist(data.state);
+      setTimeout(() => {
+        console.log("timout");
+        setModalActive(!data.state)
+      }, 1000 )
+    }
   };
 
-  const FormularioPlaylist = ({
-    setDataPlaylist
-  }) => {
+  const FormularioPlaylist = ({}) => {
     const [nomePlaylist, setNomePlaylist] = useState("");
     const [publica, setPublica] = useState(false);
     const [colaborativa, setColaborativa] = useState(false);
     const [descricao, setDescricao] = useState("");
 
-    
-   const data = {
+    const data = {
       name: nomePlaylist,
       public: publica,
-      collanorative: colaborativa,
+      collaborative: colaborativa,
       description: descricao,
-
     };
-
-    console.log(data);
-  
     return (
       <View
         style={{
-          // marginVertical: "50%",
-          // marginHorizontal: "10%",
           backgroundColor: colors.complement.primary,
           height: "100%",
-          // borderRadius: Dimencoes.borderRadius,
         }}
       >
         <Section
@@ -165,9 +161,7 @@ const ParamsPlaylist = ({ navigation }) => {
               }}
               funcOnPress={() => {
                 if (nomePlaylist !== "") {
-                  setDataPlaylist(data)
-                  criarPlaylist();
-                  setModalActive(!modalActive);
+                  criarPlaylist(data);
                 } else {
                   alert("de um nome a sua playlist");
                   Alert.alert("de um nome a sua Playlist");
@@ -183,36 +177,34 @@ const ParamsPlaylist = ({ navigation }) => {
 
   const ResPlaylsitCriada = () => {
     return (
-      <Container style={{ 
-        flex: 1,
-        justifyContent:"center",
-        alignItems:"center",
-        gap:4
-        }}>
-        <View style={
-          {
+      <Container
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 4,
+        }}
+      >
+        <View
+          style={{
             width: 300,
             height: 300,
             borderRadius: 150,
             backgroundColor: colors.complement.secondary,
             justifyContent: "center",
-            alignItems:"center"
-          }
-        }>
-          <ButtonIcon
-           color={colors.primary}
-           size={100} 
-           icon={"check-bold"}
-            />
-        </View>
-        <View> 
-          <Text
-          style={{ 
-            color: colors.complement.secondary,
-            textAlign: "center",
-            fontSize: Dimencoes.fontSize
+            alignItems: "center",
           }}
-          > 
+        >
+          <ButtonIcon color={colors.primary} size={100} icon={"check-bold"} />
+        </View>
+        <View>
+          <Text
+            style={{
+              color: colors.complement.secondary,
+              textAlign: "center",
+              fontSize: Dimencoes.fontSize,
+            }}
+          >
             Playlist Criada com Sucesso!
           </Text>
         </View>
@@ -220,23 +212,34 @@ const ParamsPlaylist = ({ navigation }) => {
     );
   };
 
-  
+  if (stateResponsePlaylist) {
+    return (
+      <Modal
+        animationType="fade"
+        transparent={false}
+        visible={modalActive}
+        onRequestClose={() => {
+          setModalActive(false);
+        }}
+      >
+          <ResPlaylsitCriada />
 
-  return (
-    <Modal
-      animationType="fade"
-      transparent={false}
-      visible={modalActive}
-      onRequestClose={() => {
-        setModalActive(false);
-      }}
-    >
-       <FormularioPlaylist
-       setDataPlaylist={setDataPlaylist}
-        /> 
-      {/* <ResPlaylsitCriada /> */}
-    </Modal>
-  );
+      </Modal>
+    );
+  } else {
+    return (
+      <Modal
+        animationType="fade"
+        transparent={false}
+        visible={modalActive}
+        onRequestClose={() => {
+          setModalActive(false);
+        }}
+      >
+        <FormularioPlaylist />
+      </Modal>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
