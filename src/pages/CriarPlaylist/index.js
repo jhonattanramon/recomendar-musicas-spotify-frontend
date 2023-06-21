@@ -11,6 +11,7 @@ import { Requisicoes } from "../../services/requisições/req";
 import { useEffect, useState } from "react";
 import Track from "../../components/Track";
 import ButtonIcon from "../../components/ButtonIcon";
+import Header from "../../patterns/Header";
 
 const CriarPlaylist = ({ navigation }) => {
   const [generos, setGeneros] = useState();
@@ -81,8 +82,16 @@ const CriarPlaylist = ({ navigation }) => {
           padding: 15,
           borderBottomWidth: 1,
           borderBottomColor: colors.complement.secondary,
+          flexDirection: "row",
+          alignItems: "center",
         }}
       >
+        <ButtonIcon
+          color={colors.complement.secondary}
+          icon={"arrow-left"}
+          style={{ margin: 0 }}
+          onFunc={() => navigation.goBack()}
+        />
         <SubText>Crie sua Playlist</SubText>
       </View>
 
@@ -104,7 +113,7 @@ const CriarPlaylist = ({ navigation }) => {
           <ButtonIcon
             onFunc={() => {
               navigation.navigate("addMusicas", {
-                newPlaylist: true
+                newPlaylist: true,
               });
             }}
             icon="plus"
@@ -113,10 +122,7 @@ const CriarPlaylist = ({ navigation }) => {
           />
         </View>
 
-
-        <View> 
-          
-        </View>
+        <View></View>
       </View>
     </Container>
   );

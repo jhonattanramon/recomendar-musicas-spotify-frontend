@@ -20,15 +20,15 @@ const ParamsPlaylist = ({ navigation, setDataPlaylistCriada }) => {
   const [modalActive, setModalActive] = useState(true);
   const [stateResponsePlaylist, setStateResponsePlaylist] = useState(false);
 
-  const criarPlaylist = async (dataPlaylist) => { 
+  const criarPlaylist = async (dataPlaylist) => {
     const { data } = await req.criarPlaylist(dataPlaylist);
-    setDataPlaylistCriada(data.response)    
-    if( data.state){
+    setDataPlaylistCriada(data.response);
+    if (data.state) {
       setStateResponsePlaylist(data.state);
       setTimeout(() => {
         console.log("timout");
-        setModalActive(!data.state)
-      }, 1000 )
+        setModalActive(!data.state);
+      }, 1000);
     }
   };
 
@@ -56,119 +56,135 @@ const ParamsPlaylist = ({ navigation, setDataPlaylistCriada }) => {
             flex: 1,
             padding: 10,
             justifyContent: "center",
-            alignItems: "center",
           }}
         >
-          <View style={{}}>
-            <TitleText> Dê um nome á sua playlist </TitleText>
-            <Input_Component
-              onChange={(text) => {
-                setNomePlaylist(text);
-              }}
-              style={styles.input}
-            />
-            <View
-              style={{
-                flexDirection: "row",
-                margin: 7,
-                justifyContent: "space-around",
-              }}
-            ></View>
-          </View>
-
-          <View>
-            <View>
-              <TitleText>Opções da playlist</TitleText>
-            </View>
-
-            <View>
-              <TextDefault> Descrição</TextDefault>
-              <Input_Component
-                onChange={(text) => {
-                  setDescricao(text);
-                }}
-                style={{ backgroundColor: "none" }}
-                multiline={true}
-              />
-            </View>
-            <View
-              style={{
-                flexDirection: "column",
-                columnGap: 10,
-                marginVertical: 10,
-              }}
-            >
-              <View
-                style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
-              >
-                <TextDefault>Playlist Publica</TextDefault>
-                <BouncyCheckbox
-                  onPress={(inCheck) => {
-                    setPublica(inCheck);
-                  }}
-                  size={21}
-                  unfillColor="none"
-                  fillColor={colors.complement.secondary}
-                />
-              </View>
-
-              <View
-                style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
-              >
-                <TextDefault>Playlist Colaborativa</TextDefault>
-                <BouncyCheckbox
-                  onPress={(inCheck) => {
-                    setColaborativa(inCheck);
-                  }}
-                  size={25}
-                  unfillColor="none"
-                  fillColor={colors.complement.secondary}
-                />
-              </View>
-            </View>
-          </View>
-
           <View
             style={{
-              width: "100%",
-              margin: 10,
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignContent: "space-around",
+              backgroundColor: colors.blur.primary,
+              borderRadius: Dimencoes.borderRadius,
+              height: 400,
+              margin: 20,
+              padding: 13,
+              justifyContent: "center",
             }}
           >
-            <ButtonBasic
-              funcOnPress={() => {
-                setModalActive(!modalActive);
-                navigation.goBack("criarPlaylist");
-              }}
-              title="Cancelar"
-            />
+            <View style={{}}>
+              <TitleText> Nome da Playlist </TitleText>
+              <Input_Component
+                onChange={(text) => {
+                  setNomePlaylist(text);
+                }}
+                textColor={colors.complement.secondary}
+                style={styles.input}
+              />
+              <View
+                style={{
+                  flexDirection: "row",
+                  margin: 7,
+                  justifyContent: "space-around",
+                }}
+              ></View>
+            </View>
 
-            <ButtonBasic
+            <View>
+              <View>
+                <TextDefault> Descrição</TextDefault>
+                <Input_Component
+                  onChange={(text) => {
+                    setDescricao(text);
+                  }}
+                  style={{ backgroundColor: "none" }}
+                  textColor={colors.complement.secondary}
+                  multiline={true}
+                />
+              </View>
+              <View
+                style={{
+                  flexDirection: "column",
+                  gap: 7,
+                  marginVertical: 13,
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 0,
+                  }}
+                >
+                  <BouncyCheckbox
+                    onPress={(inCheck) => {
+                      setPublica(inCheck);
+                    }}
+                    size={21}
+                    unfillColor="none"
+                    fillColor={colors.primary}
+                  />
+                  <TextDefault>Playlist Publica</TextDefault>
+                </View>
+
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 0,
+                  }}
+                >
+                  <BouncyCheckbox
+                    onPress={(inCheck) => {
+                      setColaborativa(inCheck);
+                    }}
+                    size={21}
+                    unfillColor="none"
+                    fillColor={colors.primary}
+                    innerIconStyle={{ color: colors.primary }}
+                  />
+                  <TextDefault>Playlist Colaborativa</TextDefault>
+                </View>
+              </View>
+            </View>
+
+            <View
               style={{
-                borderWidth: 1.4,
-                borderColor: colors.complement.secondary,
-                borderRadius: Dimencoes.borderRadius,
-                backgroundColor: colors.primary,
+                width: "100%",
+                margin: 10,
+                flexDirection: "row",
+                justifyContent: "space-around",
               }}
-              titleStyle={{
-                color: colors.complement.secondary,
-                fontSize: 12,
-                paddingHorizontal: 13,
-                paddingVertical: 5,
-                fontWeight: "bold",
-              }}
-              funcOnPress={() => {
-                if (nomePlaylist !== "") {
-                  criarPlaylist(data);
-                } else {
-                  alert("de um nome a sua playlist");
-                  Alert.alert("de um nome a sua Playlist");
-                }
-              }}
-              title="Criar Playlist"
-            />
+            >
+              <ButtonBasic
+                funcOnPress={() => {
+                  setModalActive(!modalActive);
+                  navigation.goBack("criarPlaylist");
+                }}
+                title="Cancelar"
+              />
+
+              <ButtonBasic
+                style={{
+                  borderWidth: 1.4,
+                  borderColor: colors.primary,
+                  borderRadius: Dimencoes.borderRadius,
+                  backgroundColor: colors.primary,
+                }}
+                titleStyle={{
+                  color: colors.complement.secondary,
+                  fontSize: 12,
+                  paddingHorizontal: 13,
+                  paddingVertical: 5,
+                  fontWeight: "bold",
+                }}
+                funcOnPress={() => {
+                  if (nomePlaylist !== "") {
+                    criarPlaylist(data);
+                  } else {
+                    alert("de um nome a sua playlist");
+                    Alert.alert("de um nome a sua Playlist");
+                  }
+                }}
+                title="Criar Playlist"
+              />
+            </View>
           </View>
         </Section>
       </View>
@@ -222,8 +238,7 @@ const ParamsPlaylist = ({ navigation, setDataPlaylistCriada }) => {
           setModalActive(false);
         }}
       >
-          <ResPlaylsitCriada />
-
+        <ResPlaylsitCriada />
       </Modal>
     );
   } else {
@@ -245,6 +260,7 @@ const ParamsPlaylist = ({ navigation, setDataPlaylistCriada }) => {
 const styles = StyleSheet.create({
   input: {
     backgroundColor: "none",
+    color: colors.complement.secondary,
   },
 });
 

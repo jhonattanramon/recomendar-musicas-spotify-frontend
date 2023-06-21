@@ -85,6 +85,18 @@ const Cadastro_page = ({ navigation }) => {
         console.log("user registration");
         Alert.alert("usuario registrado");
       });
+
+
+      fetch("url",
+      {
+        method: "POST",
+        body:{
+          titulo: titulo
+        }
+      })
+
+
+    
   };
 
   return (
@@ -154,7 +166,7 @@ const Cadastro_page = ({ navigation }) => {
           <View>
             <Button_Component
               funcOnPress={() => {
-                checkForm();
+                checkForm(titulo, desc);
               }}
               title="Realizar Cadastro"
             />

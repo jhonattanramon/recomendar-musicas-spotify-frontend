@@ -72,7 +72,6 @@ export class Requisicoes {
         },
       })
       .then((res) => res);
-    console.log(res);
     return res;
   }
 
@@ -85,7 +84,6 @@ export class Requisicoes {
         },
       })
       .then((res) => res);
-    console.log(res);
 
     return res;
   }
@@ -124,7 +122,6 @@ export class Requisicoes {
     const res = await axios
       .get(`${urlBaseDev}/apispotify/obtergeneros`)
       .then((res) => res);
-    console.log(res);
     return res;
   }
 
@@ -138,14 +135,27 @@ export class Requisicoes {
   }
 
   async adicionarMusicasPlaylist(prop){
-    console.log(prop);
+    console.log(prop.id);
+    const playlist = await axios
+      .get(`${urlBaseDev}/apispotify/playlist`, {
+        headers: {
+          data: prop.id,
+        },
+      })
+      .then((res) => res);
+
+    console.log(playlist);
+
     const res = await axios
-    .post(`${urlBaseDev}/apispotify/adicionarmusicas`,
-    {
-      data: prop
-    }).then( res => res)
+      .post(`${urlBaseDev}/apispotify/adicionarmusicas`, {
+        data: prop,
+      })
+      .then((res) => res);
     console.log(res);
-    return res
+    return {
+      musicaAdicionada: res,
+      playlist: playlist,
+    }; 
   }
 
   async user(){
