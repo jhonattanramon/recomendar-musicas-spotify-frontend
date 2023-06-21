@@ -22,7 +22,6 @@ const AddMusicas = ({ navigation }) => {
   const [textoPesquisa, setTextoPesquisa] = useState("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
   const [dataPlaylistCriada, setDataPlaylistCriada] = useState([]);
-  const [resMusicaAdicionada, setResMusicasAdicionada] = useState({});
   console.log(dataPlaylistCriada);
 
   useEffect(() => {
@@ -37,13 +36,13 @@ const AddMusicas = ({ navigation }) => {
   }, [textoPesquisa]);
 
   const adicionarMusicas = async (item) => {
-    const { musicaAdicionada, playlist } = await req.adicionarMusicasPlaylist({
+    console.log(item);
+     const res = await req.adicionarMusicasPlaylist({
       id: dataPlaylistCriada.id,
-      item: item,
-    });
-    console.log(musicaAdicionada, playlist);
-    setResMusicasAdicionada(res);
-  };
+       item : item})
+       console.log(res);
+  }
+  
 
   return (
     <Container>
@@ -88,7 +87,7 @@ const AddMusicas = ({ navigation }) => {
             onChange={(text) => setTextoPesquisa(text)}
           />
         </View>
-        <View style={{ height: 300, backgroundColor: colors.blur }}>
+        <View style={{height: 300, backgroundColor: colors.blur }}>
           {resultadoPesquisa.length > 0 ? (
             <FlatList
               data={resultadoPesquisa}
@@ -104,13 +103,12 @@ const AddMusicas = ({ navigation }) => {
                       imagem={item.album.images[1].url}
                       album={item.album.name}
                     />
-                    <ButtonIcon
-                      key={index}
-                      color={colors.primary}
-                      icon={"plus"}
-                      onFunc={() => {
-                        adicionarMusicas(item);
-                      }}
+                    <ButtonIcon 
+                    color={colors.primary}
+                    icon={"plus"}
+                    onFunc={ () => {
+                      adicionarMusicas(item)
+                    }}
                     />
                   </View>
                 </>
@@ -122,6 +120,7 @@ const AddMusicas = ({ navigation }) => {
                 flex: 1,
                 justifyContent: "center",
                 alignItems: "center",
+              
               }}
             >
               <Text
@@ -140,18 +139,18 @@ const AddMusicas = ({ navigation }) => {
             position: "relative",
             width: "100%",
             padding: 7,
-            justifyContent: "center",
-            alignItems: "center",
-            margin: 15,
+            justifyContent:"center",
+            alignItems:"center",
+            margin:15,
           }}
         >
           <Button_Component
             style={{
-              width: "100%",
-              backgroundColor: colors.primary,
-              padding: 12,
-              borderRadius: 4,
-            }}
+               width: "100%",
+               backgroundColor: colors.primary,
+               padding: 12,
+               borderRadius: 4,
+              }}
             funcOnPress={() => criarPlaylist()}
             title={"Criar Playlist"}
           />
