@@ -135,23 +135,20 @@ export class Requisicoes {
   }
 
   async adicionarMusicasPlaylist(prop){
-    console.log(prop.id);
-    const playlist = await axios
-      .get(`${urlBaseDev}/apispotify/playlist`, {
-        headers: {
-          data: prop.id,
-        },
-      })
-      .then((res) => res);
-
-    console.log(playlist);
-
     const res = await axios
       .post(`${urlBaseDev}/apispotify/adicionarmusicas`, {
         data: prop,
       })
       .then((res) => res);
-    console.log(res);
+
+    const playlist = await axios
+    .get(`${urlBaseDev}/apispotify/playlist`, {
+      headers: {
+        data: prop.id,
+      },
+    })
+    .then((res) => res);
+
     return {
       musicaAdicionada: res,
       playlist: playlist,

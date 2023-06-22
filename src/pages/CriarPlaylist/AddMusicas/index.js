@@ -22,7 +22,8 @@ const AddMusicas = ({ navigation }) => {
   const [textoPesquisa, setTextoPesquisa] = useState("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
   const [dataPlaylistCriada, setDataPlaylistCriada] = useState([]);
-  console.log(dataPlaylistCriada);
+  const [idsTrackPlaylist, setIdsTrackPlaylist ] = useState([])
+
 
   useEffect(() => {
     (async () => {
@@ -36,13 +37,19 @@ const AddMusicas = ({ navigation }) => {
   }, [textoPesquisa]);
 
   const adicionarMusicas = async (item) => {
-    console.log(item);
-     const res = await req.adicionarMusicasPlaylist({
+   
+     const {playlist} = await req.adicionarMusicasPlaylist({
       id: dataPlaylistCriada.id,
        item : item})
-       console.log(res);
+        playlist?.data?.tracks?.items?.map( ({track}) =>  {       
+        let playlistIsIncluidTrack = idsTrackPlaylist.includes(track.id)
+        if( !playlistIsIncluidTrack ){
+          setIdsTrackPlaylist([...idsTrackPlaylist, track.id])
+          return track.id
+        }
+       })
+      
   }
-  
 
   return (
     <Container>
@@ -101,11 +108,23 @@ const AddMusicas = ({ navigation }) => {
                       artista={item.artists}
                       tempoDeReproducao={item.duration_ms}
                       imagem={item.album.images[1].url}
-                      album={item.album.name}
+                      album={item.album.name} 
                     />
                     <ButtonIcon 
+                    theme={{ 
+                      colors: {
+                       onSurfaceDisabled: colors.primary,
+                       onSurfaceVariant: colors.primary,
+                       primary: colors.primary,
+                       onSurfaceVariant: colors.primary
+                       
+                      
+                      }}}
                     color={colors.primary}
-                    icon={"plus"}
+                    icon={ 
+                      idsTrackPlaylist.includes(item.id) ? "check" : "plus"
+                    }
+                    disabled={ idsTrackPlaylist.includes(item.id) }
                     onFunc={ () => {
                       adicionarMusicas(item)
                     }}
@@ -144,16 +163,7 @@ const AddMusicas = ({ navigation }) => {
             margin:15,
           }}
         >
-          <Button_Component
-            style={{
-               width: "100%",
-               backgroundColor: colors.primary,
-               padding: 12,
-               borderRadius: 4,
-              }}
-            funcOnPress={() => criarPlaylist()}
-            title={"Criar Playlist"}
-          />
+       
         </View>
       </Section>
     </Container>
