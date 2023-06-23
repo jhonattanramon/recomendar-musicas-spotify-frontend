@@ -58,24 +58,14 @@ const AddMusicas = ({ navigation }) => {
         setDataPlaylistCriada={setDataPlaylistCriada}
       />
       <Section style={{ flex: 1 }}>
-        <Header navigation={navigation} />
+        <Header navigation={navigation} title={"Adicione suas musicas"} />
         <View
           style={{
             justifyContent: "center",
             alignItems: "center",
             marginBottom: 25,
           }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              color: colors.complement.secondary,
-            }}
-          >
-            {" "}
-            Adicione suas Musicas{" "}
-          </Text>
-        </View>
+        ></View>
         <View style={{}}>
           <Text
             style={{
@@ -94,7 +84,7 @@ const AddMusicas = ({ navigation }) => {
             onChange={(text) => setTextoPesquisa(text)}
           />
         </View>
-        <View style={{height: 300, backgroundColor: colors.blur }}>
+        <View style={{ height: "70%", backgroundColor: colors.blur }}>
           {resultadoPesquisa.length > 0 ? (
             <FlatList
               data={resultadoPesquisa}
@@ -108,26 +98,25 @@ const AddMusicas = ({ navigation }) => {
                       artista={item.artists}
                       tempoDeReproducao={item.duration_ms}
                       imagem={item.album.images[1].url}
-                      album={item.album.name} 
+                      album={item.album.name}
                     />
-                    <ButtonIcon 
-                    theme={{ 
-                      colors: {
-                       onSurfaceDisabled: colors.primary,
-                       onSurfaceVariant: colors.primary,
-                       primary: colors.primary,
-                       onSurfaceVariant: colors.primary
-                       
-                      
-                      }}}
-                    color={colors.primary}
-                    icon={ 
-                      idsTrackPlaylist.includes(item.id) ? "check" : "plus"
-                    }
-                    disabled={ idsTrackPlaylist.includes(item.id) }
-                    onFunc={ () => {
-                      adicionarMusicas(item)
-                    }}
+                    <ButtonIcon
+                      theme={{
+                        colors: {
+                          onSurfaceDisabled: colors.primary,
+                          onSurfaceVariant: colors.primary,
+                          primary: colors.primary,
+                          onSurfaceVariant: colors.primary,
+                        },
+                      }}
+                      color={colors.primary}
+                      icon={
+                        idsTrackPlaylist.includes(item.id) ? "check" : "plus"
+                      }
+                      disabled={idsTrackPlaylist.includes(item.id)}
+                      onFunc={() => {
+                        adicionarMusicas(item);
+                      }}
                     />
                   </View>
                 </>
@@ -139,7 +128,6 @@ const AddMusicas = ({ navigation }) => {
                 flex: 1,
                 justifyContent: "center",
                 alignItems: "center",
-              
               }}
             >
               <Text
@@ -158,13 +146,11 @@ const AddMusicas = ({ navigation }) => {
             position: "relative",
             width: "100%",
             padding: 7,
-            justifyContent:"center",
-            alignItems:"center",
-            margin:15,
+            justifyContent: "center",
+            alignItems: "center",
+            margin: 15,
           }}
-        >
-       
-        </View>
+        ></View>
       </Section>
     </Container>
   );

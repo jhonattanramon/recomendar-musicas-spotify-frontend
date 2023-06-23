@@ -127,14 +127,14 @@ export class Requisicoes {
 
   async criarPlaylist(data) {
     const res = await axios
-      .post(`${urlBaseDev}/apispotify/criarplaylist`,{
-        data: data
+      .post(`${urlBaseDev}/apispotify/criarplaylist`, {
+        data: data,
       })
       .then((res) => res);
     return res;
   }
 
-  async adicionarMusicasPlaylist(prop){
+  async adicionarMusicasPlaylist(prop) {
     const res = await axios
       .post(`${urlBaseDev}/apispotify/adicionarmusicas`, {
         data: prop,
@@ -142,27 +142,32 @@ export class Requisicoes {
       .then((res) => res);
 
     const playlist = await axios
-    .get(`${urlBaseDev}/apispotify/playlist`, {
-      headers: {
-        data: prop.id,
-      },
-    })
-    .then((res) => res);
+      .get(`${urlBaseDev}/apispotify/playlist`, {
+        headers: {
+          data: prop.id,
+        },
+      })
+      .then((res) => res);
 
     return {
       musicaAdicionada: res,
       playlist: playlist,
-    }; 
+    };
   }
 
-  async user(){
+  async user() {
     const res = await axios
       .get(`${urlBaseDev}/apispotify/user`)
       .then((res) => res);
     console.log(res);
-    return res
+    return res;
   }
 
-
+  async playlistUser() {
+    const res = await axios.get(`${urlBaseDev}/apispotify/playlistuser`);
+    then((res) => res);
+    console.log(res);
+    return res;
+  }
 }
 
