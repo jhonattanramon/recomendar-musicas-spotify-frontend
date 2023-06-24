@@ -134,7 +134,7 @@ export class Requisicoes {
     return res;
   }
 
-  async adicionarMusicasPlaylist(prop){
+  async adicionarMusicasPlaylist(prop) {
     const res = await axios
       .post(`${urlBaseProduct}/apispotify/adicionarmusicas`, {
         data: prop,
@@ -152,10 +152,10 @@ export class Requisicoes {
     return {
       musicaAdicionada: res,
       playlist: playlist,
-    }; 
+    };
   }
 
-  async user(){
+  async user() {
     const res = await axios
       .get(`${urlBaseProduct}/apispotify/user`)
       .then((res) => res);
@@ -167,9 +167,14 @@ export class Requisicoes {
     .get(`${urlBaseProduct}/apispotify/playlistuser`)
     .then( res => res)
     console.log(res);
-    return res
+    return res;
   }
 
-
+  async playlistUser() {
+    const res = await axios.get(`${urlBaseDev}/apispotify/playlistuser`);
+    then((res) => res);
+    console.log(res);
+    return res;
+  }
 }
 
