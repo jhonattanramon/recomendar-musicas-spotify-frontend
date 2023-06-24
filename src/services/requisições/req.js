@@ -25,7 +25,7 @@ export class Requisicoes {
 
   async login({ email, password }) {
     const res = await axios
-      .post(`${urlBaseProduct}/api/login`, {
+      .post(`${urlBaseProduct}/api/loginuser`, {
         email: email,
         password: password,
       })

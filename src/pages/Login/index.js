@@ -112,7 +112,7 @@ const Login_Page = ({ navigation, route, layout }) => {
           <Pressable
             style={{ flexDirection: "row", alignItems: "center" }}
             onPress={() => {
-              authSpotifyWeb();
+              pageAutenticacao();
             }}
           >
             <Text style={{ fontSize: Dimencoes.fontSize }}>Login Spotify</Text>
