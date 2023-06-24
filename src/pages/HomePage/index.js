@@ -11,6 +11,8 @@ const HomePage = ({ navigation }) => {
   const [playlists, setPlaylists] = useState([]);
   const [artistas, setArtistas] = useState([]);
 
+  console.log(playlists);
+
   useEffect(() => {
     (async () => {
       const requisicoes = new Requisicoes();

@@ -17,6 +17,7 @@ import Track from "../../components/Track";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Requisicoes } from "../../services/requisições/req";
 import Button_Component from "../../components/ButtonComponent";
+import Header from "../../patterns/Header";
 
 const Playlist = ({ route }) => {
   const [tracks, setTracks] = useState([]);
@@ -25,7 +26,7 @@ const Playlist = ({ route }) => {
   console.log(route);
 
   const TracksArea = () => {
-    if (tracks.length > 0) {
+    if (tracks?.length > 0) {
       return (
         <SafeAreaView style={{ flex: 1, width: "100%" }}>
           <TitleText>Faixas</TitleText>
@@ -55,10 +56,10 @@ const Playlist = ({ route }) => {
   useEffect(() => {
     (async () => {
       const { data } = await requisicoes.tracksPlaylist(
-        route.params.data.item.href
+        route.params.href
       );
       console.log(data);
-      setTracks(data.tracks.items);
+      setTracks(data?.items);
     })();
   }, []);
 
@@ -68,6 +69,7 @@ const Playlist = ({ route }) => {
 
   return (
     <Container>
+      <Header navigation={route.params.navigation} />
       <View style={styles.containerImagem}>
         <View style={styles.viewDeImagem}>
           <ImagemComponent url={route.params.data.url} />

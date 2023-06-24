@@ -75,8 +75,7 @@ export const NewText = styled.Text`
 `;
 
 export const SubText = styled.Text`
-  font-size: 25;
-  font-weight: bold;
+  font-size: 13;
   color: ${colors.complement.secondary};
 `;
 

@@ -1,9 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import {
+  Card,
   Container,
+  Section,
   Separador,
   SeparadorVertical,
+  TextDefault,
   TitleText,
+  SubText,
 } from "../../styles/styled-components";
 import AvatarComponent from "../../components/Avatar";
 import ButtonBasic from "../../components/ButtonBasic";
@@ -13,21 +17,79 @@ import { Modal, Portal, Provider } from "react-native-paper";
 import { Requisicoes } from "../../services/requisições/req";
 import { Linking } from "react-native";
 import Loading from "../../components/loading";
+import ImagemComponent from "../../components/Imagem";
+import { colors } from "../../styles/colors";
+import { Dimencoes } from "../../styles/dimencoes";
+import Header from "../../patterns/Header";
 
-const ProfileComponent = () => {
+const ProfileComponent = ({ navigation }) => {
   const [visibleModal, setVisibleModal] = useState(false);
-  const [inforUser, setInforUser] = useState();
+  const [inforUser, setInforUser] = useState({});
+  const [playlistsUser, setPlaylistsUser] = useState([]);
+
+  console.log(playlistsUser, inforUser);
 
   const req = new Requisicoes();
 
   useEffect(() => {
-    const load = async () => {
-      const { data } = await req.informacoesUserSpotify();
-      setInforUser(data);
-      console.log(data);
-    };
-    load();
+    (async () => {
+      const { data: playlistsUser } = await req.playlistUser();
+      console.log(playlistsUser);
+      setPlaylistsUser(playlistsUser);
+
+      const { data: userinfor } = await req.informacoesUserSpotify();
+      setInforUser(userinfor);
+    })();
   }, []);
+
+  const Playlists = () => {
+    if (playlistsUser?.items?.length > 0) {
+      return (
+        <FlatList
+          style={{ flex: 1 }}
+          numColumns={2}
+          data={playlistsUser.items}
+          renderItem={({ item }) => (
+            <Pressable
+              onPress={() => {
+                navigation.navigate(item.type, {
+                  data: item,
+                  href: item.tracks.href,
+                  navigation: navigation
+                });
+              }}
+              style={{
+                height: 270,
+                width: 220,
+                margin: 10,
+                padding: 13,
+                backgroundColor: colors.blur.primary,
+                borderRadius: Dimencoes.borderRadius,
+              }}
+            >
+              <View
+                style={{
+                  flex: 1,
+                }}
+              >
+                <ImagemComponent url={item?.images[0]?.url} />
+              </View>
+              <View>
+                <TextDefault>{item.name}</TextDefault>
+                <SubText>{item.owner.display_name}</SubText>
+              </View>
+            </Pressable>
+          )}
+        />
+      );
+    } else {
+      return (
+        <View>
+          <TextDefault>Nenhuma playlist cadastrada.</TextDefault>
+        </View>
+      );
+    }
+  };
 
   const InforComponent = () => {
     return (
@@ -68,6 +130,7 @@ const ProfileComponent = () => {
 
   return (
     <Container>
+      <Header navigation={navigation} /> 
       <Provider>
         <View
           style={{
@@ -122,9 +185,20 @@ const ProfileComponent = () => {
             <ButtonBasic title="Seguindo" funcOnPress={() => {}} />
           </View>
         </View>
-        <View style={styles.SectionsDeDadosApp}>
-          <TitleText> Playlists </TitleText>
-        </View>
+        <Section style={styles.SectionsDeDadosApp}>
+          <View>
+            <TitleText> Playlists </TitleText>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              width: "100%",
+              alignItems: "center",
+            }}
+          >
+            <Playlists />
+          </View>
+        </Section>
       </Provider>
     </Container>
   );

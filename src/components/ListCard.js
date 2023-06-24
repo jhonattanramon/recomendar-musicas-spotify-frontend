@@ -10,6 +10,7 @@ import { colors } from "../styles/colors";
 import { fontStyleds } from "../styles/fonts";
 
 const ListCard = (props) => {
+  console.log(props);
   return (
     <Card>
       <Pressable
@@ -20,9 +21,12 @@ const ListCard = (props) => {
         onPress={() => {
           props.navigation.navigate("playlist", {
             data: props,
+            href: props.href,
+            navigation: props.navigation
+
           });
         }}
-      >
+    >
         <Square>
           <View style={{ flex: 2, padding: 7 }}>
             <ImagemComponent url={props.url} />

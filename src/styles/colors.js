@@ -9,7 +9,7 @@ export const colors = {
     tertiary: "#9ca3af",
   },
   blur: {
-    primary: "#111827",
+    primary: "##d1d5db",
   },
   error: {
     primary: "#ef4444",

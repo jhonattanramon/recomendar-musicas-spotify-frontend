@@ -24,6 +24,8 @@ const Cadastro_page = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const baseUrlUser = "http://localhost:3004";
+
 
   const onAddName = (valueName) => setName(valueName);
   const onAddSobrenome = (valueSobrenome) => setSobrenome(valueSobrenome);
@@ -34,18 +36,16 @@ const Cadastro_page = ({ navigation }) => {
 
   const valueRegisterUser = {
     name: name,
-    sobrenome: sobrenome,
+    surname: sobrenome,
     email: email,
     password: senha,
     confirmPassword: confirmPassword,
   };
 
-  const ValueUserJson = JSON.stringify(valueRegisterUser);
-
   const checkForm = async () => {
     if (
       !valueRegisterUser.name ||
-      !valueRegisterUser.sobrenome ||
+      !valueRegisterUser.surname ||
       !valueRegisterUser.email ||
       !valueRegisterUser.password ||
       !valueRegisterUser.confirmPassword
@@ -72,31 +72,16 @@ const Cadastro_page = ({ navigation }) => {
       return;
     }
 
-    const baseUrlUser = "http://localhost:3001";
 
     await axios
-      .post(`${baseUrlUser}/api/users`, {
+      .post(`${baseUrlUser}/api/createuser`, {
         name: valueRegisterUser.name,
-        sobrenome: valueRegisterUser.sobrenome,
+        surname: valueRegisterUser.surname,
         email: valueRegisterUser.email,
         password: valueRegisterUser.password,
       })
-      .then(() => {
-        console.log("user registration");
-        Alert.alert("usuario registrado");
-      });
+      .then((res) => console.log(res));
 
-
-      fetch("url",
-      {
-        method: "POST",
-        body:{
-          titulo: titulo
-        }
-      })
-
-
-    
   };
 
   return (
@@ -112,7 +97,7 @@ const Cadastro_page = ({ navigation }) => {
 
           <View>
             <Input_Component
-              labelName="Nome"
+              placeholderName={"Nome"}
               inputMode="text"
               onChange={(valueText) => {
                 onAddName(valueText);
@@ -120,7 +105,7 @@ const Cadastro_page = ({ navigation }) => {
             />
 
             <Input_Component
-              labelName="Sobrenome"
+            placeholderName={"Sobrenome"}
               inputMode="text"
               onChange={(valueText) => {
                 onAddSobrenome(valueText);
@@ -130,7 +115,7 @@ const Cadastro_page = ({ navigation }) => {
 
           <View>
             <Input_Component
-              labelName="Email"
+              placeholderName={"Email"}
               inputMode="email"
               onChange={(valueText) => {
                 onAddEmail(valueText);
@@ -140,7 +125,7 @@ const Cadastro_page = ({ navigation }) => {
 
           <View>
             <Input_Component
-              labelName="Senha"
+              placeholderName={"Senha"}
               textAffix={true}
               secureTextEntry={true}
               onChange={(valueText) => {
@@ -151,7 +136,7 @@ const Cadastro_page = ({ navigation }) => {
 
           <View>
             <Input_Component
-              labelName="Confirme Senha"
+              placeholderName={"Confirmar Senha"}
               secureTextEntry={true}
               onChange={(valueText) => {
                 onConfirmPassword(valueText);
@@ -166,7 +151,7 @@ const Cadastro_page = ({ navigation }) => {
           <View>
             <Button_Component
               funcOnPress={() => {
-                checkForm(titulo, desc);
+                checkForm();
               }}
               title="Realizar Cadastro"
             />

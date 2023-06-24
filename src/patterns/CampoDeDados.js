@@ -11,6 +11,7 @@ import ListCard from "../components/ListCard";
 import Loading from "../components/loading";
 
 const CampoDeDados = ({ array, navigation, title }) => {
+  console.log(array);
   if (array.length > 0) {
     return (
       <View style={styles.container}>
@@ -27,7 +28,7 @@ const CampoDeDados = ({ array, navigation, title }) => {
                   navigation={navigation}
                   titulo={item.name}
                   url={item.images[0].url}
-                  item={item}
+                  href={item?.tracks?.href}
                 />
 
                 <SeperadorHorizontal />
