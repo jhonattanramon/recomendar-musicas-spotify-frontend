@@ -1,4 +1,11 @@
-import { View, Text, Pressable, Dimensions, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  Dimensions,
+  StyleSheet,
+  Linking,
+} from "react-native";
 import Button_Component from "../../components/ButtonComponent";
 import Input_Component from "../../components/InputComponent";
 import TextButton from "../../components/TextButton";
@@ -16,13 +23,18 @@ import { useEffect, useState } from "react";
 import { Requisicoes, accessToken } from "../../services/requisições/req";
 import { colors } from "../../styles/colors";
 import { Dimencoes } from "../../styles/dimencoes";
+import PopUpError from "../../components/PopUpError";
 
 const Login_Page = ({ navigation, route, layout }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [access, setAccess] = useState(false);
-  const [token, setToken] = useState();
   const [loading, setLooading] = useState(false);
+
+  const [visibiliteError, setVisibiliteError ] = useState(false)
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorSenha, setErrorSenha] = useState(false);
+  const [menssageError, setMenssageError] = useState("");
 
   const urlBaseDev = "http://localhost:3001";
   const urlBaseProduct = "https://appnative-backend.onrender.com";
@@ -52,23 +64,44 @@ const Login_Page = ({ navigation, route, layout }) => {
       const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
       if (!reg.test(email)) {
-        Alert.alert("Email inválido! pr eencha corretamente");
+        //Alert.alert("Email inválido! pr eencha corretamente");
         alert("Email inválido! preencha corretamente");
         return;
       } else {
         setLooading(!loading);
         const requisicoes = new Requisicoes();
         const conect = await requisicoes.login({
-          email: email,
+          email: email.toLowerCase(),
           password: senha,
-        });
+        }).finally( () => setLooading(false));
+
+        console.log(conect);
+
+        setMenssageError(conect.data.menssage);
+        setErrorEmail(conect.data.stateErrorEmail)
+        setErrorSenha(conect.data.stateErrorPassword)
         setAccess(conect.data.access);
+
+
+        const displayMenssageError = () =>  {
+          setVisibiliteError(conect.data.stateMenssage)
+          setTimeout( () => setVisibiliteError(false), 1200)    
+        }
+        if(conect.data.stateMenssage)
+            displayMenssageError()
+        
+
+
       }
     }
   };
 
   return (
     <Container>
+      <PopUpError
+      stateMenssage={visibiliteError}
+      menssage={menssageError}
+      /> 
       <SectionCenter>
         <View>
           <NewText>Seu login</NewText>
@@ -82,17 +115,25 @@ const Login_Page = ({ navigation, route, layout }) => {
             color={"#00000"}
             inputMode="email"
             value={email}
-            onChange={(e) => setEmail(e)}
-          />
+            error={errorEmail}
+            onChange={(e) => {
+              setErrorEmail(false)
+              setEmail(e)
+            }}
+          />  
 
           <Input_Component
+            error={errorSenha}
             style={{ padding: Dimencoes.padding }}
             placeholderName="Senha"
             color={"#00000"}
             secureTextEntry={true}
             value={senha}
             textAffix={true}
-            onChange={(e) => setSenha(e)}
+            onChange={(e) =>{
+              setErrorSenha(false)
+               setSenha(e)
+            }}
           />
         </View>
 
@@ -103,7 +144,6 @@ const Login_Page = ({ navigation, route, layout }) => {
             loading={loading}
             funcOnPress={() => {
               checkLogin();
-              //load()
             }}
             title="Login"
           />
@@ -112,7 +152,8 @@ const Login_Page = ({ navigation, route, layout }) => {
           <Pressable
             style={{ flexDirection: "row", alignItems: "center" }}
             onPress={() => {
-              pageAutenticacao();
+              authSpotifyWeb();
+              // Linking.openURL("https://appnative-backend-auth.onrender.com")
             }}
           >
             <Text style={{ fontSize: Dimencoes.fontSize }}>Login Spotify</Text>

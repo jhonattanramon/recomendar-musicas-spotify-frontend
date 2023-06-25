@@ -37,7 +37,6 @@ const AddMusicas = ({ navigation }) => {
   }, [textoPesquisa]);
 
   const adicionarMusicas = async (item) => {
-   
      const {playlist} = await req.adicionarMusicasPlaylist({
       id: dataPlaylistCriada.id,
        item : item})
@@ -48,7 +47,6 @@ const AddMusicas = ({ navigation }) => {
           return track.id
         }
        })
-      
   }
 
   return (
@@ -86,6 +84,7 @@ const AddMusicas = ({ navigation }) => {
         </View>
         <View style={{ height: "70%", backgroundColor: colors.blur }}>
           {resultadoPesquisa.length > 0 ? (
+            <>
             <FlatList
               data={resultadoPesquisa}
               renderItem={({ item, index, separators }) => (
@@ -122,6 +121,12 @@ const AddMusicas = ({ navigation }) => {
                 </>
               )}
             />
+            <Button_Component 
+            funcOnPress={ () => {
+              navigation.navigate("criarPlaylist")
+            }}
+            title={"Finalizar"}/> 
+            </>
           ) : (
             <View
               style={{

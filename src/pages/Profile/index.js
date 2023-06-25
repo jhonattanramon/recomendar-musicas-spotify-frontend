@@ -28,14 +28,14 @@ const ProfileComponent = ({ navigation }) => {
   const [playlistsUser, setPlaylistsUser] = useState([]);
 
   console.log(playlistsUser, inforUser);
+  console.log(playlistsUser);
 
   const req = new Requisicoes();
 
   useEffect(() => {
     (async () => {
-      const { data: playlistsUser } = await req.playlistUser();
-      console.log(playlistsUser);
-      setPlaylistsUser(playlistsUser);
+      const { data: userPlaylist } = await req.playlistUser();
+      setPlaylistsUser(userPlaylist);
 
       const { data: userinfor } = await req.informacoesUserSpotify();
       setInforUser(userinfor);
@@ -55,7 +55,7 @@ const ProfileComponent = ({ navigation }) => {
                 navigation.navigate(item.type, {
                   data: item,
                   href: item.tracks.href,
-                  navigation: navigation
+                  navigation: navigation,
                 });
               }}
               style={{
@@ -130,7 +130,8 @@ const ProfileComponent = ({ navigation }) => {
 
   return (
     <Container>
-      <Header navigation={navigation} /> 
+      <Header 
+      navigation={navigation} />
       <Provider>
         <View
           style={{
@@ -138,20 +139,7 @@ const ProfileComponent = ({ navigation }) => {
             alignItems: "center",
           }}
         >
-          <View
-            style={{
-              position: "absolute",
-              top: "10%",
-              left: "80%",
-            }}
-          >
-            <PlusInfor
-              size={30}
-              funcOnPress={() => {
-                setVisibleModal(true);
-              }}
-            />
-          </View>
+       
 
           <Portal children={Modal}>
             <Modal
@@ -172,18 +160,15 @@ const ProfileComponent = ({ navigation }) => {
           <TitleText>JHON</TitleText>
 
           <SeparadorVertical />
-          <View
-            style={{
-              width: "100%",
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-            }}
-          >
-            <ButtonBasic title="Playlist" funcOnPress={() => {}} />
-            <ButtonBasic title="Seguidores" funcOnPress={() => {}} />
-            <ButtonBasic title="Seguindo" funcOnPress={() => {}} />
+          <View>
+            <ButtonBasic
+              funcOnPress={() => {
+                setVisibleModal(true);
+              }}
+              title={"Informações"}
+            />
           </View>
+          <SeparadorVertical />
         </View>
         <Section style={styles.SectionsDeDadosApp}>
           <View>

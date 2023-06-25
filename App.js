@@ -18,123 +18,128 @@ import CriarPlaylist from "./src/pages/CriarPlaylist";
 import Biblioteca from "./src/pages/Bibliteca";
 import AddMusicas from "./src/pages/CriarPlaylist/AddMusicas";
 import paramsPlaylist from "./src/pages/CriarPlaylist/paramsPlaylist";
+import { Dimensions, StatusBar } from "react-native";
+import { colors } from "./src/styles/colors";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
 
+  const { height, width } = Dimensions.get("window");
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="login"
+    <>
+      <StatusBar barStyle={"dark-content"} backgroundColor={colors.primary} />
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="cadastro"
         screenOptions={{
-          headerShown: true,
-        }}
-      >
-        <Stack.Group>
-          <Stack.Screen
-            name="bem-vindo"
-            component={Bem_vindo}
-            options={{
-              header: {},
-
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            options={{
-              title: "Seu login",
-              headerShown: false,
-            }}
-            name="login"
-            component={Login_Page}
-          />
-          <Stack.Screen
-            name="cadastro"
-            component={Cadastro_page}
-            options={{
-              headerShown: false,
-            }}
-          />
-
-          <Stack.Screen
-            name="home"
-            component={Home}
-            options={{
-              headerShown: false,
-            }}
-          />
-
-          <Stack.Screen
-            name="profile"
-            component={ProfilePage}
-            options={{
-              headerShown: false,
-            }}
-          />
-
-          <Stack.Screen
-            name="playlist"
-            component={PlaylistPage}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="track"
-            component={Track}
-            options={{
-              headerShown: false,
-            }}
-          />
-
-          <Stack.Screen
-            name="criarPlaylist"
-            component={CriarPlaylist}
-            options={{
-              headerShown: false,
-            }}
-          />
-
-          <Stack.Screen
-            name="biblioteca"
-            component={Biblioteca}
-            options={{
-              headerShown: false,
-            }}
-          />
-
-          <Stack.Screen
-            name="addMusicas"
-            component={AddMusicas}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="auth"
-            component={AutenticacaoToken}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen name="pageDeTeste" component={pageDeTestes} />
-        </Stack.Group>
-
-        <Stack.Group
-          screenOptions={{
-            presentation: "modal",
+            headerShown: true,
           }}
         >
-          <Stack.Screen
-            name="nomePlaylist"
-            component={paramsPlaylist}
-            options={{
-              headerShown: false,
+          <Stack.Group>
+            <Stack.Screen
+              name="bemvindo"
+              component={Bem_vindo}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              options={{
+                title: "Seu login",
+                headerShown: false,
+              }}
+              name="login"
+              component={Login_Page}
+            />
+            <Stack.Screen
+              name="cadastro"
+              component={Cadastro_page}
+              options={{
+                headerShown: false,
+              }}
+            />
+
+            <Stack.Screen
+              name="home"
+              component={Home}
+              options={{
+                headerShown: false,
+              }}
+            />
+
+            <Stack.Screen
+              name="profile"
+              component={ProfilePage}
+              options={{
+                headerShown: false,
+              }}
+            />
+
+            <Stack.Screen
+              name="playlist"
+              component={PlaylistPage}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="track"
+              component={Track}
+              options={{
+                headerShown: false,
+              }}
+            />
+
+            <Stack.Screen
+              name="criarPlaylist"
+              component={CriarPlaylist}
+              options={{
+                headerShown: false,
+              }}
+            />
+
+            <Stack.Screen
+              name="biblioteca"
+              component={Biblioteca}
+              options={{
+                headerShown: false,
+              }}
+            />
+
+            <Stack.Screen
+              name="addMusicas"
+              component={AddMusicas}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="auth"
+              component={AutenticacaoToken}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen name="pageDeTeste" component={pageDeTestes} />
+          </Stack.Group>
+
+          <Stack.Group
+            screenOptions={{
+              presentation: "modal",
             }}
-          />
-        </Stack.Group>
-      </Stack.Navigator>
-    </NavigationContainer>
+          >
+            <Stack.Screen
+              name="nomePlaylist"
+              component={paramsPlaylist}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 };
 

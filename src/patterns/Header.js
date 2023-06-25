@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
   },
   section: {
     borderBottomColor: colors.complement.secondary,
-    borderWidth: 2,
+    borderWidth: 1.5,
+    marginBottom: 17
   },
 });
 export default Header;

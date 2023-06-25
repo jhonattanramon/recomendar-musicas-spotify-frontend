@@ -25,7 +25,7 @@ export class Requisicoes {
 
   async login({ email, password }) {
     const res = await axios
-      .post(`${urlBaseProduct}/api/loginuser`, {
+      .post(`${urlBaseDev}/api/loginuser`, {
         email: email,
         password: password,
       })
@@ -171,8 +171,8 @@ export class Requisicoes {
   }
 
   async playlistUser() {
-    const res = await axios.get(`${urlBaseDev}/apispotify/playlistuser`);
-    then((res) => res);
+    const res = await axios.get(`${urlBaseProduct}/apispotify/playlistuser`)
+    .then((res) => res);
     console.log(res);
     return res;
   }

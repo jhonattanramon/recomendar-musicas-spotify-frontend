@@ -16,7 +16,8 @@ const Input_Component = ({
   underlineStyle,
   textColor,
   contentStyle,
-  multiline
+  multiline,
+  error
 }) => {
   return (
     <TextInput
@@ -37,6 +38,7 @@ const Input_Component = ({
       textColor={textColor}
       contentStyle={contentStyle}
       multiline={multiline}
+      error={error}
     />
   );
 };
