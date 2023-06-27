@@ -33,6 +33,10 @@ const HomePage = ({ navigation }) => {
   return (
     <Container style={{}}>
       <View>
+        <ButtonIcon 
+        icon={"arrow"}
+        onFunc={ () => navigation.goBack()}
+        />
         <ButtonIcon
           icon="face-man-outline"
           color={colors.complement.secondary}

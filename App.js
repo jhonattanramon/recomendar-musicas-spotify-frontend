@@ -18,20 +18,19 @@ import CriarPlaylist from "./src/pages/CriarPlaylist";
 import Biblioteca from "./src/pages/Bibliteca";
 import AddMusicas from "./src/pages/CriarPlaylist/AddMusicas";
 import paramsPlaylist from "./src/pages/CriarPlaylist/paramsPlaylist";
-import { Dimensions, StatusBar } from "react-native";
+import {  StatusBar } from "react-native";
 import { colors } from "./src/styles/colors";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
 
-  const { height, width } = Dimensions.get("window");
 
   return (
     <>
-      <StatusBar barStyle={"dark-content"} backgroundColor={colors.primary} />
+      <StatusBar networkActivityIndicatorVisible={ true} barStyle={"dark-content"} backgroundColor={colors.primary} />
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="cadastro"
+          initialRouteName="login"
         screenOptions={{
             headerShown: true,
           }}

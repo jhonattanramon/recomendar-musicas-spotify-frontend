@@ -25,9 +25,9 @@ export class Requisicoes {
 
   async login({ email, password }) {
     const res = await axios
-      .post(`${urlBaseDev}/api/loginuser`, {
+      .post(`${urlBaseProduct}/api/loginuser`, {
         email: email,
-        password: password,
+      password: password,
       })
       .then((res) => res)
       .catch((err) => err);
@@ -36,7 +36,7 @@ export class Requisicoes {
 
   async playlistEmDestaque() {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/playlistsEmDestaque`)
+      .get(`${urlBaseDev}/apispotify/playlistsEmDestaque`)
       .then((res) => res);
     return res;
   }
@@ -54,7 +54,7 @@ export class Requisicoes {
 
   async track(url) {
     const res = await axios
-      .get(`${urlBaseProduct}/,/track`, {
+      .get(`${urlBaseProduct}/apispotify/track`, {
         headers: {
           hreftrack: url,
         },

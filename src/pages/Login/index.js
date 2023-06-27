@@ -56,6 +56,9 @@ const Login_Page = ({ navigation, route, layout }) => {
   };
 
   const checkLogin = async () => {
+
+    setAccess(false)
+
     if (!email || !senha) {
       return alert("campo vazio");
     }
@@ -80,6 +83,7 @@ const Login_Page = ({ navigation, route, layout }) => {
         setMenssageError(conect.data.menssage);
         setErrorEmail(conect.data.stateErrorEmail)
         setErrorSenha(conect.data.stateErrorPassword)
+
         setAccess(conect.data.access);
 
 
