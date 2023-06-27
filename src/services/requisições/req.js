@@ -11,7 +11,7 @@ export class Requisicoes {
   async autenticacao() {
     try {
       const res = await axios
-        .get(`${urlBaseProduct}/apispotify/auth`, {
+        .get(`${urlBaseDev}/apispotify/auth`, {
           headers: {
             Authorization: `${tokenG}`,
           },
@@ -25,7 +25,7 @@ export class Requisicoes {
 
   async login({ email, password }) {
     const res = await axios
-      .post(`${urlBaseProduct}/api/loginuser`, {
+      .post(`${urlBaseDev}/api/loginuser`, {
         email: email,
       password: password,
       })
@@ -43,7 +43,7 @@ export class Requisicoes {
 
   async tracksPlaylist(urlTrack) {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/tracksplaylist`, {
+      .get(`${urlBaseDev}/apispotify/tracksplaylist`, {
         headers: {
           hreftracks: urlTrack,
         },
@@ -54,7 +54,7 @@ export class Requisicoes {
 
   async track(url) {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/track`, {
+      .get(`${urlBaseDev}/apispotify/track`, {
         headers: {
           hreftrack: url,
         },
@@ -66,7 +66,7 @@ export class Requisicoes {
 
   async tracksArtists(id) {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/tracksartist`, {
+      .get(`${urlBaseDev}/apispotify/tracksartist`, {
         headers: {
           id: id,
         },
@@ -77,7 +77,7 @@ export class Requisicoes {
 
   async pesquisa({ nameArtist, nameTrack }) {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/pesquisa`, {
+      .get(`${urlBaseDev}/apispotify/pesquisa`, {
         headers: {
           nameTrack: nameTrack,
           nameArtist: nameArtist,
@@ -90,7 +90,7 @@ export class Requisicoes {
 
   async pesquisaGenere({ genere, type }) {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/pesquisagenere`, {
+      .get(`${urlBaseDev}/apispotify/pesquisagenere`, {
         headers: {
           genere: genere,
           type: type,
@@ -102,7 +102,7 @@ export class Requisicoes {
 
   async pesquisaTrack(nameTrack) {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/pesquisatrack`, {
+      .get(`${urlBaseDev}/apispotify/pesquisatrack`, {
         headers: {
           nameTrack: nameTrack,
         },
@@ -113,21 +113,21 @@ export class Requisicoes {
 
   async informacoesUserSpotify() {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/user`)
+      .get(`${urlBaseDev}/apispotify/user`)
       .then((res) => res);
     return res;
   }
 
   async getGeneros() {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/obtergeneros`)
+      .get(`${urlBaseDev}/apispotify/obtergeneros`)
       .then((res) => res);
     return res;
   }
 
   async criarPlaylist(data) {
     const res = await axios
-      .post(`${urlBaseProduct}/apispotify/criarplaylist`,{
+      .post(`${urlBaseDev}/apispotify/criarplaylist`,{
         data: data
       })
       .then((res) => res);
@@ -136,13 +136,13 @@ export class Requisicoes {
 
   async adicionarMusicasPlaylist(prop) {
     const res = await axios
-      .post(`${urlBaseProduct}/apispotify/adicionarmusicas`, {
+      .post(`${urlBaseDev}/apispotify/adicionarmusicas`, {
         data: prop,
       })
       .then((res) => res);
 
     const playlist = await axios
-    .get(`${urlBaseProduct}/apispotify/playlist`, {
+    .get(`${urlBaseDev}/apispotify/playlist`, {
       headers: {
         data: prop.id,
       },
@@ -157,21 +157,21 @@ export class Requisicoes {
 
   async user() {
     const res = await axios
-      .get(`${urlBaseProduct}/apispotify/user`)
+      .get(`${urlBaseDev}/apispotify/user`)
       .then((res) => res);
     return res
   }
 
   async playlistUser(){
     const res = await axios
-    .get(`${urlBaseProduct}/apispotify/playlistuser`)
+    .get(`${urlBaseDev}/apispotify/playlistuser`)
     .then( res => res)
     console.log(res);
     return res;
   }
 
   async playlistUser() {
-    const res = await axios.get(`${urlBaseProduct}/apispotify/playlistuser`)
+    const res = await axios.get(`${urlBaseDev}/apispotify/playlistuser`)
     .then((res) => res);
     console.log(res);
     return res;

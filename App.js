@@ -20,6 +20,7 @@ import AddMusicas from "./src/pages/CriarPlaylist/AddMusicas";
 import paramsPlaylist from "./src/pages/CriarPlaylist/paramsPlaylist";
 import {  StatusBar } from "react-native";
 import { colors } from "./src/styles/colors";
+import Settings from "./src/pages/settings";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -27,12 +28,12 @@ const App = () => {
 
   return (
     <>
-      <StatusBar networkActivityIndicatorVisible={ true} barStyle={"dark-content"} backgroundColor={colors.primary} />
+      <StatusBar networkActivityIndicatorVisible={true} barStyle={"dark-content"} backgroundColor={colors.primary} />
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="login"
-        screenOptions={{
-            headerShown: true,
+          screenOptions={{
+            headerShown: false,
           }}
         >
           <Stack.Group>
@@ -40,13 +41,11 @@ const App = () => {
               name="bemvindo"
               component={Bem_vindo}
               options={{
-                headerShown: false,
               }}
             />
             <Stack.Screen
               options={{
                 title: "Seu login",
-                headerShown: false,
               }}
               name="login"
               component={Login_Page}
@@ -55,7 +54,6 @@ const App = () => {
               name="cadastro"
               component={Cadastro_page}
               options={{
-                headerShown: false,
               }}
             />
 
@@ -63,7 +61,6 @@ const App = () => {
               name="home"
               component={Home}
               options={{
-                headerShown: false,
               }}
             />
 
@@ -71,7 +68,6 @@ const App = () => {
               name="profile"
               component={ProfilePage}
               options={{
-                headerShown: false,
               }}
             />
 
@@ -79,14 +75,12 @@ const App = () => {
               name="playlist"
               component={PlaylistPage}
               options={{
-                headerShown: false,
               }}
             />
             <Stack.Screen
               name="track"
               component={Track}
               options={{
-                headerShown: false,
               }}
             />
 
@@ -94,7 +88,6 @@ const App = () => {
               name="criarPlaylist"
               component={CriarPlaylist}
               options={{
-                headerShown: false,
               }}
             />
 
@@ -102,7 +95,6 @@ const App = () => {
               name="biblioteca"
               component={Biblioteca}
               options={{
-                headerShown: false,
               }}
             />
 
@@ -110,17 +102,20 @@ const App = () => {
               name="addMusicas"
               component={AddMusicas}
               options={{
-                headerShown: false,
               }}
             />
             <Stack.Screen
               name="auth"
               component={AutenticacaoToken}
               options={{
-                headerShown: false,
               }}
             />
-            <Stack.Screen name="pageDeTeste" component={pageDeTestes} />
+
+            <Stack.Screen 
+            name="settings"
+            component={Settings}
+            options={{}}
+            /> 
           </Stack.Group>
 
           <Stack.Group

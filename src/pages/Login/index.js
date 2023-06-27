@@ -18,6 +18,7 @@ import {
   TitleText,
   Section,
   SeparadorVertical,
+  ScrollContainer,
 } from "../../styles/styled-components";
 import { useEffect, useState } from "react";
 import { Requisicoes, accessToken } from "../../services/requisições/req";
@@ -31,7 +32,7 @@ const Login_Page = ({ navigation, route, layout }) => {
   const [access, setAccess] = useState(false);
   const [loading, setLooading] = useState(false);
 
-  const [visibiliteError, setVisibiliteError ] = useState(false)
+  const [visibiliteError, setVisibiliteError] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorSenha, setErrorSenha] = useState(false);
   const [menssageError, setMenssageError] = useState("");
@@ -56,8 +57,7 @@ const Login_Page = ({ navigation, route, layout }) => {
   };
 
   const checkLogin = async () => {
-
-    setAccess(false)
+    setAccess(false);
 
     if (!email || !senha) {
       return alert("campo vazio");
@@ -73,113 +73,109 @@ const Login_Page = ({ navigation, route, layout }) => {
       } else {
         setLooading(!loading);
         const requisicoes = new Requisicoes();
-        const conect = await requisicoes.login({
-          email: email.toLowerCase(),
-          password: senha,
-        }).finally( () => setLooading(false));
+        const conect = await requisicoes
+          .login({
+            email: email.toLowerCase(),
+            password: senha,
+          })
+          .finally(() => setLooading(false));
 
         console.log(conect);
 
         setMenssageError(conect.data.menssage);
-        setErrorEmail(conect.data.stateErrorEmail)
-        setErrorSenha(conect.data.stateErrorPassword)
+        setErrorEmail(conect.data.stateErrorEmail);
+        setErrorSenha(conect.data.stateErrorPassword);
 
         setAccess(conect.data.access);
 
-
-        const displayMenssageError = () =>  {
-          setVisibiliteError(conect.data.stateMenssage)
-          setTimeout( () => setVisibiliteError(false), 1200)    
-        }
-        if(conect.data.stateMenssage)
-            displayMenssageError()
-        
-
-
+        const displayMenssageError = () => {
+          setVisibiliteError(conect.data.stateMenssage);
+          setTimeout(() => setVisibiliteError(false), 1200);
+        };
+        if (conect.data.stateMenssage) displayMenssageError();
       }
     }
   };
 
   return (
     <Container>
-      <PopUpError
-      stateMenssage={visibiliteError}
-      menssage={menssageError}
-      /> 
-      <SectionCenter>
-        <View>
-          <NewText>Seu login</NewText>
-          <TitleText>Login</TitleText>
-        </View>
+        <PopUpError stateMenssage={visibiliteError} menssage={menssageError} />
+        <SectionCenter>
+          <View>
+            <NewText>Seu login</NewText>
+            <TitleText>Login</TitleText>
+          </View>
 
-        <View>
-          <Input_Component
-            style={{ padding: Dimencoes.padding }}
-            placeholderName="Email"
-            color={"#00000"}
-            inputMode="email"
-            value={email}
-            error={errorEmail}
-            onChange={(e) => {
-              setErrorEmail(false)
-              setEmail(e)
-            }}
-          />  
+          <View>
+            <Input_Component
+              style={{ padding: Dimencoes.padding }}
+              placeholderName="Email"
+              color={"#00000"}
+              inputMode="email"
+              value={email}
+              error={errorEmail}
+              onChange={(e) => {
+                setErrorEmail(false);
+                setEmail(e);
+              }}
+            />
 
-          <Input_Component
-            error={errorSenha}
-            style={{ padding: Dimencoes.padding }}
-            placeholderName="Senha"
-            color={"#00000"}
-            secureTextEntry={true}
-            value={senha}
-            textAffix={true}
-            onChange={(e) =>{
-              setErrorSenha(false)
-               setSenha(e)
-            }}
-          />
-        </View>
+            <Input_Component
+              error={errorSenha}
+              style={{ padding: Dimencoes.padding }}
+              placeholderName="Senha"
+              color={"#00000"}
+              secureTextEntry={true}
+              value={senha}
+              textAffix={true}
+              onChange={(e) => {
+                setErrorSenha(false);
+                setSenha(e);
+              }}
+            />
+          </View>
 
-        <SeparadorVertical />
+          <SeparadorVertical />
 
-        <View>
-          <Button_Component
-            loading={loading}
-            funcOnPress={() => {
-              checkLogin();
-            }}
-            title="Login"
-          />
-        </View>
-        <View style={styles.spotify}>
-          <Pressable
-            style={{ flexDirection: "row", alignItems: "center" }}
-            onPress={() => {
-              authSpotifyWeb();
-              // Linking.openURL("https://appnative-backend-auth.onrender.com")
+          <View>
+            <Button_Component
+              loading={loading}
+              funcOnPress={() => {
+                checkLogin();
+              }}
+              title="Login"
+            />
+          </View>
+          <View style={styles.spotify}>
+            <Pressable
+              style={{ flexDirection: "row", alignItems: "center" }}
+              onPress={() => {
+                authSpotifyWeb();
+                // Linking.openURL("https://appnative-backend-auth.onrender.com")
+              }}
+            >
+              <Text style={{ fontSize: Dimencoes.fontSize }}>
+                Login Spotify
+              </Text>
+              <ButtonIcon size={35} color={"#1ed760"} icon="spotify" />
+            </Pressable>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginTop: 15,
             }}
           >
-            <Text style={{ fontSize: Dimencoes.fontSize }}>Login Spotify</Text>
-            <ButtonIcon size={35} color={"#1ed760"} icon="spotify" />
-          </Pressable>
-        </View>
+            <TextButton
+              title="Cadastro"
+              onPressFunc={() => navigation.navigate("cadastro")}
+            />
 
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginTop: 15,
-          }}
-        >
-          <TextButton
-            title="Cadastro"
-            onPressFunc={() => navigation.navigate("cadastro")}
-          />
-
-          <TextButton title="Esqueceu a Senha ?" />
-        </View>
-      </SectionCenter>
+            <TextButton title="Esqueceu a Senha ?" />
+          </View>
+        </SectionCenter>
     </Container>
   );
 };

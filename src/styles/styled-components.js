@@ -5,8 +5,12 @@ import { colors } from "./colors";
 export const Container = styled.View`
   flex: 1;
   background: ${colors.complement.primary};
-  overflow: hidden;
+  overflow: scroll;
 `;
+
+export const ScrollContainer =  styled.ScrollView`
+  flex: 1;
+`
 
 export const SeparadorVertical = styled.View`
   margin: 10px 0;

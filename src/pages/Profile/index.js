@@ -21,14 +21,14 @@ import ImagemComponent from "../../components/Imagem";
 import { colors } from "../../styles/colors";
 import { Dimencoes } from "../../styles/dimencoes";
 import Header from "../../patterns/Header";
+import InforComponent from "../../components/InforComponent";
 
 const ProfileComponent = ({ navigation }) => {
-  const [visibleModal, setVisibleModal] = useState(false);
   const [inforUser, setInforUser] = useState({});
   const [playlistsUser, setPlaylistsUser] = useState([]);
+  const [visibiliteinfor, setVisibiliteInfor] = useState(false);
 
-  console.log(playlistsUser, inforUser);
-  console.log(playlistsUser);
+  console.log(inforUser);
 
   const req = new Requisicoes();
 
@@ -38,50 +38,43 @@ const ProfileComponent = ({ navigation }) => {
       setPlaylistsUser(userPlaylist);
 
       const { data: userinfor } = await req.informacoesUserSpotify();
+      console.log(userinfor);
       setInforUser(userinfor);
     })();
   }, []);
 
   const Playlists = () => {
     if (playlistsUser?.items?.length > 0) {
-      return (
-        <FlatList
-          style={{ flex: 1 }}
-          numColumns={2}
-          data={playlistsUser.items}
-          renderItem={({ item }) => (
-            <Pressable
-              onPress={() => {
-                navigation.navigate(item.type, {
-                  data: item,
-                  href: item.tracks.href,
-                  navigation: navigation,
-                });
-              }}
-              style={{
-                height: 270,
-                width: 220,
-                margin: 10,
-                padding: 13,
-                backgroundColor: colors.blur.primary,
-                borderRadius: Dimencoes.borderRadius,
-              }}
-            >
-              <View
-                style={{
-                  flex: 1,
-                }}
-              >
-                <ImagemComponent url={item?.images[0]?.url} />
-              </View>
-              <View>
-                <TextDefault>{item.name}</TextDefault>
-                <SubText>{item.owner.display_name}</SubText>
-              </View>
-            </Pressable>
-          )}
-        />
-      );
+      return playlistsUser.items.map((item) => (
+        <Pressable
+          onPress={() => {
+            navigation.navigate(item.type, {
+              data: item,
+              href: item.tracks.href,
+              navigation: navigation,
+            });
+          }}
+          style={{
+            height: 270,
+            width: 220,
+            margin: 10,
+            padding: 13,
+            borderRadius: Dimencoes.borderRadius,
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+            }}
+          >
+            <ImagemComponent url={item?.images[0]?.url} />
+          </View>
+          <View>
+            <TextDefault>{item.name}</TextDefault>
+            <SubText>{item.owner.display_name}</SubText>
+          </View>
+        </Pressable>
+      ));
     } else {
       return (
         <View>
@@ -91,100 +84,55 @@ const ProfileComponent = ({ navigation }) => {
     }
   };
 
-  const InforComponent = () => {
-    return (
-      <>
-        <TitleText style={{ color: "black" }}>Informações Spotify</TitleText>
-        <View>
-          <View style={styles.line}>
-            <Text style={styles.fontBold}>Nome:</Text>
-            <Text>{inforUser.display_name}</Text>
-          </View>
-          <View style={styles.line}>
-            <Text style={styles.fontBold}>Id:</Text>
-            <Text>{inforUser.id}</Text>
-          </View>
-          <View style={styles.line}>
-            <Text style={styles.fontBold}>Email:</Text>
-            <Text>{inforUser.email}</Text>
-          </View>
-          <View style={styles.line}>
-            <Text style={styles.fontBold}>Assinatura:</Text>
-            <Text>{inforUser.product}</Text>
-          </View>
-          <View style={styles.line}>
-            <Text style={styles.fontBold}>Link:</Text>
-            <Text
-              onPress={() => {
-                Linking.openURL(`${inforUser.external_urls.spotify}`);
-              }}
-              style={{ textDecorationLine: "underline" }}
-            >
-              {inforUser.external_urls.spotify}
-            </Text>
-          </View>
-        </View>
-      </>
-    );
-  };
-
   return (
     <Container>
-      <Header 
-      navigation={navigation} />
-      <Provider>
+      <Header navigation={navigation} />
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <AvatarComponent />
+        <TitleText>JHON</TitleText>
+
+        <SeparadorVertical />
+        <View>
+          <ButtonBasic
+            funcOnPress={() => {
+              setVisibiliteInfor(true);
+            }}
+            title={"Informações"}
+          />
+        </View>
+        <SeparadorVertical />
+      </View>
+      <Section style={styles.SectionsDeDadosApp}>
+        <View>
+          <TitleText> Playlists </TitleText>
+        </View>
         <View
           style={{
+            flex: 1,
+            width: "100%",
+            height: "100%",
+            flexDirection: "row",
+            flexWrap: "wrap",
             justifyContent: "center",
-            alignItems: "center",
           }}
         >
-       
-
-          <Portal children={Modal}>
-            <Modal
-              visible={visibleModal}
-              onDismiss={() => setVisibleModal(false)}
-              contentContainerStyle={{
-                backgroundColor: "white",
-                alignItems: "center",
-                width: "100%",
-                height: 400,
-              }}
-            >
-              {inforUser != undefined ? <InforComponent /> : <Loading />}
-            </Modal>
-          </Portal>
-
-          <AvatarComponent />
-          <TitleText>JHON</TitleText>
-
-          <SeparadorVertical />
-          <View>
-            <ButtonBasic
-              funcOnPress={() => {
-                setVisibleModal(true);
-              }}
-              title={"Informações"}
-            />
-          </View>
-          <SeparadorVertical />
+          <Playlists />
         </View>
-        <Section style={styles.SectionsDeDadosApp}>
-          <View>
-            <TitleText> Playlists </TitleText>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              width: "100%",
-              alignItems: "center",
-            }}
-          >
-            <Playlists />
-          </View>
-        </Section>
-      </Provider>
+      </Section>
+      <View style={{ 
+         flex: 1,
+         width: 400
+      }}>
+        <InforComponent
+          visibiliteInfor={visibiliteinfor}
+          inforUser={inforUser}
+        />
+      </View>
     </Container>
   );
 };
