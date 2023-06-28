@@ -25,6 +25,7 @@ import { Requisicoes, accessToken } from "../../services/requisições/req";
 import { colors } from "../../styles/colors";
 import { Dimencoes } from "../../styles/dimencoes";
 import PopUpError from "../../components/PopUpError";
+import axios from "axios";
 
 const Login_Page = ({ navigation, route, layout }) => {
   const [email, setEmail] = useState("");
@@ -43,6 +44,7 @@ const Login_Page = ({ navigation, route, layout }) => {
   const urlBaseAuthDev = "http://localhost:8887";
 
   useEffect(() => {
+
     if (access) {
       navigation.navigate("home");
     }

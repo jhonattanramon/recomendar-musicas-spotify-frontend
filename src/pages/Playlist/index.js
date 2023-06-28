@@ -30,22 +30,22 @@ const Playlist = ({ route }) => {
       return (
         <SafeAreaView style={{ flex: 1, width: "100%" }}>
           <TitleText>Faixas</TitleText>
-          <FlatList
-            data={tracks}
-            renderItem={({ item }) => (
+          {
+            tracks.map(({ item }) => (
               <Track
-                key={item.track.id}
-                id={item.track.id}
-                item={item}
-                imagem={item.track.album.images[1].url}
-                titulo={item.track.name}
-                album={item.track.album.name}
-                artista={item.track.artists}
-                tempoDeReproducao={item.track.duration_ms}
-                navigation={route.params.data.navigation}
+              key={item.track.id}
+              id={item.track.id}
+              item={item}
+              imagem={item.track.album.images[1].url}
+              titulo={item.track.name}
+              album={item.track.album.name}
+              artista={item.track.artists}
+              tempoDeReproducao={item.track.duration_ms}
+              navigation={route.params.data.navigation}
               />
-            )}
-          />
+              ))
+            }
+            
         </SafeAreaView>
       );
     } else {
@@ -72,7 +72,7 @@ const Playlist = ({ route }) => {
       <Header navigation={route.params.navigation} />
       <View style={styles.containerImagem}>
         <View style={styles.viewDeImagem}>
-          <ImagemComponent url={route.params.data.url} />
+          <ImagemComponent url={route.params.url} />
         </View>
 
         <View style={styles.viewTituloPlaylist}>

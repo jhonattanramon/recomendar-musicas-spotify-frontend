@@ -1,5 +1,4 @@
 import axios from "axios";
-import CriarPlaylist from "../../pages/CriarPlaylist";
 
 const urlBaseProduct = "https://appnative-backend.onrender.com";
 const urlBaseDev = "http://localhost:3004";
@@ -22,7 +21,6 @@ export class Requisicoes {
       return err.response;
     }
   }
-
   async login({ email, password }) {
     const res = await axios
       .post(`${urlBaseDev}/api/loginuser`, {
@@ -125,13 +123,29 @@ export class Requisicoes {
     return res;
   }
 
-  async criarPlaylist(data) {
+  async criarPlaylistSPF({name, publicList, description, collaborative}) {
     const res = await axios
       .post(`${urlBaseDev}/apispotify/criarplaylist`,{
-        data: data
+        name: name, 
+        publicList: publicList,
+        description: description,
+        collaborative: collaborative,
       })
       .then((res) => res);
     return res;
+  }
+
+  async createPlaylistAPP({ name, publicList, description, collaborative, image }){
+    console.log(publicList);
+    const res = await axios
+    .post(`${urlBaseDev}/api/createplaylist`,{
+      name: name,
+      public: publicList,
+      description: description,
+      collaborative: collaborative,
+      image: image,
+    }).then( res => res)
+    return res
   }
 
   async adicionarMusicasPlaylist(prop) {

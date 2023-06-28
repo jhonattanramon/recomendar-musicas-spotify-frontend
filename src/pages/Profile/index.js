@@ -52,6 +52,7 @@ const ProfileComponent = ({ navigation }) => {
               data: item,
               href: item.tracks.href,
               navigation: navigation,
+              url: item.images[1].url
             });
           }}
           style={{
@@ -70,8 +71,14 @@ const ProfileComponent = ({ navigation }) => {
             <ImagemComponent url={item?.images[0]?.url} />
           </View>
           <View>
-            <TextDefault>{item.name}</TextDefault>
-            <SubText>{item.owner.display_name}</SubText>
+            <TextDefault
+            style={{ 
+              fontWeight: 'bold',
+            }}
+            >{item.name}</TextDefault>
+            <SubText style={{
+              color: colors.complement.tertiary
+            }}>{item.owner.display_name}</SubText>
           </View>
         </Pressable>
       ));

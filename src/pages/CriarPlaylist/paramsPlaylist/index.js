@@ -19,31 +19,41 @@ const ParamsPlaylist = ({ navigation, setDataPlaylistCriada }) => {
   const req = new Requisicoes();
   const [modalActive, setModalActive] = useState(true);
   const [stateResponsePlaylist, setStateResponsePlaylist] = useState(false);
+  const [errorName, setErrorName ] = useState(false);
+
+
 
   const criarPlaylist = async (dataPlaylist) => {
-    const { data } = await req.criarPlaylist(dataPlaylist);
-    setDataPlaylistCriada(data.response);
-    if (data.state) {
-      setStateResponsePlaylist(data.state);
+   const { data: playlistSPF } = await req.criarPlaylistSPF(dataPlaylist);
+   const { data: playlistAPP} = await req.createPlaylistAPP(dataPlaylist)
+    console.log(playlistAPP);
+
+    if (playlistSPF.state || playlistAPP.state) {
+
+      setDataPlaylistCriada(playlistAPP.response);
+      setStateResponsePlaylist(playlistAPP.state);
       setTimeout(() => {
         console.log("timout");
-        setModalActive(!data.state);
+        setModalActive(!playlistAPP.state);
       }, 1000);
-    }
+     }
   };
 
   const FormularioPlaylist = ({}) => {
-    const [nomePlaylist, setNomePlaylist] = useState("");
-    const [publica, setPublica] = useState(false);
-    const [colaborativa, setColaborativa] = useState(false);
-    const [descricao, setDescricao] = useState("");
+    const [namePlaylist, setNomePlaylist] = useState("");
+    const [description, setDescricao] = useState("");
+    const [publicList, setPublica] = useState(false);
+    const [collaborative, setColaborativa] = useState(false);
+    const [image, setImage] = useState("");
 
     const data = {
-      name: nomePlaylist,
-      public: publica,
-      collaborative: colaborativa,
-      description: descricao,
+      name: namePlaylist,
+      description: description,
+      publicList: publicList,
+      collaborative: collaborative,
+      image: image,
     };
+  
     return (
       <View
         style={{
@@ -71,7 +81,10 @@ const ParamsPlaylist = ({ navigation, setDataPlaylistCriada }) => {
             <View style={{}}>
               <TitleText> Nome da Playlist </TitleText>
               <Input_Component
+              error={errorName}
+              placeholderName={"Nome Playlist"}
                 onChange={(text) => {
+                  setErrorName(false)
                   setNomePlaylist(text);
                 }}
                 textColor={colors.complement.secondary}
@@ -90,6 +103,7 @@ const ParamsPlaylist = ({ navigation, setDataPlaylistCriada }) => {
               <View>
                 <TextDefault> Descrição</TextDefault>
                 <Input_Component
+                placeholderName={"Descrição"}
                   onChange={(text) => {
                     setDescricao(text);
                   }}
@@ -175,11 +189,10 @@ const ParamsPlaylist = ({ navigation, setDataPlaylistCriada }) => {
                   fontWeight: "bold",
                 }}
                 funcOnPress={() => {
-                  if (nomePlaylist !== "") {
+                  if (namePlaylist !== "") {
                     criarPlaylist(data);
                   } else {
-                    alert("de um nome a sua playlist");
-                    Alert.alert("de um nome a sua Playlist");
+                    setErrorName(true)
                   }
                 }}
                 title="Criar Playlist"
@@ -264,4 +277,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ParamsPlaylist;
+export default ParamsPlaylist
