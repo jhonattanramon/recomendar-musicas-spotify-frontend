@@ -23,29 +23,28 @@ const Playlist = ({ route }) => {
   const [tracks, setTracks] = useState([]);
   const requisicoes = new Requisicoes();
 
-  console.log(route);
+  console.log("track", tracks);
 
   const TracksArea = () => {
     if (tracks?.length > 0) {
       return (
         <SafeAreaView style={{ flex: 1, width: "100%" }}>
           <TitleText>Faixas</TitleText>
-          {
-            tracks.map(({ item }) => (
+          <FlatList
+            data={tracks}
+            renderItem={({ item }) => (
               <Track
-              key={item.track.id}
-              id={item.track.id}
-              item={item}
-              imagem={item.track.album.images[1].url}
-              titulo={item.track.name}
-              album={item.track.album.name}
-              artista={item.track.artists}
-              tempoDeReproducao={item.track.duration_ms}
-              navigation={route.params.data.navigation}
+                key={item.track.id}
+                item={item}
+                imagem={item.track.album.images[1].url}
+                titulo={item.name}
+                album={item.track.albumname}
+                artista={item.track.artists}
+                tempoDeReproducao={item.duration_ms}
+                navigation={route.params.navigation}
               />
-              ))
-            }
-            
+            )}
+          />
         </SafeAreaView>
       );
     } else {
@@ -55,9 +54,7 @@ const Playlist = ({ route }) => {
 
   useEffect(() => {
     (async () => {
-      const { data } = await requisicoes.tracksPlaylist(
-        route.params.href
-      );
+      const { data } = await requisicoes.tracksPlaylist(route.params.href);
       console.log(data);
       setTracks(data?.items);
     })();
@@ -81,7 +78,7 @@ const Playlist = ({ route }) => {
         <View style={{ width: "100%" }}>
           <Button_Component
             funcOnPress={() => {
-              ouvirSpotify(route.params.data.item.external_urls.spotify);
+              ouvirSpotify(route.params.href);
             }}
             title="ouvir"
           />

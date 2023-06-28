@@ -152,7 +152,7 @@ const Login_Page = ({ navigation, route, layout }) => {
             <Pressable
               style={{ flexDirection: "row", alignItems: "center" }}
               onPress={() => {
-                authSpotifyWeb();
+                pageAutenticacao();
                 // Linking.openURL("https://appnative-backend-auth.onrender.com")
               }}
             >
