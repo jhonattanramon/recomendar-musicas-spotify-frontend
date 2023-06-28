@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Modal} from "react-native";
 import { TitleText } from "../styles/styled-components";
 import { useEffect, useState } from "react";
-import Loading from "./loading";
+import Loading from "./LoadingComponent";
 import { colors } from "../styles/colors";
-import ButtonIcon from "./ButtonIcon";
+import ButtonIcon from "./ButtonIconComponent";
 
 
 const InforComponent = ({inforUser, visibiliteInfor}) => {

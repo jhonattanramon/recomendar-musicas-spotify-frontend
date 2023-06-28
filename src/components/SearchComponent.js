@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Section } from "../styles/styled-components";
 import { FlatList } from "react-native";
-import Track from "./Track";
+import Track from "./TrackComponent";
 import Loading from "./loading";
 import { Requisicoes } from "../services/requisições/req";
 

@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text } from "react-native";
 import { Section } from "../styles/styled-components";
-import ButtonIcon from "../components/ButtonIcon";
+import ButtonIcon from "../components/ButtonIconComponent";
 import { colors } from "../styles/colors";
 import { Dimencoes } from "../styles/dimencoes";
 

@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { ViewImageTrack } from "../styles/styled-components";
-import ImagemComponent from "./Imagem";
+import ImagemComponent from "./ImagemComponent";
 import { colors } from "../styles/colors";
 import { useEffect, useState } from "react";
-import ButtonIcon from "./ButtonIcon";
+import ButtonIcon from "./ButtonIconComponent";
 
 const Track = ({
   item,

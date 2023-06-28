@@ -9,15 +9,15 @@ import {
   TitleText,
   SubText,
 } from "../../styles/styled-components";
-import AvatarComponent from "../../components/Avatar";
-import ButtonBasic from "../../components/ButtonBasic";
-import PlusInfor from "../../components/PlusInfor";
+import AvatarComponent from "../../components/AvatarComponet";
+import ButtonBasic from "../../components/ButtonBasicComponent";
+import PlusInfor from "../../components/PlusInforComponent";
 import { useEffect, useState } from "react";
 import { Modal, Portal, Provider } from "react-native-paper";
 import { Requisicoes } from "../../services/requisições/req";
 import { Linking } from "react-native";
-import Loading from "../../components/loading";
-import ImagemComponent from "../../components/Imagem";
+import Loading from "../../components/LoadingComponent";
+import ImagemComponent from "../../components/ImagemComponent";
 import { colors } from "../../styles/colors";
 import { Dimencoes } from "../../styles/dimencoes";
 import Header from "../../patterns/Header";

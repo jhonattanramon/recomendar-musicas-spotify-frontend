@@ -11,9 +11,9 @@ import {
 import { useEffect, useState } from "react";
 import { Container } from "../../styles/styled-components";
 import { TitleText } from "../../styles/styled-components";
-import ImagemComponent from "../../components/Imagem";
-import Loading from "../../components/loading";
-import Track from "../../components/Track";
+import ImagemComponent from "../../components/ImagemComponent";
+import Loading from "../../components/LoadingComponent";
+import Track from "../../components/TrackComponent";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Requisicoes } from "../../services/requisições/req";
 import Button_Component from "../../components/ButtonComponent";
