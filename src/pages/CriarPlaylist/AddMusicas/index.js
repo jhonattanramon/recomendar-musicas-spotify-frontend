@@ -8,13 +8,11 @@ import Input_Component from "../../../components/InputComponent";
 import { colors } from "../../../styles/colors";
 import { useEffect, useState } from "react";
 import { Requisicoes } from "../../../services/requisições/req";
-import Track from "../../../components/Track";
+import Track from "../../../components/TrackComponent";
 import Header from "../../../patterns/Header";
 import ParamsPlaylist from "../paramsPlaylist";
-import { Dimencoes } from "../../../styles/dimencoes";
-import ButtonBasic from "../../../components/ButtonBasic";
 import Button_Component from "../../../components/ButtonComponent";
-import ButtonIcon from "../../../components/ButtonIcon";
+import ButtonIcon from "../../../components/ButtonIconComponent";
 
 const AddMusicas = ({ navigation }) => {
   const req = new Requisicoes();

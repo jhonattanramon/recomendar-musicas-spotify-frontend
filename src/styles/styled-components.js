@@ -2,14 +2,9 @@ import styled from "styled-components/native";
 import { colors } from "./colors";
 
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
   background: ${colors.complement.primary};
-  overflow: scroll;
-`;
-
-export const ScrollContainer =  styled.ScrollView`
-  flex: 1;
 `
 
 export const SeparadorVertical = styled.View`

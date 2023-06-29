@@ -9,8 +9,8 @@ import {
 import Input_Component from "../../components/InputComponent";
 import { Requisicoes } from "../../services/requisições/req";
 import { useEffect, useState } from "react";
-import Track from "../../components/Track";
-import ButtonIcon from "../../components/ButtonIcon";
+import Track from "../../components/TrackComponent";
+import ButtonIcon from "../../components/ButtonIconComponent";
 import Header from "../../patterns/Header";
 
 const CriarPlaylist = ({ navigation }) => {
@@ -77,24 +77,6 @@ const CriarPlaylist = ({ navigation }) => {
 
   return (
     <Container>
-      <View
-        style={{
-          padding: 15,
-          borderBottomWidth: 1,
-          borderBottomColor: colors.complement.secondary,
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <ButtonIcon
-          color={colors.complement.secondary}
-          icon={"arrow-left"}
-          style={{ margin: 0 }}
-          onFunc={() => navigation.goBack()}
-        />
-        <SubText>Crie sua Playlist</SubText>
-      </View>
-
       <View
         style={{
           flex: 1,

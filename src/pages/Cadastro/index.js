@@ -11,12 +11,12 @@ import {
 } from "../../styles/styled-components";
 import Button_Component from "../../components/ButtonComponent";
 import Input_Component from "../../components/InputComponent";
-import TextButton from "../../components/TextButton";
+import TextButton from "../../components/TextButtonComponent";
 import { useState } from "react";
 import { colors } from "../../styles/colors";
 
 import axios from "axios";
-import PopUpError from "../../components/PopUpError";
+import PopUpError from "../../components/PopUpErrorComponent";
 
 const Cadastro_page = ({ navigation }) => {
   //states

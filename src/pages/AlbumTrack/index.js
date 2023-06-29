@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Requisicoes } from "../../services/requisições/req";
 import { Container, Section, TitleText } from "../../styles/styled-components";
-import ImagemComponent from "../../components/Imagem";
-import TempoDeReproducao from "../../components/TempoDeReproducao";
-import Loading from "../../components/loading";
+import ImagemComponent from "../../components/ImagemComponent";
+import TempoDeReproducao from "../../components/PlaybackTimeComponent";
+import Loading from "../../components/LoadingComponent";
 import { colors } from "../../styles/colors";
-import ButtonIcon from "../../components/ButtonIcon";
+import ButtonIcon from "../../components/ButtonIconComponent"
 import Button_Component from "../../components/ButtonComponent";
 
 const TrackPage = ({ route, navigation }) => {

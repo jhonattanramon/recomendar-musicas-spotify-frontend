@@ -21,6 +21,7 @@ import paramsPlaylist from "./src/pages/CriarPlaylist/paramsPlaylist";
 import {  StatusBar } from "react-native";
 import { colors } from "./src/styles/colors";
 import Settings from "./src/pages/settings";
+import ButtonIcon from "./src/components/ButtonIconComponent";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -31,9 +32,9 @@ const App = () => {
       <StatusBar networkActivityIndicatorVisible={true} barStyle={"dark-content"} backgroundColor={colors.primary} />
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="login"
+          initialRouteName="home"
           screenOptions={{
-            headerShown: false,
+            headerShown: false
           }}
         >
           <Stack.Group>
@@ -87,8 +88,7 @@ const App = () => {
             <Stack.Screen
               name="criarPlaylist"
               component={CriarPlaylist}
-              options={{
-              }}
+             
             />
 
             <Stack.Screen

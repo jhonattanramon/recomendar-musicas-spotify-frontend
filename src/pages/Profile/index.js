@@ -93,7 +93,6 @@ const ProfileComponent = ({ navigation }) => {
 
   return (
     <Container>
-      <Header navigation={navigation} />
       <View
         style={{
           justifyContent: "center",

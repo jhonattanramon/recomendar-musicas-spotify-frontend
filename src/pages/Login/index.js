@@ -1,31 +1,20 @@
-import {
-  View,
-  Text,
-  Pressable,
-  Dimensions,
-  StyleSheet,
-  Linking,
-} from "react-native";
+import { View, StyleSheet } from "react-native";
 import Button_Component from "../../components/ButtonComponent";
 import Input_Component from "../../components/InputComponent";
-import TextButton from "../../components/TextButton";
-import ButtonIcon from "../../components/ButtonIcon";
+import TextButton from "../../components/TextButtonComponent";
 import {
-  Separador,
   Container,
   SectionCenter,
   NewText,
   TitleText,
-  Section,
   SeparadorVertical,
-  ScrollContainer,
+  Section,
 } from "../../styles/styled-components";
 import { useEffect, useState } from "react";
-import { Requisicoes, accessToken } from "../../services/requisições/req";
+import { Requisicoes } from "../../services/requisições/req";
 import { colors } from "../../styles/colors";
 import { Dimencoes } from "../../styles/dimencoes";
-import PopUpError from "../../components/PopUpError";
-import axios from "axios";
+import PopUpError from "../../components/PopUpErrorComponent";
 
 const Login_Page = ({ navigation, route, layout }) => {
   const [email, setEmail] = useState("");
@@ -44,7 +33,6 @@ const Login_Page = ({ navigation, route, layout }) => {
   const urlBaseAuthDev = "http://localhost:8887";
 
   useEffect(() => {
-
     if (access) {
       navigation.navigate("home");
     }
@@ -60,7 +48,6 @@ const Login_Page = ({ navigation, route, layout }) => {
 
   const checkLogin = async () => {
     setAccess(false);
-
     if (!email || !senha) {
       return alert("campo vazio");
     }
@@ -101,83 +88,87 @@ const Login_Page = ({ navigation, route, layout }) => {
 
   return (
     <Container>
-        <PopUpError stateMenssage={visibiliteError} menssage={menssageError} />
-        <SectionCenter>
-          <View>
-            <NewText>Seu login</NewText>
-            <TitleText>Login</TitleText>
-          </View>
+      <PopUpError stateMenssage={visibiliteError} menssage={menssageError} />
+      <SectionCenter>
+        <View>
+          <NewText>Seu login</NewText>
+          <TitleText>Login</TitleText>
+        </View>
 
-          <View>
-            <Input_Component
-              style={{ padding: Dimencoes.padding }}
-              placeholderName="Email"
-              color={"#00000"}
-              inputMode="email"
-              value={email}
-              error={errorEmail}
-              onChange={(e) => {
-                setErrorEmail(false);
-                setEmail(e);
-              }}
-            />
+        <View>
+          <Input_Component
+            style={{ padding: Dimencoes.padding }}
+            placeholderName="Email"
+            color={"#00000"}
+            inputMode="email"
+            value={email}
+            error={errorEmail}
+            onChange={(e) => {
+              setErrorEmail(false);
+              setEmail(e);
+            }}
+          />
 
-            <Input_Component
-              error={errorSenha}
-              style={{ padding: Dimencoes.padding }}
-              placeholderName="Senha"
-              color={"#00000"}
-              secureTextEntry={true}
-              value={senha}
-              textAffix={true}
-              onChange={(e) => {
-                setErrorSenha(false);
-                setSenha(e);
-              }}
-            />
-          </View>
+          <Input_Component
+            error={errorSenha}
+            style={{ padding: Dimencoes.padding }}
+            placeholderName="Senha"
+            color={"#00000"}
+            secureTextEntry={true}
+            value={senha}
+            textAffix={true}
+            onChange={(e) => {
+              setErrorSenha(false);
+              setSenha(e);
+            }}
+          />
+        </View>
 
-          <SeparadorVertical />
-
+        <SeparadorVertical />
+        <Section style={{ gap: 12}}>
           <View>
             <Button_Component
               loading={loading}
-              funcOnPress={() => {
+              OnPress={() => {
                 checkLogin();
               }}
               title="Login"
             />
           </View>
-          <View style={styles.spotify}>
-            <Pressable
-              style={{ flexDirection: "row", alignItems: "center" }}
-              onPress={() => {
-                pageAutenticacao();
-                // Linking.openURL("https://appnative-backend-auth.onrender.com")
+          <View>
+            <Button_Component
+              title="Login Spotify"
+              style={{
+                backgroundColor: colors.complement.secondary,
+                height: 60,
+                borderRadius: Dimencoes.borderRadius,
+                textAlign: "center",
+                justifyContent: 'center',
               }}
-            >
-              <Text style={{ fontSize: Dimencoes.fontSize }}>
-                Login Spotify
-              </Text>
-              <ButtonIcon size={35} color={"#1ed760"} icon="spotify" />
-            </Pressable>
-          </View>
-
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginTop: 15,
-            }}
-          >
-            <TextButton
-              title="Cadastro"
-              onPressFunc={() => navigation.navigate("cadastro")}
+              styleText={{ 
+                color: colors.complement.primary,
+                fontSize: Dimencoes.fontSizeButton,
+              }}
+              OnPress={ () => authSpotifyWeb()}
             />
-
-            <TextButton title="Esqueceu a Senha ?" />
           </View>
-        </SectionCenter>
+        </Section>
+
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginTop: 15,
+          }}
+        >
+          <TextButton
+            title="Cadastro"
+            onPressFunc={() => navigation.navigate("cadastro")}
+          />
+
+          <TextButton title="Esqueceu a Senha ?" />
+        </View>
+      </SectionCenter>
     </Container>
   );
 };

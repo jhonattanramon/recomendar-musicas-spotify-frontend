@@ -7,8 +7,8 @@ import {
   SeperadorHorizontal,
 } from "../styles/styled-components";
 import { View, StyleSheet, Text, FlatList } from "react-native";
-import ListCard from "../components/ListCard";
-import Loading from "../components/loading";
+import ListCard from "../components/ListCardComponent";
+import Loading from "../components/LoadingComponent";
 
 const CampoDeDados = ({ array, navigation, title }) => {
   console.log(array);

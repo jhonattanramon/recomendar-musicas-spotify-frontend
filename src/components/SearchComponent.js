@@ -1,13 +1,11 @@
+import { useEffect, useState } from "react";
 import { TextInput } from "react-native-paper";
 import { View, Text, SafeAreaView } from "react-native";
 import { colors } from "../styles/colors";
-import ButtonIcon from "./ButtonIcon";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import ButtonIcon from "./ButtonIconComponent";
 import { Section } from "../styles/styled-components";
 import { FlatList } from "react-native";
 import Track from "./TrackComponent";
-import Loading from "./loading";
 import { Requisicoes } from "../services/requisições/req";
 
 const PesquisaComponent = () => {
@@ -59,9 +57,13 @@ const PesquisaComponent = () => {
           mode="outlined"
           outlineColor={colors.complement.secondary}
           activeOutlineColor={colors.complement.secondary}
-          textColor={colors.complement.secondary}
+          textColor={colors.complement.primary}
           placeholder="Buscar musica"
-          style={{ backgroundColor: colors.blur, flex: 1 }}
+          selectionColor={colors.primary}
+          style={{
+            backgroundColor: colors.complement.secondary,
+            flex: 1,
+          }}
           onChangeText={(text) => {
             setTextoPesquisa(text);
           }}

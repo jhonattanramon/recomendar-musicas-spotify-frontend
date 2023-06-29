@@ -5,7 +5,7 @@ import {
   Square,
   Card,
 } from "../styles/styled-components";
-import ImagemComponent from "./Imagem";
+import ImagemComponent from "./ImagemComponent";
 import { colors } from "../styles/colors";
 import { fontStyleds } from "../styles/fonts";
 

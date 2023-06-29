@@ -6,14 +6,14 @@ import {
   TextDefault,
 } from "../../../styles/styled-components";
 import Input_Component from "../../../components/InputComponent";
-import ButtonBasic from "../../../components/ButtonBasic";
+import ButtonBasic from "../../../components/ButtonBasicComponent";
 import { useEffect, useState } from "react";
 import { colors } from "../../../styles/colors";
 import { Dimencoes } from "../../../styles/dimencoes";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Button_Component from "../../../components/ButtonComponent";
 import { Requisicoes } from "../../../services/requisições/req";
-import ButtonIcon from "../../../components/ButtonIcon";
+import ButtonIcon from "../../../components/ButtonIconComponent";
 
 const ParamsPlaylist = ({ navigation, setDataPlaylistCriada }) => {
   const req = new Requisicoes();

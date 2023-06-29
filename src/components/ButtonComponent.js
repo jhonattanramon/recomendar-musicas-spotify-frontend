@@ -1,41 +1,39 @@
-import {  View, StyleSheet, Pressable, Text } from "react-native"
-import { Button } from "react-native-paper"
+import {  View, StyleSheet, Pressable, Text,   } from "react-native"
 import { colors } from "../styles/colors"
 import { Dimencoes } from "../styles/dimencoes";
+import LoagingComponent from "./LoadingComponent"
+
 const Button_Component = ({ 
   title,
-  funcOnPress,
-  loading,
-  labelStyle = styles.labelStyle,
-  style = styles.ButtonStyle,
+  OnPress,
+  style=styles.ButtonStyle,
+  styleText = styles.TextButton,
   textColor = colors.complement.secondary
 }) => {
-  return (
-    <Button
-      loading={loading}
-      labelStyle={labelStyle}
+  return (  
+    <Pressable
       textColor={textColor}
-      style={style}
-      onPress={funcOnPress}
+      style={ style }
+      onPress={OnPress}
     >
+      <Text style={styleText}>
       {title}
-    </Button>
+      </Text> 
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   ButtonStyle: {
     backgroundColor: colors.primary,
-    padding: 12,
-    borderRadius: 4,
+    height: 60,
+    borderRadius: Dimencoes.borderRadius,
+    textAlign:"center",
+    justifyContent:"center  "
   },
-  labelStyle: {
-    fontSize: Dimencoes.fontSize,
-  },
-
   TextButton: {
-    fontSize: Dimencoes.fontSize,
-    color: colors.complement.secondary,
+    fontSize: Dimencoes.fontSizeButton,
+    color: colors.complement.secondary
   },
 });
 

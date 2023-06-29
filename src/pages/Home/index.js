@@ -1,5 +1,4 @@
-import { View, StyleSheet } from "react-native";
-import PesquisaComponent from "../../components/Pesquisa";
+import { StyleSheet } from "react-native";
 import { colors } from "../../styles/colors";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomePage from "../HomePage";
