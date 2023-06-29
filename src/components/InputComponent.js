@@ -1,6 +1,8 @@
 import { TextInput} from "react-native-paper"
 import styled from "styled-components/native";
 import {colors} from "../styles/colors"
+import { StyleSheet } from "react-native";
+import { Dimencoes } from "../styles/dimencoes";
 
 
 const Input_Component = ({
@@ -9,13 +11,13 @@ const Input_Component = ({
   secureTextEntry,
   inputMode,
   onChange,
-  value,
+  value ,
   onBlur,
-  style,
+  style = styles.style,
   outlineStyle,
   underlineStyle,
-  textColor,
-  contentStyle,
+  textColor = `${colors.complement.primary}`,
+  contentStyle = styles.contentStyle ,
   multiline,
   error
 }) => {
@@ -31,7 +33,9 @@ const Input_Component = ({
       underlineColor="#020617"
       secureTextEntry={secureTextEntry}
       inputMode={inputMode}
-      style={style}
+      style={{ 
+        height: 60, 
+      }}
       value={value}
       label={labelName}
       onChangeText={onChange}
@@ -39,10 +43,20 @@ const Input_Component = ({
       contentStyle={contentStyle}
       multiline={multiline}
       error={error}
+      dense={false}
     />
   );
 };
 
+
+const styles = StyleSheet.create({
+  style: {
+      height: 200,
+  },
+  contentStyle: {
+    padding: 7
+  }
+})
 
 
 

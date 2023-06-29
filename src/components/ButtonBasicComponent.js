@@ -1,12 +1,13 @@
 import { Pressable, Text, StyleSheet, View } from "react-native"
 import { colors } from "../styles/colors"
+import { Dimencoes } from "../styles/dimencoes";
 
-const ButtonBasic = ({funcOnPress, title, titleStyle = styles.text, style = styles.border}) => {
+const ButtonBasic = ({onPress, title, titleStyle = styles.text, style = styles.button}) => {
 
   return (
     <Pressable 
     style={style}
-    onPress={funcOnPress}> 
+    onPress={onPress}> 
       <Text style={titleStyle}>{title}</Text>
     </Pressable>
   )
@@ -14,16 +15,16 @@ const ButtonBasic = ({funcOnPress, title, titleStyle = styles.text, style = styl
 
 const styles = StyleSheet.create({
   text: {
-    color: colors.complement.secondary,
-    fontSize: 12,
-    paddingHorizontal: 13,
-    paddingVertical: 5,
-    fontWeight: "bold",
+    color: colors.complement.primary,
+    fontSize: 14,
+    fontWeight: "600"
   },
-  border: {
-    borderWidth: 1.4,
+  button: {
+    paddingHorizontal: 20,
+    paddingVertical: 8,
     borderColor: colors.complement.secondary,
     borderRadius: 7,
+    backgroundColor: colors.complement.secondary
   },
 });
 
