@@ -31,7 +31,7 @@ const App = () => {
       <StatusBar networkActivityIndicatorVisible={true} barStyle={"dark-content"} backgroundColor={colors.primary} />
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="home"
+          initialRouteName="login"
           screenOptions={{
             headerShown: false
           }}
