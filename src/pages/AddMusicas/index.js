@@ -3,16 +3,15 @@ import {
   Container,
   TitleText,
   Section,
-} from "../../../styles/styled-components";
-import Input_Component from "../../../components/InputComponent";
-import { colors } from "../../../styles/colors";
+} from "../../styles/styled-components";
+import Input_Component from "../../components/InputComponent";
+import { colors } from "../../styles/colors";
 import { useEffect, useState } from "react";
-import { Requisicoes } from "../../../services/requisições/req";
-import Track from "../../../components/TrackComponent";
-import Header from "../../../patterns/Header";
-import ParamsPlaylist from "../paramsPlaylist";
-import Button_Component from "../../../components/ButtonComponent";
-import ButtonIcon from "../../../components/ButtonIconComponent";
+import { Requisicoes } from "../../services/requisições/req";
+import Track from "../../components/TrackComponent";
+import Header from "../../patterns/Header";
+import Button_Component from "../../components/ButtonComponent";
+import ButtonIcon from "../../components/ButtonIconComponent";
 
 const AddMusicas = ({ navigation }) => {
   const req = new Requisicoes();
@@ -49,10 +48,7 @@ const AddMusicas = ({ navigation }) => {
 
   return (
     <Container>
-      <ParamsPlaylist
-        navigation={navigation}
-        setDataPlaylistCriada={setDataPlaylistCriada}
-      />
+    
       <Section style={{ flex: 1 }}>
         <Header navigation={navigation} title={"Adicione suas musicas"} />
         <View

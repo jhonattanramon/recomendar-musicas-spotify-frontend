@@ -27,7 +27,7 @@ const Home = ({ navigation }) => {
           tabBarIcon: () => <Ionicons
           color={colors.complement.secondary} 
           name="home"
-           size={21} />,
+           size={26} />,
         }}
         name="Home"
         component={HomePage}
@@ -35,7 +35,9 @@ const Home = ({ navigation }) => {
       <Tab.Screen
         options={{
           tabBarLabel: "",
-          tabBarIcon: () => <Ionicons color={colors.complement.secondary}   name="create" size={21} />,
+          tabBarIcon: () => <Ionicons color={colors.complement.secondary}
+          name="create"
+          size={26} />,
         }}
         name="Criar Playlist"
         component={CriarPlaylist}
@@ -46,7 +48,7 @@ const Home = ({ navigation }) => {
           tabBarIcon: () => <Ionicons 
           color={colors.complement.secondary}
           name="person"
-          size={21} />,
+          size={26} />,
         }}
         name="Perfil"
         component={ProfileComponent}
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
     backgroundColor: colors.complement.primary,
     opacity: 500,
-    height: 60,
+    height: 75,
     border: "none"
   },
 });

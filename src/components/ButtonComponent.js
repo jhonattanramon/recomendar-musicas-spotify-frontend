@@ -5,7 +5,7 @@ import LoagingComponent from "./LoadingComponent"
 
 const Button_Component = ({ 
   title,
-  OnPress,
+  onPress,
   style=styles.ButtonStyle,
   styleText = styles.TextButton,
   textColor = colors.complement.secondary
@@ -14,7 +14,7 @@ const Button_Component = ({
     <Pressable
       textColor={textColor}
       style={ style }
-      onPress={OnPress}
+      onPress={onPress}
     >
       <Text style={styleText}>
       {title}
@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: Dimencoes.borderRadius,
     textAlign:"center",
-    justifyContent:"center  "
+    justifyContent: "center",
+    alignItems: "center"
   },
   TextButton: {
     fontSize: Dimencoes.fontSizeButton,

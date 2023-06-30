@@ -99,7 +99,6 @@ const Login_Page = ({ navigation, route, layout }) => {
           <Input_Component
             style={{ padding: Dimencoes.padding }}
             placeholderName="Email"
-            color={"#00000"}
             inputMode="email"
             value={email}
             error={errorEmail}
@@ -111,9 +110,7 @@ const Login_Page = ({ navigation, route, layout }) => {
 
           <Input_Component
             error={errorSenha}
-            style={{ padding: Dimencoes.padding }}
             placeholderName="Senha"
-            color={"#00000"}
             secureTextEntry={true}
             value={senha}
             textAffix={true}
@@ -125,11 +122,11 @@ const Login_Page = ({ navigation, route, layout }) => {
         </View>
 
         <SeparadorVertical />
+
         <Section style={{ gap: 12}}>
           <View>
             <Button_Component
-              loading={loading}
-              OnPress={() => {
+              onPress={() => {
                 checkLogin();
               }}
               title="Login"
@@ -143,13 +140,14 @@ const Login_Page = ({ navigation, route, layout }) => {
                 height: 60,
                 borderRadius: Dimencoes.borderRadius,
                 textAlign: "center",
-                justifyContent: 'center',
+                justifyContent:"center",
+                alignItems: "center",
               }}
               styleText={{ 
                 color: colors.complement.primary,
                 fontSize: Dimencoes.fontSizeButton,
               }}
-              OnPress={ () => authSpotifyWeb()}
+              onPress={ () => pageAutenticacao()}
             />
           </View>
         </Section>
@@ -173,14 +171,5 @@ const Login_Page = ({ navigation, route, layout }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  spotify: {
-    backgroundColor: colors.complement.secondary,
-    borderRadius: Dimencoes.borderRadius,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 7,
-  },
-});
 
 export default Login_Page;

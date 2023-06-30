@@ -16,21 +16,20 @@ import ButtonIcon from "../../components/ButtonIconComponent";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Dimencoes } from "../../styles/dimencoes";
 import ButtonBasic from "../../components/ButtonBasicComponent";
+import SuccessCreatePlaylist from "../../patterns/successCrestePlaylist";
 
 const CriarPlaylist = ({ navigation }) => {
-  const [generos, setGeneros] = useState();
-  const [nameTracker, setNameTracker] = useState("");
-  const [tracks, setTracks] = useState([]);
-
-  const [namePlaylist, setNomePlaylist] = useState("");
+  const [name, setNome] = useState("");
   const [description, setDescricao] = useState("");
-  const [publicList, setPublica] = useState(false);
-  const [collaborative, setColaborativa] = useState(false);
+  const [publicList, setPublica] = useState(true);
+  const [collaborative, setColaborativa] = useState(true);
   const [image, setImage] = useState("");
+
   const [errorName, setErrorName] = useState(false);
+  const [ successCreatePlaylist, setSuccessCreatePlaylist] = useState(false)
 
   const data = {
-    name: namePlaylist,
+    name: name,
     description: description,
     publicList: publicList,
     collaborative: collaborative,
@@ -41,16 +40,14 @@ const CriarPlaylist = ({ navigation }) => {
     const { data: playlistSPF } = await req.criarPlaylistSPF(dataPlaylist);
     const { data: playlistAPP} = await req.createPlaylistAPP(dataPlaylist)
     
-     console.log(playlistAPP);
- 
-     if (playlistSPF.state || playlistAPP.state) {
- 
-       setDataPlaylistCriada(playlistAPP.response);
-       setStateResponsePlaylist(playlistAPP.state);
-       setTimeout(() => {
-         console.log("timout");
-         setModalActive(!playlistAPP.state);
+    if (playlistSPF.state || playlistAPP.state){
+        setSuccessCreatePlaylist(true)
+        setTimeout(() => {
+         setSuccessCreatePlaylist(false);
+          navigation.navigate("addMusicas")
        }, 1000);
+      }else{
+
       }
    };
   
@@ -88,7 +85,7 @@ const CriarPlaylist = ({ navigation }) => {
               placeholderName={"Nome Playlist"}
               onChange={(text) => {
                 setErrorName(false);
-                setNomePlaylist(text);
+                setNome(text);
               }}
             />
           </View>
@@ -106,83 +103,13 @@ const CriarPlaylist = ({ navigation }) => {
           </View>
 
           <SeparadorVertical />
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginHorizontal: 10,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 0,
-              }}
-            >
-              <BouncyCheckbox
-              style={{ 
-                padding: 7,
-                width: 30,
-                justifyContent:"center",
-                alignItems:"center"
-              }}
-                onPress={(inCheck) => {
-                  setPublica(inCheck);
-                }}
-                
-                fillColor={colors.primary}
-                iconStyle={{
-                  height: 30,
-                  width: 30,
-                }}
-                innerIconStyle={{
-                  color: colors.primary,
-                  width: 30,
-                  height: 30,
-                }}
-              />
-              <TextDefault>Playlist Pública</TextDefault>
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <BouncyCheckbox
-              style={{ 
-                padding: 7,
-                width: 30,
-                justifyContent:"center",
-                alignItems:"center"
-              }}
-                onPress={(inCheck) => {
-                  setColaborativa(inCheck);
-                }}
-                size={27}
-                fillColor={colors.primary}
-                iconStyle={{
-                  height: 30,
-                  width: 30,
-                }}
-                innerIconStyle={{
-                  color: colors.primary,
-                  width: 30,
-                  height: 30,
-                }}
-              />
-              <TextDefault>Playlist Colaborativa</TextDefault>
-            </View>
-          </View>
+        
 
           <SeparadorVertical />
 
           <View
             style={{
               width: "100%",
-              margin: 10,
               flexDirection: "row",
               justifyContent: "space-around",
             }}
@@ -216,7 +143,7 @@ const CriarPlaylist = ({ navigation }) => {
                 fontWeight: "600",
               }}
               onPress={() => {
-                if (namePlaylist !== "") {
+                if (name !== "") {
                   criarPlaylist(data);
                 } else {
                   setErrorName(true);
@@ -227,6 +154,7 @@ const CriarPlaylist = ({ navigation }) => {
           </View>
         </View>
       </View>
+      <SuccessCreatePlaylist setVisibiliteProp={successCreatePlaylist}/> 
     </Container>
   );
 };

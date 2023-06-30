@@ -16,8 +16,7 @@ import { MyTheme } from "./src/styles/theme";
 import AutenticacaoToken from "./src/pages/autenticacaoToken";
 import CriarPlaylist from "./src/pages/CriarPlaylist";
 import Biblioteca from "./src/pages/Bibliteca";
-import AddMusicas from "./src/pages/CriarPlaylist/AddMusicas";
-import paramsPlaylist from "./src/pages/CriarPlaylist/paramsPlaylist";
+import AddMusicas from "./src/pages/AddMusicas";
 import {  StatusBar } from "react-native";
 import { colors } from "./src/styles/colors";
 import Settings from "./src/pages/settings";
@@ -114,7 +113,9 @@ const App = () => {
             <Stack.Screen 
             name="settings"
             component={Settings}
-            options={{}}
+            options={{
+              animation:'slide_from_right'
+            }}
             /> 
           </Stack.Group>
 
@@ -123,13 +124,7 @@ const App = () => {
               presentation: "modal",
             }}
           >
-            <Stack.Screen
-              name="nomePlaylist"
-              component={paramsPlaylist}
-              options={{
-                headerShown: false,
-              }}
-            />
+         
           </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>

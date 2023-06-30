@@ -3,7 +3,6 @@ import { colors } from "../styles/colors";
 import { Pressable } from "react-native";
 
 const ButtonIcon = ({
-  title,
   icon,
   size = 27,
   color,

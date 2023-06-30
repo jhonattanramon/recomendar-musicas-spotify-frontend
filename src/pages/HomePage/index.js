@@ -32,6 +32,7 @@ const HomePage = ({ navigation }) => {
   }, []);
   return (
     <Container style={{}}>
+      <ScrollContainer>
         <View>
           <PesquisaComponent />
         </View>
@@ -67,6 +68,7 @@ const HomePage = ({ navigation }) => {
             navigation={navigation}
           />
         </View>
+      </ScrollContainer>
     </Container>
   );
 };

@@ -7,6 +7,9 @@ export const Container = styled.View`
   background: ${colors.complement.primary};
   
 `
+export const ScrollContainer = styled.ScrollView`
+flex: 1;
+`
 
 export const SeparadorVertical = styled.View`
   margin: 10px 0;
