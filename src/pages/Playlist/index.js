@@ -40,7 +40,7 @@ const Playlist = ({ route }) => {
   }, []);
 
   const ouvirSpotify = (url) => {
-    Linking.openURL(`${url}`);
+    
   };
 
   const TracksArea = () => {
@@ -61,6 +61,8 @@ const Playlist = ({ route }) => {
               album={item.track.album.name}
               artista={item.track.artists}
               tempoDeReproducao={item.track.duration_ms}
+              href={item.track.href} 
+              external_url = {item.track.external_urls.spotify }
               navigation={route.params.navigation}
             />
           ))}
@@ -85,7 +87,7 @@ const Playlist = ({ route }) => {
           <View style={{ width: "100%" }}>
             <Button_Component
               onPress={() => {
-                ouvirSpotify(route.params.externalUrl);
+                Linking.openURL(route.params.externalUrl);
               }}
               title="Ouvir"
             />

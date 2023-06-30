@@ -9,7 +9,7 @@ import Home from "./src/pages/Home";
 import ProfilePage from "./src/pages/Profile";
 import pageDeTestes from "./src/pages/pageDeTestes";
 import PlaylistPage from "./src/pages/Playlist";
-import Track from "./src/pages/AlbumTrack";
+import Track from "./src/pages/Track";
 
 //
 import { MyTheme } from "./src/styles/theme";
@@ -31,7 +31,7 @@ const App = () => {
       <StatusBar networkActivityIndicatorVisible={true} barStyle={"dark-content"} backgroundColor={colors.primary} />
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="login"
+          initialRouteName="home"
           screenOptions={{
             headerShown: false
           }}

@@ -79,7 +79,7 @@ export const NewText = styled.Text`
 
 export const SubText = styled.Text`
   font-size: 13;
-  color: ${colors.complement.secondary};
+  color: ${colors.complement.tertiary};
 `;
 
 export const ViewImageTrack = styled.View`

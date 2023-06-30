@@ -14,21 +14,10 @@ const Track = ({
   artista,
   tempoDeReproducao,
   navigation,
+  href,
+  external_url
 }) => {
-  const [tempoRep, setTempoRep] = useState(0);
-
-  const navigationTrack = (urlTrack) => {
-    navigation.navigate("track", {
-      url: urlTrack,
-    });
-  };
-
-  useEffect(() => {
-    setTempoRep(
-      ((tempoDeReproducao / 60000) % 60).toFixed(2).replace(".", ":")
-    );
-  }, []);
-
+  console.log(item);
   return (
     <View key={id} style={styles.container}>
       <View
@@ -52,21 +41,23 @@ const Track = ({
         <View style={styles.viewText}>
           <Pressable
             onPress={() => {
-              navigationTrack(item.track.href);
+              navigation.navigate("track", {
+                href: href,
+                external_url: external_url
+              });
             }}
           >
             <Text style={styles.textTitulo}>{titulo}</Text>
           </Pressable>
         </View>
         <View style={styles.viewText}>
-          <Text style={styles.subText}>
             {artista.map(({ name }) => (
-              <Text>
+              <Text style={styles.subText}>
                 {name}
                 {"\n"}
               </Text>
             ))}
-          </Text>
+          
         </View>
 
         <View style={styles.viewText}>
@@ -75,14 +66,7 @@ const Track = ({
 
 
         <View style={styles.viewText}>
-          {/* <ButtonIcon
-          style={{margin: 0}}
-          color={colors.primary}
-          icon={"clock-time-five"}
-          size={13}
-          
-          /> */}
-          <Text style={styles.text}>{tempoRep}</Text>
+          <Text style={styles.text}>{ ((tempoDeReproducao / 60000) % 60).toFixed(2).replace(".", ":")}</Text>
         </View>
       </View>
     </View>
@@ -105,6 +89,7 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
     textAlignVertical: "center",
     textAlign: "center",
+    justifyContent:"center"
   },
 
   subText:{
