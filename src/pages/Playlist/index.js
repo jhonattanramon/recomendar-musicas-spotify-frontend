@@ -9,7 +9,7 @@ import {
   Linking,
 } from "react-native";
 import { useEffect, useState } from "react";
-import { Container } from "../../styles/styled-components";
+import { Container, ScrollContainer } from "../../styles/styled-components";
 import { TitleText } from "../../styles/styled-components";
 import ImagemComponent from "../../components/ImagemComponent";
 import Loading from "../../components/LoadingComponent";
@@ -21,42 +21,21 @@ import Header from "../../patterns/Header";
 
 const Playlist = ({ route }) => {
   const [tracks, setTracks] = useState([]);
+  const [tracksPlalistUser, setTracksPlalistUser] = useState([]);
+  const [data, setData] = useState(null);
   const requisicoes = new Requisicoes();
 
-  console.log("track", tracks);
-
-  const TracksArea = () => {
-    if (tracks?.length > 0) {
-      return (
-        <SafeAreaView style={{ flex: 1, width: "100%" }}>
-          <TitleText>Faixas</TitleText>
-          <FlatList
-            data={tracks}
-            renderItem={({ item }) => (
-              <Track
-                key={item.track.id}
-                item={item}
-                imagem={item.track.album.images[1].url}
-                titulo={item.name}
-                album={item.track.albumname}
-                artista={item.track.artists}
-                tempoDeReproducao={item.duration_ms}
-                navigation={route.params.navigation}
-              />
-            )}
-          />
-        </SafeAreaView>
-      );
-    } else {
-      return <Loading />;
-    }
-  };
+  console.log(route);
+  console.log(tracks);
+  console.log(tracksPlalistUser);
 
   useEffect(() => {
     (async () => {
       const { data } = await requisicoes.tracksPlaylist(route.params.href);
       console.log(data);
-      setTracks(data?.items);
+      setData(data);
+      setTracksPlalistUser(data.items);
+      setTracks(data?.tracks?.items);
     })();
   }, []);
 
@@ -64,37 +43,65 @@ const Playlist = ({ route }) => {
     Linking.openURL(`${url}`);
   };
 
+  const TracksArea = () => {
+    if (tracks?.length > 0 || tracksPlalistUser?.length > 0) {
+      return (
+        <View
+          style={{
+            width: "100%",
+          }}
+        >
+          <TitleText>Faixas</TitleText>
+          {(tracks || tracksPlalistUser).map((item) => (
+            <Track
+              key={item.track.id}
+              item={item}
+              imagem={item.track.album.images[1].url}
+              titulo={item.track.name}
+              album={item.track.album.name}
+              artista={item.track.artists}
+              tempoDeReproducao={item.track.duration_ms}
+              navigation={route.params.navigation}
+            />
+          ))}
+        </View>
+      );
+    } else {
+      return <Loading />;
+    }
+  };
+
   return (
     <Container>
-      <Header navigation={route.params.navigation} />
-      <View style={styles.containerImagem}>
-        <View style={styles.viewDeImagem}>
-          <ImagemComponent url={route.params.url} />
+      <ScrollContainer>
+        <Header navigation={route.params.navigation} />
+        <View style={styles.containerImagem}>
+          <View style={styles.viewDeImagem}>
+            <ImagemComponent url={route.params.image} />
+          </View>
+          <View style={styles.viewTituloPlaylist}>
+            <TitleText>{route.params.title}</TitleText>
+          </View>
+          <View style={{ width: "100%" }}>
+            <Button_Component
+              onPress={() => {
+                ouvirSpotify(route.params.externalUrl);
+              }}
+              title="Ouvir"
+            />
+          </View>
         </View>
 
-        <View style={styles.viewTituloPlaylist}>
-          <TitleText>{route.params.data.titulo}</TitleText>
+        <View style={styles.containerTracks}>
+          <TracksArea />
         </View>
-        <View style={{ width: "100%" }}>
-          <Button_Component
-            funcOnPress={() => {
-              ouvirSpotify(route.params.href);
-            }}
-            title="ouvir"
-          />
-        </View>
-      </View>
-
-      <View style={styles.containerTracks}>
-        <TracksArea />
-      </View>
+      </ScrollContainer>
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
   containerImagem: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     padding: 7,
@@ -106,7 +113,6 @@ const styles = StyleSheet.create({
   },
 
   containerTracks: {
-    flex: 1,
     width: "100%",
     paddingHorizontal: 10,
     justifyContent: "center",

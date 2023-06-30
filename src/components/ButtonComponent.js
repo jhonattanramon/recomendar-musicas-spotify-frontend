@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
   },
   TextButton: {
     fontSize: Dimencoes.fontSizeButton,
-    color: colors.complement.secondary
+    color: colors.complement.secondary,
+    fontWeight: "600"
   },
 });
 

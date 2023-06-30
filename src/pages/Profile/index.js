@@ -1,9 +1,7 @@
   import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
   import {
-    Card,
     Container,
     Section,
-    Separador,
     SeparadorVertical,
     TextDefault,
     TitleText,
@@ -12,16 +10,11 @@
   } from "../../styles/styled-components";
   import AvatarComponent from "../../components/AvatarComponet";
   import ButtonBasic from "../../components/ButtonBasicComponent";
-  import PlusInfor from "../../components/PlusInforComponent";
   import { useEffect, useState } from "react";
-  import { Modal, Portal, Provider } from "react-native-paper";
   import { Requisicoes } from "../../services/requisições/req";
-  import { Linking } from "react-native";
-  import Loading from "../../components/LoadingComponent";
   import ImagemComponent from "../../components/ImagemComponent";
   import { colors } from "../../styles/colors";
   import { Dimencoes } from "../../styles/dimencoes";
-  import Header from "../../patterns/Header";
   import InforComponent from "../../components/InforComponent";
   import ButtonIcon from "../../components/ButtonIconComponent";
 
@@ -51,10 +44,11 @@
           <Pressable
             onPress={() => {
               navigation.navigate(item.type, {
-                data: item,
                 href: item.tracks.href,
                 navigation: navigation,
-                url: item.images[1].url,
+                image: item.images[0].url,
+                title: item.name,
+                externalUrl: item.external_urls.spotify
               });
             }}
             style={{

@@ -9,8 +9,8 @@ import ImagemComponent from "./ImagemComponent";
 import { colors } from "../styles/colors";
 import { fontStyleds } from "../styles/fonts";
 
-const ListCard = (props) => {
-  console.log(props);
+const ListCard = ({ navigation, title, externalUrl, href, image }) => {
+
   return (
     <Card>
       <Pressable
@@ -19,17 +19,19 @@ const ListCard = (props) => {
           width: "100%",
         }}
         onPress={() => {
-          props.navigation.navigate("playlist", {
-            data: props,
-            href: props.href,
-            navigation: props.navigation
+          navigation.navigate("playlist", {
+            href: href,
+            navigation: navigation,
+            image: image,
+            title: title,
+            externalUrl: externalUrl,
 
           });
         }}
     >
         <Square>
           <View style={{ flex: 2, padding: 7 }}>
-            <ImagemComponent url={props.url} />
+            <ImagemComponent url={image} />
           </View>
 
           <View
@@ -38,8 +40,7 @@ const ListCard = (props) => {
               flex: 1,
             }}
           >
-            <Text style={styles.titulo}>{props.titulo}</Text>
-            <Text style={fontStyleds.subsFont}>{props.descricao}</Text>
+            <Text style={styles.titulo}>{title}</Text>
           </View>
         </Square>
       </Pressable>

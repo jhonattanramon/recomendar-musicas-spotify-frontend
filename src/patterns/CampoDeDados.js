@@ -26,9 +26,10 @@ const CampoDeDados = ({ array, navigation, title }) => {
               <>
                 <ListCard
                   navigation={navigation}
-                  titulo={item.name}
-                  url={item.images[0].url}
-                  href={item?.tracks?.href}
+                  title={item.name}
+                  externalUrl={item.external_urls.spotify}
+                  image={item.images[0].url}
+                  href={item.href}
                 />
 
                 <SeperadorHorizontal />
