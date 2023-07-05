@@ -4,7 +4,6 @@ import { colors } from "../styles/colors";
 import { Dimencoes } from "../styles/dimencoes";
 
 const Header = ({ navigation, styleText = styles.text, title }) => {
-  console.log(navigation);
   return (
     <View style={styles.section}>
       <View style={{ alignItems: "center", flexDirection: "row" }}>

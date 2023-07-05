@@ -12,8 +12,8 @@ import { ScreenContainer } from "react-native-screens";
 
 const TrackPage = ({ route, navigation }) => {
   const [dataTrack, setDataTrack] = useState([]);
-  console.log(dataTrack);
-  console.log(route);
+
+
   const requisicoes = new Requisicoes();
 
   useEffect(() => {

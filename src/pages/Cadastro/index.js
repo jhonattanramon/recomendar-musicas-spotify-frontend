@@ -40,7 +40,6 @@ const Cadastro_page = ({ navigation }) => {
     confirmPassword: confirmPassword,
   };
 
-  console.log(valueRegisterUser);
 
   const checkForm = async () => {
     const displayMenssageError = () =>  {
@@ -89,7 +88,6 @@ const Cadastro_page = ({ navigation }) => {
       })
       .then((res) => res).finally( () => setLoading(false));
 
-      console.log(response);
     setMenssageError(response.data.menssage);
 
     if(response.data.stateMenssage)

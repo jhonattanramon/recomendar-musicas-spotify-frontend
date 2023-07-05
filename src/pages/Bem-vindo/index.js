@@ -21,7 +21,6 @@ const Bem_vindo = ({ navigation }) => {
        email: email
       
       });
-    console.log(access);
   };
 
   return (

@@ -17,7 +17,6 @@ const Track = ({
   href,
   external_url
 }) => {
-  console.log(item);
   return (
     <View key={id} style={styles.container}>
       <View

@@ -31,7 +31,6 @@ const ProfileComponent = ({ navigation }) => {
   const [visibiliteinfor, setVisibiliteInfor] = useState(false);
   const [activeViewFieldPlaylist, SetactiveViewFieldPlaylist] = useState("APP");
 
-  console.log(playlistsAPP);
 
   const req = new Requisicoes();
 
@@ -45,7 +44,6 @@ const ProfileComponent = ({ navigation }) => {
       setPlaylistsSPF(playlistsSPFreq.data);
 
       const { data: userinfor } = await req.informacoesUserSpotify();
-      console.log(userinfor);
       setInforUser(userinfor);
     })();
   }, []);

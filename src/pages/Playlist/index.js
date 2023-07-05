@@ -29,7 +29,6 @@ const Playlist = ({ route }) => {
   useEffect(() => {
     (async () => {
       const { data } = await requisicoes.tracksPlaylist(route.params.href);
-      console.log(data);
       setData(data);
       setTracksPlalistUser(data.items);
       setTracks(data?.tracks?.items);

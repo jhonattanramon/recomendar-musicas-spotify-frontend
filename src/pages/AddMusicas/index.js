@@ -20,10 +20,8 @@ const AddMusicas = ({ navigation }) => {
 
   useEffect(() => {
     (async () => {
-      console.log("requisicao");
       if (textoPesquisa !== "") {
         const { data } = await req.pesquisaTrack(textoPesquisa);
-        console.log(data);
         setResultadoPesquisa(data.tracks.items);
       }
     })();

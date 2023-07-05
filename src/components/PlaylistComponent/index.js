@@ -5,7 +5,6 @@ import { Dimencoes } from "../../styles/dimencoes";
 import { colors } from "../../styles/colors";
 
 const Playlists = ({ playlists }) => {
-  console.log(playlists);
   if (playlists?.items?.length > 0) {
     return playlists.items.map((item) => (
       <Pressable

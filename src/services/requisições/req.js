@@ -26,7 +26,6 @@ export class Requisicoes {
   }
 
   async tracksPlaylist(urlTrack) {
-    console.log(urlTrack);
     const res = await axios
       .get(`${urlBaseDev}/apispotify/tracksplaylist`, {
         headers: {
@@ -123,7 +122,6 @@ export class Requisicoes {
   }
 
   async createPlaylistAPP({ name, publicList, description, collaborative, image }){
-    console.log(publicList);
     const res = await axios
       .post(`${urlBaseDev}/api/createplaylist`, {
         name: name,
@@ -168,7 +166,6 @@ export class Requisicoes {
     const res = await axios
       .get(`${urlBaseDev}/api/playlistuser`)
       .then((res) => res);
-    console.log(res);
     return res;
   }
 
@@ -176,7 +173,6 @@ export class Requisicoes {
     const res = await axios
       .get(`${urlBaseDev}/apispotify/playlistuser`)
       .then((res) => res);
-    console.log(res);
     return res;
   }
 }

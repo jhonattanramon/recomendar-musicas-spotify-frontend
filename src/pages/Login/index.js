@@ -62,7 +62,6 @@ const Login_Page = ({ navigation, route, layout }) => {
           })
           .finally(() => setLooading(false));
 
-        console.log(conect);
 
         setMenssageError(conect.data.menssage);
         setErrorEmail(conect.data.stateErrorEmail);
