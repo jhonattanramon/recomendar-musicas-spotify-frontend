@@ -16,9 +16,10 @@ import Loading from "../../components/LoadingComponent";
 import Track from "../../components/TrackComponent";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Requisicoes } from "../../services/requisições/req";
-import Button_Component from "../../components/ButtonComponent";
+import Button_Component from "../../components/ButtonComponent/ButtonRoot";
 import Header from "../../patterns/Header";
 import { Dimencoes } from "../../styles/dimencoes";
+import { Button } from "../../components/ButtonComponent";
 
 const Playlist = ({ route }) => {
   const [tracks, setTracks] = useState([]);
@@ -81,12 +82,10 @@ const Playlist = ({ route }) => {
             <TitleText>{route.params.title}</TitleText>
           </View>
           <View style={{ width: Dimencoes.widthButton }}>
-            <Button_Component
-              onPress={() => {
-                Linking.openURL(route.params.externalUrl);
-              }}
-              title="Ouvir"
-            />
+            <Button.Root onPress={() => { Linking.openURL(route.params.externalUrl)}}
+            >
+              <Button.Content text={"OUVIR"}/>
+              </Button.Root>
           </View>
         </View>
 

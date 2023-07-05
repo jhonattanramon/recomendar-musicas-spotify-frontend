@@ -58,11 +58,4 @@ const styles = StyleSheet.create({
   }
 })
 
-
-
-    
-
-
-
-
 export default Input_Component

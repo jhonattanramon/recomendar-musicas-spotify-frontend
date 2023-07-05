@@ -44,6 +44,7 @@ const ProfileComponent = ({ navigation }) => {
       setPlaylistsSPF(playlistsSPFreq.data);
 
       const { data: userinfor } = await req.informacoesUserSpotify();
+
       setInforUser(userinfor);
     })();
   }, []);
@@ -121,7 +122,10 @@ const ProfileComponent = ({ navigation }) => {
             {activeViewFieldPlaylist == "APP" ? (
               <ContainerPlaylist>
                 <ViewPlaylist>
-                  <Playlists playlists={playlistsAPP} />
+                  <Playlists 
+                  playlists={playlistsAPP}
+                  navigation={navigation}
+                   />
                 </ViewPlaylist>
               </ContainerPlaylist>
             ) : (

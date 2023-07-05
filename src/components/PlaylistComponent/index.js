@@ -4,17 +4,17 @@ import * as Styled from "../../styles/styled-components";
 import { Dimencoes } from "../../styles/dimencoes";
 import { colors } from "../../styles/colors";
 
-const Playlists = ({ playlists }) => {
+const Playlists = ({ playlists, navigation }) => {
   if (playlists?.items?.length > 0) {
     return playlists.items.map((item) => (
       <Pressable
         onPress={() => {
-          navigation.navigate(item.type, {
-            href: item.tracks.href,
+          navigation.navigate("playlist", {
             navigation: navigation,
             image: item.images[0].url,
             title: item.name,
-            externalUrl: item.external_urls.spotify,
+            href: item?.tracks?.href,
+            externalUrl: item?.external_urls?.spotify,
           });
         }}
         style={{

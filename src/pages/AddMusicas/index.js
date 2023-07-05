@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { Requisicoes } from "../../services/requisições/req";
 import Track from "../../components/TrackComponent";
 import Header from "../../patterns/Header";
-import Button_Component from "../../components/ButtonComponent";
+import Button_Component from "../../components/ButtonComponent/ButtonRoot";
 import ButtonIcon from "../../components/ButtonIconComponent";
+import { Button } from "../../components/ButtonComponent";
 
 const AddMusicas = ({ navigation }) => {
   const req = new Requisicoes();
@@ -109,11 +110,10 @@ const AddMusicas = ({ navigation }) => {
                 </>
               )}
             />
-            <Button_Component 
-            funcOnPress={ () => {
-              navigation.navigate("criarPlaylist")
-            }}
-            title={"Finalizar"}/> 
+
+            <Button.Root funcOnPress={ () => { navigation.navigate("criarPlaylist")}}> 
+                      <Button.Content text={"Criar Playlist"} />
+            </Button.Root>
             </>
           ) : (
             <View
