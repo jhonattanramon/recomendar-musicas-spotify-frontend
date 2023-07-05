@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { ViewImageTrack } from "../styles/styled-components";
+import * as Styled from "../styles/styled-components";
 import ImagemComponent from "./ImagemComponent";
 import { colors } from "../styles/colors";
 import { useEffect, useState } from "react";
@@ -33,9 +33,9 @@ const Track = ({
             width: "90%",
           }}
         >
-          <ViewImageTrack>
+          <Styled.ViewImageTrack>
             <ImagemComponent url={imagem} />
-          </ViewImageTrack>
+          </Styled.ViewImageTrack>
         </View>
 
         <View style={styles.viewText}>

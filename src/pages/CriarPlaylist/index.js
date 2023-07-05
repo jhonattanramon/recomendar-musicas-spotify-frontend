@@ -1,20 +1,9 @@
 import { StyleSheet, TextInput, View, Text, Pressable } from "react-native";
 import { colors } from "../../styles/colors";
-import {
-  Container,
-  Section,
-  SubText,
-  TitleText,
-  TextDefault,
-  SeparadorVertical,
-  ScrollContainer,
-} from "../../styles/styled-components";
+import * as Styled from "../../styles/styled-components";
 import Input_Component from "../../components/InputComponent";
 import { Requisicoes } from "../../services/requisições/req";
 import { useEffect, useState } from "react";
-import Track from "../../components/TrackComponent";
-import ButtonIcon from "../../components/ButtonIconComponent";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Dimencoes } from "../../styles/dimencoes";
 import ButtonBasic from "../../components/ButtonBasicComponent";
 import SuccessCreatePlaylist from "../../patterns/successCrestePlaylist";
@@ -24,7 +13,7 @@ const CriarPlaylist = ({ navigation }) => {
   const [description, setDescricao] = useState("");
   const [publicList, setPublica] = useState(true);
   const [collaborative, setColaborativa] = useState(true);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState("https://i.pinimg.com/564x/08/54/fd/0854fde5bae64e078a68d37b9afec716.jpg");
 
   const [errorName, setErrorName] = useState(false);
   const [successCreatePlaylist, setSuccessCreatePlaylist] = useState(false);
@@ -34,8 +23,10 @@ const CriarPlaylist = ({ navigation }) => {
     description: description,
     publicList: publicList,
     collaborative: collaborative,
-    image: image,
+    images: image,
   };
+
+  const req = new Requisicoes();
 
   const criarPlaylist = async (dataPlaylist) => {
     const { data: playlistSPF } = await req.criarPlaylistSPF(dataPlaylist);
@@ -52,8 +43,8 @@ const CriarPlaylist = ({ navigation }) => {
   };
 
   return (
-    <Container>
-      <ScrollContainer>
+    <Styled.Container>
+      <Styled.ScrollContainer>
         <View
           style={{
             flex: 1,
@@ -66,7 +57,7 @@ const CriarPlaylist = ({ navigation }) => {
               marginTop: 50,
             }}
           >
-            <TitleText> Crie sua Playlist </TitleText>
+            <Styled.TitleText> Crie sua Playlist </Styled.TitleText>
           </View>
 
           <View
@@ -77,7 +68,7 @@ const CriarPlaylist = ({ navigation }) => {
             }}
           >
             <View style={{}}>
-              <TextDefault>Nome da Playlist</TextDefault>
+              <Styled.TextDefault>Nome da Playlist</Styled.TextDefault>
               <Input_Component
                 error={errorName}
                 placeholderName={"Nome Playlist"}
@@ -88,10 +79,10 @@ const CriarPlaylist = ({ navigation }) => {
               />
             </View>
 
-            <SeparadorVertical />
+            <Styled.SeparadorVertical />
 
             <View>
-              <TextDefault> Descrição</TextDefault>
+              <Styled.TextDefault> Descrição</Styled.TextDefault>
               <Input_Component
                 placeholderName={"Descrição"}
                 onChange={(text) => {
@@ -100,9 +91,7 @@ const CriarPlaylist = ({ navigation }) => {
               />
             </View>
 
-            <SeparadorVertical />
-
-            <SeparadorVertical />
+            <Styled.SeparadorVertical />
 
             <View
               style={{
@@ -152,8 +141,8 @@ const CriarPlaylist = ({ navigation }) => {
           </View>
         </View>
         <SuccessCreatePlaylist setVisibiliteProp={successCreatePlaylist} />
-      </ScrollContainer>
-    </Container>
+      </Styled.ScrollContainer>
+    </Styled.Container>
   );
 };
 

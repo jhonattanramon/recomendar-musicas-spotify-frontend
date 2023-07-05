@@ -18,16 +18,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Requisicoes } from "../../services/requisições/req";
 import Button_Component from "../../components/ButtonComponent";
 import Header from "../../patterns/Header";
+import { Dimencoes } from "../../styles/dimencoes";
 
 const Playlist = ({ route }) => {
   const [tracks, setTracks] = useState([]);
   const [tracksPlalistUser, setTracksPlalistUser] = useState([]);
   const [data, setData] = useState(null);
   const requisicoes = new Requisicoes();
-
-  console.log(route);
-  console.log(tracks);
-  console.log(tracksPlalistUser);
 
   useEffect(() => {
     (async () => {
@@ -84,7 +81,7 @@ const Playlist = ({ route }) => {
           <View style={styles.viewTituloPlaylist}>
             <TitleText>{route.params.title}</TitleText>
           </View>
-          <View style={{ width: "100%" }}>
+          <View style={{ width: Dimencoes.widthButton }}>
             <Button_Component
               onPress={() => {
                 Linking.openURL(route.params.externalUrl);

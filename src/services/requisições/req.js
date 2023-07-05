@@ -130,7 +130,7 @@ export class Requisicoes {
         public: publicList,
         description: description,
         collaborative: collaborative,
-        image: image,
+        image: [{url: image}],
       })
       .then((res) => res);
     return res
@@ -164,15 +164,15 @@ export class Requisicoes {
     return res
   }
 
-  async playlistUser(){
+  async playlistUserAPP(){
     const res = await axios
-      .get(`${urlBaseDev}/apispotify/playlistuser`)
+      .get(`${urlBaseDev}/api/playlistuser`)
       .then((res) => res);
     console.log(res);
     return res;
   }
 
-  async playlistUser() {
+  async playlistUserSPF() {
     const res = await axios
       .get(`${urlBaseDev}/apispotify/playlistuser`)
       .then((res) => res);

@@ -1,19 +1,14 @@
-import {
-  Container,
-  TitleText,
-  SectionCenter,
-} from "../styles/styled-components";
-import { Text } from "react-native";
+import * as Styled from "../styles/styled-components";
 import { ActivityIndicator } from "react-native-paper";
 import { colors } from "../styles/colors";
 
 const Loading = () => {
   return (
-    <Container>
-      <SectionCenter>
+    <Styled.Container>
+      <Styled.SectionCenter>
       <ActivityIndicator animating={true} color={colors.primary} />
-      </SectionCenter>
-    </Container>
+      </Styled.SectionCenter>
+    </Styled.Container>
   );
 };
 export default Loading;

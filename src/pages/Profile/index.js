@@ -1,183 +1,157 @@
-  import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
-  import {
-    Container,
-    Section,
-    SeparadorVertical,
-    TextDefault,
-    TitleText,
-    SubText,
-    ScrollContainer,
-  } from "../../styles/styled-components";
-  import AvatarComponent from "../../components/AvatarComponet";
-  import ButtonBasic from "../../components/ButtonBasicComponent";
-  import { useEffect, useState } from "react";
-  import { Requisicoes } from "../../services/requisições/req";
-  import ImagemComponent from "../../components/ImagemComponent";
-  import { colors } from "../../styles/colors";
-  import { Dimencoes } from "../../styles/dimencoes";
-  import InforComponent from "../../components/InforComponent";
-  import ButtonIcon from "../../components/ButtonIconComponent";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import AvatarComponent from "../../components/AvatarComponet";
+import ButtonBasic from "../../components/ButtonBasicComponent";
+import { useEffect, useState } from "react";
+import { Requisicoes } from "../../services/requisições/req";
+import { colors } from "../../styles/colors";
+import { Dimencoes } from "../../styles/dimencoes";
+import ButtonIcon from "../../components/ButtonIconComponent";
+import Playlists from "../../components/PlaylistComponent";
+import * as Styled from "../../styles/styled-components";
+import {
+  FieldPlaylist,
+  ContainerPlaylist,
+  TextContainer,
+  ViewPlaylist,
+  ViewButtonIndicatorPlaylist,
+  ViewIndicatorPlaylist,
+} from "./style";
+import Badge from "../../components/BadgeComponent";
+import IndicatorSlide from "../../components/IndicatorSlider";
 
-  const ProfileComponent = ({ navigation }) => {
-    const [inforUser, setInforUser] = useState({});
-    const [playlistsUser, setPlaylistsUser] = useState([]);
-    const [visibiliteinfor, setVisibiliteInfor] = useState(false);
+const ProfileComponent = ({ navigation }) => {
+  const [inforUser, setInforUser] = useState({});
+  const [playlistsSPF, setPlaylistsSPF] = useState([]);
+  const [playlistsAPP, setPlaylistsAPP] = useState([]);
+  const [visibiliteinfor, setVisibiliteInfor] = useState(false);
+  const [activeViewFieldPlaylist, SetactiveViewFieldPlaylist] = useState("APP");
 
-    console.log(inforUser);
+  console.log(playlistsAPP);
 
-    const req = new Requisicoes();
+  const req = new Requisicoes();
 
-    useEffect(() => {
-      (async () => {
-        const { data: userPlaylist } = await req.playlistUser();
-        setPlaylistsUser(userPlaylist);
+  useEffect(() => {
+    (async () => {
+      const { playlistsAPPreq, playlistsSPFreq } = {
+        playlistsAPPreq: await req.playlistUserAPP(),
+        playlistsSPFreq: await req.playlistUserSPF(),
+      };
+      setPlaylistsAPP(playlistsAPPreq.data);
+      setPlaylistsSPF(playlistsSPFreq.data);
 
-        const { data: userinfor } = await req.informacoesUserSpotify();
-        console.log(userinfor);
-        setInforUser(userinfor);
-      })();
-    }, []);
+      const { data: userinfor } = await req.informacoesUserSpotify();
+      console.log(userinfor);
+      setInforUser(userinfor);
+    })();
+  }, []);
 
-    const Playlists = () => {
-      if (playlistsUser?.items?.length > 0) {
-        return playlistsUser.items.map((item) => (
-          <Pressable
-            onPress={() => {
-              navigation.navigate(item.type, {
-                href: item.tracks.href,
-                navigation: navigation,
-                image: item.images[0].url,
-                title: item.name,
-                externalUrl: item.external_urls.spotify
-              });
-            }}
-            style={{
-              height: 270,
-              width: 200,
-              margin: 10,
-              padding: 13,
-              borderRadius: Dimencoes.borderRadius,
-              backgroundColor: colors.blur.primary
-            }}
-          >
-            <View
-              style={{
-                flex: 1,
-              }}
-            >
-              <ImagemComponent url={item?.images[0]?.url} />
-            </View>
-            <View>
-              <TextDefault
-                style={{
-                  fontWeight: "bold",
-                }}
-              >
-                {item.name}
-              </TextDefault>
-              <SubText
-                style={{
-                  color: colors.complement.tertiary,
-                }}
-              >
-                {item.owner.display_name}
-              </SubText>
-            </View>
-          </Pressable>
-        ));
-      } else {
-        return (
+  return (
+    <Styled.Container>
+      <Styled.ScrollContainer>
+        <ButtonIcon
+          styleBackground={{
+            borderRadius: Dimencoes.borderRadius,
+            position: "absolute",
+            right: "2%",
+            top: "0.2%",
+            zIndex: 1,
+          }}
+          icon="cog"
+          size={35}
+          color={colors.complement.secondary}
+          onPress={() => {
+            navigation.navigate("settings");
+          }}
+        />
+
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <AvatarComponent />
+          <Styled.TitleText>JHON</Styled.TitleText>
+
+          <Styled.SeparadorVertical />
           <View>
-            <TextDefault>Nenhuma playlist cadastrada.</TextDefault>
-          </View>
-        );
-      }
-    };
-
-    return (
-      <Container>
-        <ScrollContainer>
-            <ButtonIcon 
-            styleBackground={{ 
-              borderRadius: Dimencoes.borderRadius,
-              position: "absolute",
-              right: "2%",
-              top: "0.2%",
-              zIndex: 1
-            }}
-            icon="cog"
-            size={35}
-            color={colors.complement.secondary}
-            onPress={ () =>{ navigation.navigate("settings")}}
-
-            />  
-          
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <AvatarComponent />
-            <TitleText>JHON</TitleText>
-
-            <SeparadorVertical />
-            <View>
-              <ButtonBasic
-                funcOnPress={() => {
-                  setVisibiliteInfor(true);
-                }}
-                title={"Informações"}
-              />
-            </View>
-            <SeparadorVertical />
-          </View>
-
-          <Section style={styles.SectionsDeDadosApp}>
-            <View>
-              <TitleText> Playlists </TitleText>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                width: "100%",
-                height: "100%",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
+            <ButtonBasic
+              funcOnPress={() => {
+                setVisibiliteInfor(true);
               }}
-            >
-              <Playlists />
-            </View>
-          </Section>
-          <View
-            style={{
-              flex: 1,
-              width: 400,
-            }}
-          >
-            <InforComponent
-              visibiliteInfor={visibiliteinfor}
-              inforUser={inforUser}
+              title={"Informações"}
             />
           </View>
-        </ScrollContainer>
-      </Container>
-    );
-  };
+        </View>
 
-  const styles = StyleSheet.create({
-    SectionsDeDadosApp: {
-      flex: 1,
-      alignItems: "flex-start",
-    },
-    fontBold: {
-      fontWeight: "bold",
-    },
-    line: {
-      flexDirection: "row",
-      gap: 2,
-    },
-  });
+        <Styled.SeparadorVertical />
+        <ViewButtonIndicatorPlaylist>
+          <Pressable
+            onPress={() => SetactiveViewFieldPlaylist("APP")}
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 5,
+            }}
+          >
+            {activeViewFieldPlaylist == "APP" ? <Badge /> : <Text> </Text>}
+            <TextContainer>Playlists</TextContainer>
+          </Pressable>
 
-  export default ProfileComponent;
+          <Pressable
+            onPress={() => SetactiveViewFieldPlaylist("SPOTIFY")}
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 5,
+            }}
+          >
+            {activeViewFieldPlaylist == "SPOTIFY" ? <Badge /> : <Text> </Text>}
+            <TextContainer>Spotify Playlist</TextContainer>
+          </Pressable>
+        </ViewButtonIndicatorPlaylist>
+
+        <FieldPlaylist>
+          <Pressable
+            on
+          >
+            {activeViewFieldPlaylist == "APP" ? (
+              <ContainerPlaylist>
+                <ViewPlaylist>
+                  <Playlists playlists={playlistsAPP} />
+                </ViewPlaylist>
+              </ContainerPlaylist>
+            ) : (
+              <ContainerPlaylist>
+                <ViewPlaylist>
+                  <Playlists playlists={playlistsSPF} />
+                </ViewPlaylist>
+              </ContainerPlaylist>
+            )}
+          </Pressable>
+        </FieldPlaylist>
+      </Styled.ScrollContainer>
+    </Styled.Container>
+  );
+};
+
+const styles = StyleSheet.create({
+  SectionsDeDadosApp: {
+    flex: 1,
+    alignItems: "flex-start",
+  },
+  fontBold: {
+    fontWeight: "bold",
+  },
+  line: {
+    flexDirection: "row",
+    gap: 2,
+  },
+});
+
+export default ProfileComponent;

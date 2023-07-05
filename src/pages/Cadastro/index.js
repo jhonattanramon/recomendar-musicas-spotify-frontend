@@ -1,14 +1,5 @@
 import { View, Text, Alert } from "react-native";
-import {
-  Container,
-  NewText,
-  Section,
-  SectionCenter,
-  Separador,
-  SeparadorVertical,
-  Title,
-  TitleText,
-} from "../../styles/styled-components";
+import * as Styled from "../../styles/styled-components";
 import Button_Component from "../../components/ButtonComponent";
 import Input_Component from "../../components/InputComponent";
 import TextButton from "../../components/TextButtonComponent";
@@ -107,12 +98,12 @@ const Cadastro_page = ({ navigation }) => {
   };
 
   return (
-    <Container>
+    <Styled.Container>
       <PopUpError 
       menssage={menssageError}
       stateMenssage={visibiliteError} />
-      <SectionCenter>
-        <Section>
+      <Styled.SectionCenter>
+        <View>
           <View>
             <NewText>Realize seu</NewText>
             <TitleText style={{ color: colors.complement.secondary }}>
@@ -178,11 +169,11 @@ const Cadastro_page = ({ navigation }) => {
               }}
             />
           </View>
-        </Section>
+        </View>
 
-        <SeparadorVertical />
+        <Styled.SeparadorVertical />
 
-        <Section>
+        <View>
           <View>
             <Button_Component
               loading={loading}
@@ -193,7 +184,7 @@ const Cadastro_page = ({ navigation }) => {
               title="Realizar Cadastro"
             />
           </View>
-        </Section>
+        </View>
 
         <View style={{ marginTop: 13 }}>
           <TextButton
@@ -203,8 +194,8 @@ const Cadastro_page = ({ navigation }) => {
             }}
           />
         </View>
-      </SectionCenter>
-    </Container>
+      </Styled.SectionCenter>
+    </Styled.Container>
   );
 };
 

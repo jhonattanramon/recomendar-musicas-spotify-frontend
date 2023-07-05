@@ -1,10 +1,5 @@
 import { View, Image, Text, Pressable, StyleSheet } from "react-native";
-import {
-  Container,
-  SectionCenter,
-  Square,
-  Card,
-} from "../styles/styled-components";
+import * as Styled from "../styles/styled-components";
 import ImagemComponent from "./ImagemComponent";
 import { colors } from "../styles/colors";
 import { fontStyleds } from "../styles/fonts";
@@ -12,7 +7,7 @@ import { fontStyleds } from "../styles/fonts";
 const ListCard = ({ navigation, title, externalUrl, href, image }) => {
 
   return (
-    <Card>
+    <Styled.Card>
       <Pressable
         style={{
           flex: 1,
@@ -29,7 +24,7 @@ const ListCard = ({ navigation, title, externalUrl, href, image }) => {
           });
         }}
     >
-        <Square>
+        <Styled.Square>
           <View style={{ flex: 2, padding: 7 }}>
             <ImagemComponent url={image} />
           </View>
@@ -42,9 +37,9 @@ const ListCard = ({ navigation, title, externalUrl, href, image }) => {
           >
             <Text style={styles.titulo}>{title}</Text>
           </View>
-        </Square>
+        </Styled.Square>
       </Pressable>
-    </Card>
+    </Styled.Card>
   );
 };
 

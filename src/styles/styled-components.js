@@ -1,15 +1,15 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { colors } from "./colors";
-
 
 export const Container = styled.View`
   flex: 1;
   background: ${colors.complement.primary};
+
   
-`
+`;
 export const ScrollContainer = styled.ScrollView`
-flex: 1;
-`
+  flex: 1;
+`;
 
 export const SeparadorVertical = styled.View`
   margin: 10px 0;
@@ -19,7 +19,6 @@ export const SeperadorHorizontal = styled.View`
   margin: 0 10px;
 `;
 
-export const Section = styled.View``;
 
 export const SectionCenter = styled.View`
   flex: 1;
@@ -55,7 +54,6 @@ export const Avatar = styled.View`
 export const Square = styled.View`
   width: 100%;
   height: 100%;
-
   flex: 1;
 `;
 
@@ -83,11 +81,9 @@ export const SubText = styled.Text`
 `;
 
 export const ViewImageTrack = styled.View`
-    width:70;
-    height:70;
-
-    
-`
+  width: 70;
+  height: 70;
+`;
 export const TextDefault = styled.Text`
   color: ${colors.complement.secondary};
 `;

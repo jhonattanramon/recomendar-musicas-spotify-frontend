@@ -7,31 +7,28 @@ import Cadastro_page from "./src/pages/Cadastro";
 import Bem_vindo from "./src/pages/Bem-vindo";
 import Home from "./src/pages/Home";
 import ProfilePage from "./src/pages/Profile";
-import pageDeTestes from "./src/pages/pageDeTestes";
 import PlaylistPage from "./src/pages/Playlist";
 import Track from "./src/pages/Track";
 
 //
-import { MyTheme } from "./src/styles/theme";
 import AutenticacaoToken from "./src/pages/autenticacaoToken";
 import CriarPlaylist from "./src/pages/CriarPlaylist";
-import Biblioteca from "./src/pages/Bibliteca";
+import Biblioteca from "./src/pages/Biblioteca";
 import AddMusicas from "./src/pages/AddMusicas";
 import {  StatusBar } from "react-native";
 import { colors } from "./src/styles/colors";
 import Settings from "./src/pages/settings";
-import ButtonIcon from "./src/components/ButtonIconComponent";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
 
 
-  return (
+return (
     <>
       <StatusBar networkActivityIndicatorVisible={true} barStyle={"dark-content"} backgroundColor={colors.primary} />
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="home"
+          initialRouteName="profile"
           screenOptions={{
             headerShown: false
           }}

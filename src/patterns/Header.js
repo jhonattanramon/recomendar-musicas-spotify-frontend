@@ -1,5 +1,4 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
-import { Section } from "../styles/styled-components";
 import ButtonIcon from "../components/ButtonIconComponent";
 import { colors } from "../styles/colors";
 import { Dimencoes } from "../styles/dimencoes";
@@ -7,7 +6,7 @@ import { Dimencoes } from "../styles/dimencoes";
 const Header = ({ navigation, styleText = styles.text, title }) => {
   console.log(navigation);
   return (
-    <Section style={styles.section}>
+    <View style={styles.section}>
       <View style={{ alignItems: "center", flexDirection: "row" }}>
         <ButtonIcon
           onPress={() => navigation.goBack()}
@@ -16,7 +15,7 @@ const Header = ({ navigation, styleText = styles.text, title }) => {
         />
         <Text style={styleText}>{title}</Text>
       </View>
-    </Section>
+    </View>
   );
 };
 

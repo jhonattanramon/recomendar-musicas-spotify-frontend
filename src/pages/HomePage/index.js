@@ -1,9 +1,9 @@
-import { Container, ScrollContainer } from "../../styles/styled-components";
+import * as Styled from "../../styles/styled-components";
 import { useEffect, useState } from "react";
 import { Requisicoes, accessToken } from "../../services/requisições/req";
 import { View } from "react-native";
 import CampoDeDados from "../../patterns/CampoDeDados";
-import PesquisaComponent from "../../components/SearchComponent";
+import SearchComponent from "../../components/SearchComponent";
 import ButtonIcon from "../../components/ButtonIconComponent";
 import { colors } from "../../styles/colors";
 
@@ -31,10 +31,10 @@ const HomePage = ({ navigation }) => {
     })();
   }, []);
   return (
-    <Container style={{}}>
-      <ScrollContainer>
+    <Styled.Container style={{}}>
+      <Styled.ScrollContainer>
         <View>
-          <PesquisaComponent />
+          <SearchComponent />
         </View>
 
         <View style={{}}>
@@ -68,8 +68,8 @@ const HomePage = ({ navigation }) => {
             navigation={navigation}
           />
         </View>
-      </ScrollContainer>
-    </Container>
+      </Styled.ScrollContainer>
+    </Styled.Container>
   );
 };
 

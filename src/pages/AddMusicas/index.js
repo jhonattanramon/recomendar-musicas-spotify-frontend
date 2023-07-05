@@ -1,9 +1,5 @@
 import { View, Text, StyleSheet, FlatList, Modal } from "react-native";
-import {
-  Container,
-  TitleText,
-  Section,
-} from "../../styles/styled-components";
+import * as Styled from "../../styles/styled-components";
 import Input_Component from "../../components/InputComponent";
 import { colors } from "../../styles/colors";
 import { useEffect, useState } from "react";
@@ -47,9 +43,9 @@ const AddMusicas = ({ navigation }) => {
   }
 
   return (
-    <Container>
+    <Styled.Container>
     
-      <Section style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
         <Header navigation={navigation} title={"Adicione suas musicas"} />
         <View
           style={{
@@ -66,7 +62,7 @@ const AddMusicas = ({ navigation }) => {
           >
             Nome da Playlist
           </Text>
-          <TitleText>{dataPlaylistCriada?.name}</TitleText>
+          <Styled.TitleText>{dataPlaylistCriada?.name}</Styled.TitleText>
         </View>
         <View style={{ padding: 10 }}>
           <Input_Component
@@ -150,8 +146,8 @@ const AddMusicas = ({ navigation }) => {
             margin: 15,
           }}
         ></View>
-      </Section>
-    </Container>
+      </View>
+    </Styled.Container>
   );
 };
 

@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Linking } from "react-native";
 import { Requisicoes } from "../../services/requisições/req";
-import {
-  Container,
-  Section,
-  SubText,
-  TitleText,
-  TextDefault,
-} from "../../styles/styled-components";
+import * as Styled from "../../styles/styled-components";
 import ImagemComponent from "../../components/ImagemComponent";
 import TempoDeReproducao from "../../components/PlaybackTimeComponent";
 import Loading from "../../components/LoadingComponent";
@@ -33,20 +27,20 @@ const TrackPage = ({ route, navigation }) => {
 
   if (dataTrack.length !== 0) {
     return (
-      <Container>
-        <ScreenContainer>
+      <Styled.Container>
+        <Styled.ScrollContainer>
           <View style={styles.container}>
-            <Section style={styles.sectionImg}>
+            <View style={styles.sectionImg}>
               <View style={styles.viewImage}>
                 <ImagemComponent url={dataTrack.album.images[0].url} />
               </View>
-            </Section>
+            </View>
 
-            <Section style={styles.sectionTitle}>
+            <View style={styles.sectionTitle}>
               <View>
                 <TitleText> {dataTrack.name} </TitleText>
               </View>
-            </Section>
+            </View>
 
             <View
               style={{
@@ -64,7 +58,7 @@ const TrackPage = ({ route, navigation }) => {
               </View>
             </View>
 
-            <Section
+            <View
               style={{
                 justifyContent: "space-between",
                 alignItems:"center",
@@ -73,7 +67,7 @@ const TrackPage = ({ route, navigation }) => {
             >
               <View style={{}}>
                 <SubText>Artistas:</SubText>
-                <Section
+                <View
                   style={{
                     flexDirection: "row",
                     width: 400,
@@ -83,7 +77,7 @@ const TrackPage = ({ route, navigation }) => {
                   {dataTrack.artists.map(({ id, name, index }) => (
                     <TextDefault key={id}>{name},</TextDefault>
                   ))}
-                </Section>
+                </View>
               </View>
 
               <View
@@ -103,7 +97,7 @@ const TrackPage = ({ route, navigation }) => {
                 />
                 <TempoDeReproducao tempoMs={dataTrack.duration_ms} />
               </View>
-            </Section>
+            </View>
             <View>
               <View style={{ flexDirection: "row" }}>
                 <TextDefault>{dataTrack.album.album_type}</TextDefault>
@@ -114,8 +108,8 @@ const TrackPage = ({ route, navigation }) => {
               </View>
             </View>
           </View>
-        </ScreenContainer>
-      </Container>
+        </Styled.ScrollContainer>
+      </Styled.Container>
     );
   } else {
     return <Loading />;

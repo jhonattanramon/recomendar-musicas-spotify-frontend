@@ -3,12 +3,11 @@ import { TextInput } from "react-native-paper";
 import { View, Text, SafeAreaView } from "react-native";
 import { colors } from "../styles/colors";
 import ButtonIcon from "./ButtonIconComponent";
-import { Section } from "../styles/styled-components";
 import { FlatList } from "react-native";
 import Track from "./TrackComponent";
 import { Requisicoes } from "../services/requisições/req";
 
-const PesquisaComponent = () => {
+const SearchComponent = () => {
   const [textoPesquisa, setTextoPesquisa] = useState();
   const [tracks, setTraks] = useState(null);
 
@@ -45,7 +44,7 @@ const PesquisaComponent = () => {
 
   return (
     <View>
-      <Section
+      <View
         style={{
           flexDirection: "row",
           padding: 10,
@@ -76,12 +75,12 @@ const PesquisaComponent = () => {
             buscarTrack();
           }}
         />
-      </Section>
+      </View>
 
-      <Section>
+      <View>
         <ResultTrack />
-      </Section>
+      </View>
     </View>
   );
 };
-export default PesquisaComponent;
+export default SearchComponent;

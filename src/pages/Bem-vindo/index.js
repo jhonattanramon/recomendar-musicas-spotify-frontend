@@ -1,15 +1,7 @@
 import { Pressable, View, Text, Button, Alert } from "react-native";
 import Button_Component from "../../components/ButtonComponent";
 import Input_Component from "../../components/InputComponent";
-import {
-  Container,
-  SectionCenter,
-  Title,
-  Separador,
-  NewText,
-  TitleText,
-  SeparadorVertical,
-} from "../../styles/styled-components";
+import * as Styled from "../../styles/styled-components";
 import { colors } from "../../styles/colors";
 import { Requisicoes } from "../../services/requisições/req";
 import { useState } from "react";
@@ -33,12 +25,12 @@ const Bem_vindo = ({ navigation }) => {
   };
 
   return (
-    <Container>
-      <SectionCenter>
+    <Styled.Container>
+      <Styled.SectionCenter>
         <View>
           <View>
-            <NewText>Olá,</NewText>
-            <TitleText>Bem-vindo</TitleText>
+            <Styled.NewText>Olá,</Styled.NewText>
+            <Styled.TitleText>Bem-vindo</Styled.TitleText>
           </View>
 
           <View>
@@ -70,8 +62,8 @@ const Bem_vindo = ({ navigation }) => {
             </Text>
           </View>
         </View>
-      </SectionCenter>
-    </Container>
+      </Styled.SectionCenter>
+    </Styled.Container>
   );
 };
 

@@ -2,14 +2,7 @@ import { View, StyleSheet } from "react-native";
 import Button_Component from "../../components/ButtonComponent";
 import Input_Component from "../../components/InputComponent";
 import TextButton from "../../components/TextButtonComponent";
-import {
-  Container,
-  SectionCenter,
-  NewText,
-  TitleText,
-  SeparadorVertical,
-  Section,
-} from "../../styles/styled-components";
+import * as Styled from "../../styles/styled-components";
 import { useEffect, useState } from "react";
 import { Requisicoes } from "../../services/requisições/req";
 import { colors } from "../../styles/colors";
@@ -87,12 +80,12 @@ const Login_Page = ({ navigation, route, layout }) => {
   };
 
   return (
-    <Container>
+    <Styled.Container>
       <PopUpError stateMenssage={visibiliteError} menssage={menssageError} />
-      <SectionCenter>
+      <Styled.SectionCenter>
         <View>
-          <NewText>Seu login</NewText>
-          <TitleText>Login</TitleText>
+          <Styled.NewText>Seu login</Styled.NewText>
+          <Styled.TitleText>Login</Styled.TitleText>
         </View>
 
         <View>
@@ -121,9 +114,9 @@ const Login_Page = ({ navigation, route, layout }) => {
           />
         </View>
 
-        <SeparadorVertical />
+        <Styled.SeparadorVertical />
 
-        <Section style={{ gap: 12}}>
+        <View style={{ gap: 12}}>
           <View>
             <Button_Component
               onPress={() => {
@@ -150,7 +143,7 @@ const Login_Page = ({ navigation, route, layout }) => {
               onPress={ () => authSpotifyWeb()}
             />
           </View>
-        </Section>
+        </View>
 
         <View
           style={{
@@ -166,8 +159,8 @@ const Login_Page = ({ navigation, route, layout }) => {
 
           <TextButton title="Esqueceu a Senha ?" />
         </View>
-      </SectionCenter>
-    </Container>
+      </Styled.SectionCenter>
+    </Styled.Container>
   );
 };
 
