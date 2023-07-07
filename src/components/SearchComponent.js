@@ -10,9 +10,8 @@ import { Requisicoes } from "../services/requisições/req";
 const SearchComponent = () => {
   const [textoPesquisa, setTextoPesquisa] = useState();
   const [tracks, setTraks] = useState(null);
-
   const req = new Requisicoes();
-
+  
   const buscarTrack = async () => {
     const { data } = await req.pesquisa(textoPesquisa);
     setTraks(data);

@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomePage from "../HomePage";
 import CriarPlaylist from "../CriarPlaylist";
 import ProfileComponent from "../Profile";
+import Library from "../Library"
 
 
 import { Ionicons } from "@expo/vector-icons";
@@ -14,7 +15,10 @@ const Home = ({ navigation }) => {
   return (
     <Tab.Navigator
     sceneContainerStyle={styles.tabBar}
-      screenOptions={{
+    backBehavior={
+      "initialRoute"
+    }
+    screenOptions={{
         tabBarStyle: styles.tabBar,
         headerShown: false,
         
@@ -36,12 +40,25 @@ const Home = ({ navigation }) => {
         options={{
           tabBarLabel: "",
           tabBarIcon: () => <Ionicons color={colors.complement.secondary}
-          name="create"
-          size={26} />,
+          name="add"
+          size={38} />,
         }}
         name="Criar Playlist"
         component={CriarPlaylist}
       />
+      <Tab.Screen
+        options={{
+          tabBarLabel:"",
+          tabBarIcon: ()=> <Ionicons 
+          color={colors.complement.secondary}
+          name={"albums"}
+          size={26}
+          />
+
+         }} 
+        component={Library}
+        name="library"
+        />
       <Tab.Screen
         options={{
           tabBarLabel: "",

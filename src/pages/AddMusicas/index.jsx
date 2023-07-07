@@ -10,7 +10,7 @@ import Button_Component from "../../components/ButtonComponent/ButtonRoot";
 import ButtonIcon from "../../components/ButtonIconComponent";
 import { Button } from "../../components/ButtonComponent";
 
-const AddMusicas = ({ navigation }) => {
+export default function AddMusicas  ({ navigation })  {
   const req = new Requisicoes();
 
   const [textoPesquisa, setTextoPesquisa] = useState("");
@@ -157,4 +157,3 @@ const styles = StyleSheet.create({
     color: colors.complement.secondary,
   },
 });
-export default AddMusicas;

@@ -8,12 +8,11 @@ import { Dimencoes } from "../../styles/dimencoes";
 import ButtonBasic from "../../components/ButtonBasicComponent";
 import SuccessCreatePlaylist from "../../patterns/successCrestePlaylist";
 
-const CriarPlaylist = ({ navigation }) => {
+export default function CriarPlaylist  ({ navigation })  {
   const [name, setNome] = useState("");
-  const [description, setDescricao] = useState("");
+  const [description, setDescricao] = useState("default");
   const [publicList, setPublica] = useState(true);
-  const [collaborative, setColaborativa] = useState(true);
-  const [image, setImage] = useState("https://i.pinimg.com/564x/08/54/fd/0854fde5bae64e078a68d37b9afec716.jpg");
+  const [collaborative, setColaborativa] = useState(false);
 
   const [errorName, setErrorName] = useState(false);
   const [successCreatePlaylist, setSuccessCreatePlaylist] = useState(false);
@@ -23,16 +22,15 @@ const CriarPlaylist = ({ navigation }) => {
     description: description,
     publicList: publicList,
     collaborative: collaborative,
-    images: image,
   };
 
   const req = new Requisicoes();
 
   const criarPlaylist = async (dataPlaylist) => {
-    const { data: playlistSPF } = await req.criarPlaylistSPF(dataPlaylist);
-    const { data: playlistAPP } = await req.createPlaylistAPP(dataPlaylist);
+    const { data: playlist} = await req.createPlaylist(dataPlaylist);
+    console.log(playlist);
 
-    if (playlistSPF.state || playlistAPP.state) {
+    if (playlist.state) {
       setSuccessCreatePlaylist(true);
       setTimeout(() => {
         setSuccessCreatePlaylist(false);
@@ -161,4 +159,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-export default CriarPlaylist;
+

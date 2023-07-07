@@ -8,7 +8,7 @@ import { Button } from "../../components/ButtonComponent/index";
 import { colors } from "../../styles/colors";
 import { Icon } from "react-native-elements";
 
-const Login_Page = ({ navigation, route, layout }) => {
+export default function LoginPage  ({ navigation, route, layout })  {
   const [loading, setLooading] = useState(false);
   const [visibiliteError, setVisibiliteError] = useState(false);
   const [menssageError, setMenssageError] = useState("");
@@ -74,4 +74,4 @@ const Login_Page = ({ navigation, route, layout }) => {
   );
 };
 
-export default Login_Page;
+

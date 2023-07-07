@@ -21,7 +21,7 @@ import Header from "../../patterns/Header";
 import { Dimencoes } from "../../styles/dimencoes";
 import { Button } from "../../components/ButtonComponent";
 
-const Playlist = ({ route }) => {
+export default function Playlist  ({ route })  {
   const [tracks, setTracks] = useState([]);
   const [tracksPlalistUser, setTracksPlalistUser] = useState([]);
   const [data, setData] = useState(null);
@@ -119,5 +119,3 @@ const styles = StyleSheet.create({
     padding: 7,
   },
 });
-
-export default Playlist;

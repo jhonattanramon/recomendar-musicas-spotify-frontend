@@ -18,9 +18,8 @@ const Playlists = ({ playlists, navigation }) => {
           });
         }}
         style={{
-          height: 270,
+          minHeight: 220,
           width: 200,
-          margin: 10,
           padding: 13,
           borderRadius: Dimencoes.borderRadius,
           backgroundColor: colors.blur.primary,
@@ -28,12 +27,13 @@ const Playlists = ({ playlists, navigation }) => {
       >
         <View
           style={{
-            flex: 1,
+            marginBottom: 5,
+            height: 170,
           }}
         >
           <ImagemComponent url={item?.images[0]?.url} />
         </View>
-        <View>
+        <View style={{ width: 140}}>
           <Styled.TextDefault
             style={{
               fontWeight: "bold",
