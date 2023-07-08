@@ -6,10 +6,11 @@ import { useEffect, useState } from "react";
 import { Requisicoes } from "../../services/requisições/req";
 import Track from "../../components/TrackComponent";
 import Header from "../../patterns/Header";
-import Button_Component from "../../components/ButtonComponent";
+import Button_Component from "../../components/ButtonComponent/ButtonRoot";
 import ButtonIcon from "../../components/ButtonIconComponent";
+import { Button } from "../../components/ButtonComponent";
 
-const AddMusicas = ({ navigation }) => {
+export default function AddMusicas  ({ navigation })  {
   const req = new Requisicoes();
 
   const [textoPesquisa, setTextoPesquisa] = useState("");
@@ -20,10 +21,8 @@ const AddMusicas = ({ navigation }) => {
 
   useEffect(() => {
     (async () => {
-      console.log("requisicao");
       if (textoPesquisa !== "") {
         const { data } = await req.pesquisaTrack(textoPesquisa);
-        console.log(data);
         setResultadoPesquisa(data.tracks.items);
       }
     })();
@@ -111,11 +110,10 @@ const AddMusicas = ({ navigation }) => {
                 </>
               )}
             />
-            <Button_Component 
-            funcOnPress={ () => {
-              navigation.navigate("criarPlaylist")
-            }}
-            title={"Finalizar"}/> 
+
+            <Button.Root funcOnPress={ () => { navigation.navigate("criarPlaylist")}}> 
+                      <Button.Content text={"Criar Playlist"} />
+            </Button.Root>
             </>
           ) : (
             <View
@@ -159,4 +157,3 @@ const styles = StyleSheet.create({
     color: colors.complement.secondary,
   },
 });
-export default AddMusicas;

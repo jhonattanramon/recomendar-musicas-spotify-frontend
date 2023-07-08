@@ -4,6 +4,7 @@ import { colors } from "./colors";
 export const Container = styled.View`
   flex: 1;
   background: ${colors.complement.primary};
+  padding: 10px;
 
   
 `;
@@ -26,30 +27,7 @@ export const SectionCenter = styled.View`
   justify-content: center;
   margin: 0 auto;
 `;
-export const HeaderStyle = styled.View`
-  background: #222;
-`;
 
-export const Header = styled.View`
-  position: absolute;
-  top: 5%;
-`;
-
-export const Avatar = styled.View`
-  background: ${colors.secondary};
-
-  width: 120px;
-  height: 120px;
-
-  text: {
-    font-weight: bold;
-    font-size: 10;
-    color: ${colors.complement.secondary};
-    position: relative;
-    top: 50%;
-    left: 50%;
-  }
-`;
 
 export const Square = styled.View`
   width: 100%;

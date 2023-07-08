@@ -7,7 +7,6 @@ import { Dimencoes } from "../styles/dimencoes";
 
 const SuccessCreatePlaylist = ({setVisibiliteProp}) => {
     const [ visibilite, setVisibilite ] = useState(false)
-    console.log(visibilite);
     useEffect( () => {
       setVisibilite(setVisibiliteProp)
     },[setVisibiliteProp])

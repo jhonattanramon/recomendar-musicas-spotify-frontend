@@ -7,13 +7,13 @@ import TempoDeReproducao from "../../components/PlaybackTimeComponent";
 import Loading from "../../components/LoadingComponent";
 import { colors } from "../../styles/colors";
 import ButtonIcon from "../../components/ButtonIconComponent";
-import Button_Component from "../../components/ButtonComponent";
+import Button_Component from "../../components/ButtonComponent/ButtonRoot";
 import { ScreenContainer } from "react-native-screens";
+import { Button } from "../../components/ButtonComponent";
 
 const TrackPage = ({ route, navigation }) => {
   const [dataTrack, setDataTrack] = useState([]);
-  console.log(dataTrack);
-  console.log(route);
+
   const requisicoes = new Requisicoes();
 
   useEffect(() => {
@@ -51,17 +51,18 @@ const TrackPage = ({ route, navigation }) => {
               }}
             >
               <View style={styles.viewButtonOuvir}>
-                <Button_Component
+                <Button.Root
                   onPress={() => Linking.openURL(route.params.external_url)}
-                  title="OUVIR"
-                />
+                >
+                  <Button.Content text={"OUVIR"} />
+                </Button.Root>
               </View>
             </View>
 
             <View
               style={{
                 justifyContent: "space-between",
-                alignItems:"center",
+                alignItems: "center",
                 flexDirection: "row",
               }}
             >
@@ -88,9 +89,9 @@ const TrackPage = ({ route, navigation }) => {
                 }}
               >
                 <ButtonIcon
-                styleBackground={{
-                  margin: 0
-                }}
+                  styleBackground={{
+                    margin: 0,
+                  }}
                   icon="clock-time-eight"
                   size={24}
                   color={colors.primary}

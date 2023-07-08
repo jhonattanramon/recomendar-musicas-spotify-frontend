@@ -11,7 +11,6 @@ import ListCard from "../components/ListCardComponent";
 import Loading from "../components/LoadingComponent";
 
 const CampoDeDados = ({ array, navigation, title }) => {
-  console.log(array);
   if (array.length > 0) {
     return (
       <View style={styles.container}>

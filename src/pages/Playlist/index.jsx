@@ -16,11 +16,12 @@ import Loading from "../../components/LoadingComponent";
 import Track from "../../components/TrackComponent";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Requisicoes } from "../../services/requisições/req";
-import Button_Component from "../../components/ButtonComponent";
+import Button_Component from "../../components/ButtonComponent/ButtonRoot";
 import Header from "../../patterns/Header";
 import { Dimencoes } from "../../styles/dimencoes";
+import { Button } from "../../components/ButtonComponent";
 
-const Playlist = ({ route }) => {
+export default function Playlist  ({ route })  {
   const [tracks, setTracks] = useState([]);
   const [tracksPlalistUser, setTracksPlalistUser] = useState([]);
   const [data, setData] = useState(null);
@@ -29,7 +30,6 @@ const Playlist = ({ route }) => {
   useEffect(() => {
     (async () => {
       const { data } = await requisicoes.tracksPlaylist(route.params.href);
-      console.log(data);
       setData(data);
       setTracksPlalistUser(data.items);
       setTracks(data?.tracks?.items);
@@ -82,12 +82,10 @@ const Playlist = ({ route }) => {
             <TitleText>{route.params.title}</TitleText>
           </View>
           <View style={{ width: Dimencoes.widthButton }}>
-            <Button_Component
-              onPress={() => {
-                Linking.openURL(route.params.externalUrl);
-              }}
-              title="Ouvir"
-            />
+            <Button.Root onPress={() => { Linking.openURL(route.params.externalUrl)}}
+            >
+              <Button.Content text={"OUVIR"}/>
+              </Button.Root>
           </View>
         </View>
 
@@ -121,5 +119,3 @@ const styles = StyleSheet.create({
     padding: 7,
   },
 });
-
-export default Playlist;

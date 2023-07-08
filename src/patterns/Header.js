@@ -2,16 +2,19 @@ import { View, StyleSheet, Text, Pressable } from "react-native";
 import ButtonIcon from "../components/ButtonIconComponent";
 import { colors } from "../styles/colors";
 import { Dimencoes } from "../styles/dimencoes";
+import { Button } from "../components/ButtonComponent";
+import { useNavigation } from "@react-navigation/native";
 
-const Header = ({ navigation, styleText = styles.text, title }) => {
-  console.log(navigation);
+const Header = ({  styleText = styles.text, title }) => {
+  const navigation = useNavigation()
   return (
     <View style={styles.section}>
       <View style={{ alignItems: "center", flexDirection: "row" }}>
-        <ButtonIcon
+        <Button.Icon 
           onPress={() => navigation.goBack()}
-          icon="arrow-left"
+          icon={"arrow-back-outline"}
           color={colors.complement.secondary}
+          size={32}
         />
         <Text style={styleText}>{title}</Text>
       </View>
