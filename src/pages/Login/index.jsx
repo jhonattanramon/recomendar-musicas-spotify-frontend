@@ -7,6 +7,7 @@ import PopUpError from "../../components/PopUpErrorComponent";
 import { Button } from "../../components/ButtonComponent/index";
 import { colors } from "../../styles/colors";
 import { Icon } from "react-native-elements";
+import axios from "axios";
 
 export default function LoginPage  ({ navigation, route, layout })  {
   const [loading, setLooading] = useState(false);
@@ -14,7 +15,7 @@ export default function LoginPage  ({ navigation, route, layout })  {
   const [menssageError, setMenssageError] = useState("");
   const [access, setAccess] = useState(null);
 
-  const urlBaseDev = "http://localhost:3001";
+  const urlBaseDev = "http://localhost:3004";
   const urlBaseProduct = "https://appnative-backend.onrender.com";
   const urlBaseAuth = "https://appnative-backend-auth.onrender.com";
   const urlBaseAuthDev = "http://localhost:8887";
@@ -25,8 +26,8 @@ export default function LoginPage  ({ navigation, route, layout })  {
     }
   }, [access]);
 
-  function login() {
-    navigation.navigate("auth");
+  async function login() {
+    navigation.navigate("auth")
   }
 
   return (

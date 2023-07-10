@@ -18,9 +18,9 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.app_native"
     },
-    "web": {
-    }
+    "web": {}
   }
 }

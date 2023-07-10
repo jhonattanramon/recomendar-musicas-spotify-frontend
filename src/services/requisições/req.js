@@ -7,12 +7,9 @@ export class Requisicoes {
   constructor() {}
 
 
-  async login({ email, password }) {
+  async login() {
     const res = await axios
-      .post(`${urlBaseProduct}/api/loginuser`, {
-        email: email,
-        password: password,
-      })
+      .get(`${urlBaseDev}/api/login`)
       .then((res) => res)
       .catch((err) => err);
     return res;

@@ -12,6 +12,13 @@ export default function HomePage ({ navigation })  {
   const [artistas, setArtistas] = useState([]);
 
   useEffect(() => {
+    navigation.addListener("beforeRemove", (e) => {
+      if(!navigation.isFocused()){
+        return 
+      }
+      e.preventDefault()
+    });
+    
     (async () => {
       const requisicoes = new Requisicoes();
       const { data: dataPlaylists } = await requisicoes.playlistEmDestaque();
@@ -20,7 +27,7 @@ export default function HomePage ({ navigation })  {
         setPlaylists(dataPlaylists.playlists.items);
       }
     })();
-  }, []);
+  }, [, navigation]);
   return (
     <Styled.Container style={{}}>
       <Styled.ScrollContainer>
