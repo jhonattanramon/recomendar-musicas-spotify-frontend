@@ -6,6 +6,6 @@ export const FieldPlaylist = styled.View`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 7
+    gap: 7px
     
 `

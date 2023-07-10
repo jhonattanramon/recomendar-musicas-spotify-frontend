@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../styles/colors";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomePage from "../HomePage";
+import HomePage from "../HomeScreen";
 import CriarPlaylist from "../CriarPlaylist";
 import ProfileComponent from "../Profile";
 import Library from "../Library"

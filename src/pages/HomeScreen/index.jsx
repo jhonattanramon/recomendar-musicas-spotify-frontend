@@ -18,7 +18,6 @@ export default function HomePage ({ navigation })  {
       }
       e.preventDefault()
     });
-    
     (async () => {
       const requisicoes = new Requisicoes();
       const { data: dataPlaylists } = await requisicoes.playlistEmDestaque();
