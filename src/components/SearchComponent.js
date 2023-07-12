@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { TextInput } from "react-native-paper";
+import InputComponent from "./InputComponent/InputComponent";
 import { View, Text, SafeAreaView } from "react-native";
 import { colors } from "../styles/colors";
-import ButtonIcon from "./ButtonIconComponent";
 import { FlatList } from "react-native";
 import Track from "./TrackComponent";
 import { Requisicoes } from "../services/requisições/req";
+import { Button } from "./ButtonComponent";
 
 const SearchComponent = () => {
   const [textoPesquisa, setTextoPesquisa] = useState();
@@ -49,31 +49,23 @@ const SearchComponent = () => {
           padding: 10,
           alignItems: "center",
           justifyContent: "center",
+          gap: 10
         }}
       >
-        <TextInput
-          mode="outlined"
-          outlineColor={colors.complement.secondary}
-          activeOutlineColor={colors.complement.secondary}
-          textColor={colors.complement.primary}
-          placeholder="Buscar musica"
-          selectionColor={colors.primary}
+        <InputComponent
+        
+          placeholder="Buscar Playlist"
           style={{
             backgroundColor: colors.complement.secondary,
             flex: 1,
           }}
-          onChangeText={(text) => {
+          onChange={(text) => {
             setTextoPesquisa(text);
           }}
         />
-
-        <ButtonIcon
-          icon="magnify"
-          color={colors.complement.secondary}
-          onFunc={() => {
-            buscarTrack();
-          }}
-        />
+        <Button.Root onPress={buscarTrack}>
+          <Button.Icon  icon={"search-outline"} color={colors.complement.secondary} />
+        </Button.Root>
       </View>
 
       <View>

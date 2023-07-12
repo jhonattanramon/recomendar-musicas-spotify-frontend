@@ -9,7 +9,7 @@ export class Requisicoes {
 
   async login() {
     const res = await axios
-      .get(`${urlBaseDev}/api/login`)
+      .get(`${urlBaseProduct}/api/login`)
       .then((res) => res)
       .catch((err) => err);
     return res;
@@ -17,8 +17,9 @@ export class Requisicoes {
 
   async playlistEmDestaque() {
     const res = await axios
-      .get(`${urlBaseProduct}/api/playlistsemdestaque`)
-      .then((res) => res);
+      .get(`${urlBaseProduct}/api/destaque`)
+      .then((res) => res).catch((err) => err);
+      console.log(res);
       return res;
   }
 

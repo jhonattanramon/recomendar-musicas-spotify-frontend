@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { Requisicoes } from "../../services/requisições/req";
 import { colors } from "../../styles/colors";
 import { Dimencoes } from "../../styles/dimencoes";
-import ButtonIcon from "../../components/ButtonIconComponent";
 import * as Styled from "../../styles/styled-components";
 import { Button } from "../../components/ButtonComponent";
 import * as StyledComp from "./style";
 import { Avatar } from "../../components/AvatarComponent";
+import Header from "../../patterns/Header";
 
 export default function ProfileComponent  ({ navigation })  {
   const [inforUser, setInforUser] = useState({});
@@ -23,14 +23,14 @@ export default function ProfileComponent  ({ navigation })  {
   return (
     <Styled.Container>
       <Styled.ScrollContainer>
+        <Header stateIconBack={false} title={"Perfil"}/>
         <View style={{ 
               position: "absolute",
               right: "2%",
               top: "0.2%",
               zIndex: 1,
             }}>
-          <Button.Icon
-            
+          <Button.Icon   
             icon="settings-outline"
             size={35}
             color={colors.complement.secondary}
@@ -49,15 +49,13 @@ export default function ProfileComponent  ({ navigation })  {
           <Avatar.Root>
             <Avatar.Image />
           </Avatar.Root>
-
           <Styled.TitleText>{inforUser.display_name}</Styled.TitleText>
-          <Styled.SeparadorVertical />
         </View>
 
         <Styled.SeparadorVertical />
 
         <StyledComp.ContainerTitle>
-          <StyledComp.Title>Informações da conta</StyledComp.Title>
+          <StyledComp.Title>Informações da Conta</StyledComp.Title>
         </StyledComp.ContainerTitle>
 
         <StyledComp.ContainerContent>

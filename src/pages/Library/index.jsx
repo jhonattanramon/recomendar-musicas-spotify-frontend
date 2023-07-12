@@ -6,6 +6,7 @@ import Playlists from "../../components/PlaylistComponent";
 import { Button } from "../../components/ButtonComponent";
 import { View } from "react-native";
 import { colors } from "../../styles/colors";
+import Header from "../../patterns/Header";
 
 export default function Biblioteca({navigation}) {
   const [playlistsUser, setPlaylistsUser] = useState();
@@ -19,10 +20,7 @@ export default function Biblioteca({navigation}) {
   return (
     <Styled.Container>
       <Styled.ScrollContainer>
-        <View style={{gap:3, flexDirection:"row", alignItems:"center"}}>
-        <Button.Icon size={23} color={colors.complement.secondary} icon={"albums-outline"} />
-        <Styled.TitleText>Biblioteca</Styled.TitleText>
-        </View>
+        <Header stateIconBack={false} title={"Biblioteca"}/>
         <StyledComp.FieldPlaylist>
           <Playlists playlists={playlistsUser} navigation={navigation} />
         </StyledComp.FieldPlaylist>

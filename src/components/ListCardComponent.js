@@ -2,7 +2,6 @@ import { View, Image, Text, Pressable, StyleSheet } from "react-native";
 import * as Styled from "../styles/styled-components";
 import ImagemComponent from "./ImagemComponent";
 import { colors } from "../styles/colors";
-import { fontStyleds } from "../styles/fonts";
 
 const ListCard = ({ navigation, title, externalUrl, href, image }) => {
 

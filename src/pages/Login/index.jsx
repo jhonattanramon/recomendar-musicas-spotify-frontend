@@ -28,8 +28,12 @@ export default function LoginPage  ({ navigation, route, layout })  {
 
   async function login() {
     navigation.navigate("auth")
-  }
 
+  }
+  
+  async function loginWeb(){
+    window.location.href = "http://localhost:3004/api/login"
+  }  
   return (
     <Styled.Container>
       <PopUpError stateMenssage={visibiliteError} menssage={menssageError} />
@@ -66,7 +70,7 @@ export default function LoginPage  ({ navigation, route, layout })  {
         >
           <Icon size={24} color={colors.complement.secondary} name="info" />
           <Styled.TextDefault>
-            Nosso Aplicativo é vincunlado com o spotify,{" "}
+            Nosso Aplicativo é vinculado com o spotify,{" "}
             <Text style={{ color: "cyan" }}>Sobre...</Text>
           </Styled.TextDefault>
         </View>

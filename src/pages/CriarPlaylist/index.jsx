@@ -1,12 +1,13 @@
 import { StyleSheet, TextInput, View, Text, Pressable } from "react-native";
 import { colors } from "../../styles/colors";
 import * as Styled from "../../styles/styled-components";
-import Input_Component from "../../components/InputComponent";
+import Input_Component from "../../components/InputComponent/InputComponent";
 import { Requisicoes } from "../../services/requisições/req";
 import { useEffect, useState } from "react";
 import { Dimencoes } from "../../styles/dimencoes";
 import ButtonBasic from "../../components/ButtonBasicComponent";
 import SuccessCreatePlaylist from "../../patterns/successCrestePlaylist";
+import Header from "../../patterns/Header";
 
 export default function CriarPlaylist  ({ navigation })  {
   const [name, setNome] = useState("");
@@ -43,6 +44,7 @@ export default function CriarPlaylist  ({ navigation })  {
   return (
     <Styled.Container>
       <Styled.ScrollContainer>
+        <Header stateIconBack={false} title={"Criar Playlist"}/>
         <View
           style={{
             flex: 1,

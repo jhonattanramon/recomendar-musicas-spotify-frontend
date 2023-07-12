@@ -41,7 +41,6 @@ export const ViewIndicatorPlaylist = styled.View`
 
 
 export const ContainerContent = styled.View`
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   flex:1;
@@ -63,7 +62,7 @@ export const Title = styled.Text`
 export const ContainerTitle = styled.View`
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-bottom: 10px;
 `
 export const TextLink = styled.Text`
  color: ${colors.complement.secondary};

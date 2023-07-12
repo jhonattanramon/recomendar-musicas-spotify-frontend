@@ -28,7 +28,7 @@ export default function AutenticacaoToken({navigation}) {
             code: code
           }
         }).then( res => res.data )
-      
+        console.log(data);
         if(data.state){
             navigation.navigate("home")
         }

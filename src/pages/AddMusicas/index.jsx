@@ -1,13 +1,11 @@
 import { View, Text, StyleSheet, FlatList, Modal } from "react-native";
 import * as Styled from "../../styles/styled-components";
-import Input_Component from "../../components/InputComponent";
+import Input_Component from "../../components/InputComponent/InputComponent";
 import { colors } from "../../styles/colors";
 import { useEffect, useState } from "react";
 import { Requisicoes } from "../../services/requisições/req";
 import Track from "../../components/TrackComponent";
 import Header from "../../patterns/Header";
-import Button_Component from "../../components/ButtonComponent/ButtonRoot";
-import ButtonIcon from "../../components/ButtonIconComponent";
 import { Button } from "../../components/ButtonComponent";
 
 export default function AddMusicas  ({ navigation })  {
@@ -88,24 +86,9 @@ export default function AddMusicas  ({ navigation })  {
                       imagem={item.album.images[1].url}
                       album={item.album.name}
                     />
-                    <ButtonIcon
-                      theme={{
-                        colors: {
-                          onSurfaceDisabled: colors.primary,
-                          onSurfaceVariant: colors.primary,
-                          primary: colors.primary,
-                          onSurfaceVariant: colors.primary,
-                        },
-                      }}
-                      color={colors.primary}
-                      icon={
-                        idsTrackPlaylist.includes(item.id) ? "check" : "plus"
-                      }
-                      disabled={idsTrackPlaylist.includes(item.id)}
-                      onFunc={() => {
-                        adicionarMusicas(item);
-                      }}
-                    />
+                    <Button.Root> 
+                      <Button.Icon icon={"plus"} color={colors.primary}  />
+                    </Button.Root>
                   </View>
                 </>
               )}

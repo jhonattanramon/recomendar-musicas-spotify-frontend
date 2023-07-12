@@ -3,10 +3,7 @@ import * as Styled from "../styles/styled-components";
 import ImagemComponent from "./ImagemComponent";
 import { colors } from "../styles/colors";
 import { useEffect, useState } from "react";
-import ButtonIcon from "./ButtonIconComponent";
-
 const Track = ({
-  item,
   id,
   imagem,
   titulo,

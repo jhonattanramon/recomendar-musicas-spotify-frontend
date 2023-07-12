@@ -1,9 +1,9 @@
 import { View,Text, Modal } from "react-native"
-import ButtonIcon from "../components/ButtonIconComponent";
 import { Container } from "../styles/styled-components";
 import { useEffect, useState } from "react";
 import { colors } from "../styles/colors";
 import { Dimencoes } from "../styles/dimencoes";
+import { Button } from "../components/ButtonComponent";
 
 const SuccessCreatePlaylist = ({setVisibiliteProp}) => {
     const [ visibilite, setVisibilite ] = useState(false)
@@ -33,7 +33,7 @@ const SuccessCreatePlaylist = ({setVisibiliteProp}) => {
             alignItems: "center",
           }}
         >
-          <ButtonIcon color={colors.primary} size={100} icon={"check-bold"} />
+          <Button.Icon  color={colors.primary} size={100} icon={"check-bold"} />
         </View>
         <View>
           <Text

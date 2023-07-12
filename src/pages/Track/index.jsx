@@ -6,9 +6,6 @@ import ImagemComponent from "../../components/ImagemComponent";
 import TempoDeReproducao from "../../components/PlaybackTimeComponent";
 import Loading from "../../components/LoadingComponent";
 import { colors } from "../../styles/colors";
-import ButtonIcon from "../../components/ButtonIconComponent";
-import Button_Component from "../../components/ButtonComponent/ButtonRoot";
-import { ScreenContainer } from "react-native-screens";
 import { Button } from "../../components/ButtonComponent";
 
 const TrackPage = ({ route, navigation }) => {
@@ -88,14 +85,7 @@ const TrackPage = ({ route, navigation }) => {
                   justifyContent: "center",
                 }}
               >
-                <ButtonIcon
-                  styleBackground={{
-                    margin: 0,
-                  }}
-                  icon="clock-time-eight"
-                  size={24}
-                  color={colors.primary}
-                />
+                <Button.Icon icon={"clock-time-eight"} size={24} color={colors.complement.primary} />
                 <TempoDeReproducao tempoMs={dataTrack.duration_ms} />
               </View>
             </View>

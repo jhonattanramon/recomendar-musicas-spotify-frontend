@@ -4,8 +4,8 @@ import { Requisicoes} from "../../services/requisições/req";
 import { View } from "react-native";
 import CampoDeDados from "../../patterns/CampoDeDados";
 import SearchComponent from "../../components/SearchComponent";
-import ButtonIcon from "../../components/ButtonIconComponent";
 import { colors } from "../../styles/colors";
+import Header from "../../patterns/Header";
 
 export default function HomePage ({ navigation })  {
   const [playlists, setPlaylists] = useState([]);
@@ -21,7 +21,6 @@ export default function HomePage ({ navigation })  {
     (async () => {
       const requisicoes = new Requisicoes();
       const { data: dataPlaylists } = await requisicoes.playlistEmDestaque();
-
       if (dataPlaylists) {
         setPlaylists(dataPlaylists.playlists.items);
       }
@@ -30,6 +29,7 @@ export default function HomePage ({ navigation })  {
   return (
     <Styled.Container style={{}}>
       <Styled.ScrollContainer>
+        <Header stateIconBack={false} title={"Home"}/>
         <View>
           <SearchComponent />
         </View>
