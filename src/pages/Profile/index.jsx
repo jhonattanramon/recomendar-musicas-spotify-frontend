@@ -11,8 +11,7 @@ import Header from "../../patterns/Header";
 
 export default function ProfileComponent  ({ navigation })  {
   const [inforUser, setInforUser] = useState({});
-  console.log("infor", inforUser);
-  const req = new Requisicoes();
+const req = new Requisicoes();
   useEffect(() => {
     (async () => {
       const { data: userinfor } = await req.informacoesUserSpotify();

@@ -5,6 +5,10 @@ import axios from "axios";
 
 export default function AutenticacaoToken({navigation}) {
 
+  const urlCallBackDev = "http://192.168.0.25:3004/api/callback"
+  const urlLoginDev = "http://192.168.0.25:3004/api/login"
+  const urlProduct = "https://appnative-backend.onrender.com/api/callback"
+
  function handleWebViewMenssage(event){
     console.log("redirect");
     const { navigationType, url } = event.nativeEvent
@@ -23,7 +27,7 @@ export default function AutenticacaoToken({navigation}) {
 
     (
       async () => {
-         const data = await axios.get("https://appnative-backend.onrender.com/api/callback", {
+         const data = await axios.get(urlCallBackDev, {
           headers:{
             code: code
           }
@@ -43,7 +47,7 @@ export default function AutenticacaoToken({navigation}) {
 
     return (
       <WebView
-        source={{ uri: "https://appnative-backend.onrender.com/api/login" }}
+        source={{ uri: urlLoginDev }}
         style={{ flex: 1 }}
         onLoadEnd={handleWebViewMenssage}
       

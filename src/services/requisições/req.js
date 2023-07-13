@@ -2,6 +2,7 @@ import axios from "axios";
 
 const urlBaseProduct = "https://appnative-backend.onrender.com";
 const urlBaseDev = "http://localhost:3004";
+const urlLanDev = "http://192.168.0.25:3004";
 
 export class Requisicoes {
   constructor() {}
@@ -9,7 +10,7 @@ export class Requisicoes {
 
   async login() {
     const res = await axios
-      .get(`${urlBaseProduct}/api/login`)
+      .get(`${urlLanDev}/api/login`)
       .then((res) => res)
       .catch((err) => err);
     return res;
@@ -17,7 +18,7 @@ export class Requisicoes {
 
   async playlistEmDestaque() {
     const res = await axios
-      .get(`${urlBaseProduct}/api/destaque`)
+      .get(`${urlLanDev}/api/destaque`)
       .then((res) => res).catch((err) => err);
       console.log(res);
       return res;
@@ -25,7 +26,7 @@ export class Requisicoes {
 
   async tracksPlaylist(urlTrack) {
     const res = await axios
-      .get(`${urlBaseProduct}/api/tracksplaylist`, {
+      .get(`${urlLanDev}/api/tracksplaylist`, {
         headers: {
           url: urlTrack,
         },
@@ -36,7 +37,7 @@ export class Requisicoes {
 
   async track(url) {
     const res = await axios
-      .get(`${urlBaseProduct}/api/track`, {
+      .get(`${urlLanDev}/api/track`, {
         headers: {
           hreftrack: url,
         },
@@ -45,21 +46,22 @@ export class Requisicoes {
 
     return res;
   }
-  async pesquisa({nameTrack }) {
+  async pesquisa(namePlaylist) {
     const res = await axios
-      .get(`${urlBaseProduct}/api/pesquisa`, {
+      .get(`${urlLanDev}/api/pesquisa`, {
         headers: {
-          nameTrack: nameTrack,
+          data: namePlaylist,
         },
       })
       .then((res) => res);
+      console.log(res);
 
     return res;
   }
 
   async pesquisaGenere({ genere, type }) {
     const res = await axios
-      .get(`${urlBaseProduct}/api/pesquisagenere`, {
+      .get(`${urlLanDev}/api/pesquisagenere`, {
         headers: {
           genere: genere,
           type: type,
@@ -71,7 +73,7 @@ export class Requisicoes {
 
   async pesquisaTrack(nameTrack) {
     const res = await axios
-      .get(`${urlBaseProduct}/api/pesquisatrack`, {
+      .get(`${urlLanDev}/api/pesquisatrack`, {
         headers: {
           nameTrack: nameTrack,
         },
@@ -82,21 +84,21 @@ export class Requisicoes {
 
   async informacoesUserSpotify() {
     const res = await axios
-      .get(`${urlBaseProduct}/api/inforsuser`)
+      .get(`${urlLanDev}/api/inforsuser`)
       .then((res) => res);
     return res;
   }
 
   async getGeneros() {
     const res = await axios
-      .get(`${urlBaseProduct}/api/obtergeneros`)
+      .get(`${urlLanDev}/api/obtergeneros`)
       .then((res) => res);
     return res;
   }
 
   async createPlaylist({name, publicList, description, collaborative}) {
     const res = await axios
-      .post(`${urlBaseProduct}/api/createplaylist`, {
+      .post(`${urlLanDev}/api/createplaylist`, {
         name: name,
         publicList: publicList,
         description: description,
@@ -110,13 +112,13 @@ export class Requisicoes {
 
   async adicionarMusicasPlaylist(prop) {
     const res = await axios
-      .post(`${urlBaseProduct}/api/adicionarmusicas`, {
+      .post(`${urlLanDev}/api/adicionarmusicas`, {
         data: prop,
       })
       .then((res) => res);
 
     const playlist = await axios
-      .get(`${urlBaseProduct}/api/playlist`, {
+      .get(`${urlLanDev}/api/playlist`, {
         headers: {
           data: prop.id,
         },
@@ -131,14 +133,14 @@ export class Requisicoes {
 
   async user() {
     const res = await axios
-      .get(`${urlBaseProduct}/api/user`)
+      .get(`${urlLanDev}/api/user`)
       .then((res) => res);
     return res
   }
 
   async playlistUser(){
     const res = await axios
-      .get(`${urlBaseProduct}/api/playlistuser`)
+      .get(`${urlLanDev}/api/playlistuser`)
       .then((res) => res);
     return res;
   }

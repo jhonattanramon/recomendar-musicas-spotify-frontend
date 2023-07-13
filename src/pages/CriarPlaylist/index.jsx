@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, View, Text, Pressable } from "react-native";
 import { colors } from "../../styles/colors";
 import * as Styled from "../../styles/styled-components";
-import Input_Component from "../../components/InputComponent/InputComponent";
+import InputComponent from "../../components/InputComponent/InputComponent";
 import { Requisicoes } from "../../services/requisições/req";
 import { useEffect, useState } from "react";
 import { Dimencoes } from "../../styles/dimencoes";
@@ -67,11 +67,11 @@ export default function CriarPlaylist  ({ navigation })  {
               paddingHorizontal: 10,
             }}
           >
-            <View style={{}}>
+            <View style={{gap: 3}}>
               <Styled.TextDefault>Nome da Playlist</Styled.TextDefault>
-              <Input_Component
+              <InputComponent
                 error={errorName}
-                placeholderName={"Nome Playlist"}
+                placeholder={"Nome Playlist"}
                 onChange={(text) => {
                   setErrorName(false);
                   setNome(text);
@@ -83,8 +83,8 @@ export default function CriarPlaylist  ({ navigation })  {
 
             <View>
               <Styled.TextDefault> Descrição</Styled.TextDefault>
-              <Input_Component
-                placeholderName={"Descrição"}
+              <InputComponent
+                placeholder={"Descrição"}
                 onChange={(text) => {
                   setDescricao(text);
                 }}
