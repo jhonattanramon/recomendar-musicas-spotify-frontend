@@ -36,10 +36,6 @@ export default function Playlist  ({ route })  {
     })();
   }, []);
 
-  const ouvirSpotify = (url) => {
-    
-  };
-
   const TracksArea = () => {
     if (tracks?.length > 0 || tracksPlalistUser?.length > 0) {
       return (
@@ -73,7 +69,7 @@ export default function Playlist  ({ route })  {
   return (
     <Container>
       <ScrollContainer>
-        <Header navigation={route.params.navigation} />
+        <Header/>
         <View style={styles.containerImagem}>
           <View style={styles.viewDeImagem}>
             <ImagemComponent url={route.params.image} />
@@ -82,7 +78,7 @@ export default function Playlist  ({ route })  {
             <TitleText>{route.params.title}</TitleText>
           </View>
           <View style={{ width: Dimencoes.widthButton }}>
-            <Button.Root onPress={() => { Linking.openURL(route.params.externalUrl)}}
+            <Button.Root onPress={() => { Linking.openURL(route.params.external_urls)}}
             >
               <Button.Content text={"OUVIR"}/>
               </Button.Root>

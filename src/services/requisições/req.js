@@ -5,9 +5,6 @@ const urlBaseDev = "http://localhost:3004";
 const urlLanDev = "http://192.168.0.25:3004";
 
 export class Requisicoes {
-  constructor() {}
-
-
   async login() {
     const res = await axios
       .get(`${urlLanDev}/api/login`)

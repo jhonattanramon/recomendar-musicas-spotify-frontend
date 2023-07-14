@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Requisicoes} from "../../services/requisições/req";
 import { View } from "react-native";
 import CampoDeDados from "../../patterns/CampoDeDados";
-import SearchComponent from "../../components/SearchComponent";
+import SearchComponent from "../../components/SearchComponent/SearchComponent";
 import { colors } from "../../styles/colors";
 import Header from "../../patterns/Header";
 

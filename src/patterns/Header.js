@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors.complement.secondary,
     fontSize: Dimencoes.fontSize,
-    fontWeight: 600
+    //fontWeight: 600
   },
   section: {
         paddingVertical: 10

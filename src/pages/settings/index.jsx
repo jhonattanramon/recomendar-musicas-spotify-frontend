@@ -1,14 +1,20 @@
 import { Container, TextDefault, TitleText } from "../../styles/styled-components";
-import { RadioButton } from "react-native-paper";
-import { View, StyleSheet, Text } from "react-native";
 import { useState } from "react";
 import { colors } from "../../styles/colors";
 import { Dimencoes } from "../../styles/dimencoes";
 import Header from "../../patterns/Header";
 import { CardSetting } from "../../components/CardSettingComponents";
+import { Requisicoes } from "../../services/requisições/req";
+import { RequestsUser } from "../../services/requisições/user";
 
 export default function Settings({navigation}){
   const [checked, setChecked] = useState();
+
+
+ async function longout(){
+      const { stateLogout }= await RequestsUser.loungout()
+      if(stateLogout) navigation.navigate("login")
+  }
 
   return (
     <Container>
@@ -30,7 +36,7 @@ export default function Settings({navigation}){
       </CardSetting.Root>
 
       <CardSetting.Root>
-        <CardSetting.Button onPress={{}}>
+        <CardSetting.Button onPress={longout} >
           <CardSetting.Icon size={30} color={colors.complement.secondary} icon={"exit-outline"}/>
           <CardSetting.Content text={"Longout"} />
         </CardSetting.Button>

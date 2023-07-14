@@ -10,7 +10,7 @@ export function ButtonContent({
     return( <Text style={{
         color: color,
         fontSize: size,
-        fontWeight: "500"
+      fontWeight: "500"
         
     }}>{text}</Text>)
 }
