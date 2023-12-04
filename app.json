@@ -22,6 +22,11 @@
       },
       "package": "com.anonymous.app_native"
     },
-    "web": {}
+    "web": {},
+    "extra": {
+      "eas": {
+        "projectId": "50b54a39-251d-4f33-b46a-d2e0c7a8df2f"
+      }
+    }
   }
 }

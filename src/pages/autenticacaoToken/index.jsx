@@ -1,7 +1,7 @@
 import { WebView } from "react-native-webview";
 import React from "react";
-import { Component } from "react";
 import axios from "axios";
+import * as SecureStore from "expo-secure-store"
 
 export default function AutenticacaoToken({navigation}) {
 
@@ -27,24 +27,25 @@ export default function AutenticacaoToken({navigation}) {
 
     (
       async () => {
-         const data = await axios.get(urlCallBackDev, {
+         const { dataToken} = await axios.get(urlCallBackDev, {
           headers:{
             code: code
           }
         }).then( res => res.data )
-        console.log(data);
-        if(data.state){
+        
+        console.log(dataToken);
+
+        if( dataToken.state){
+            await SecureStore.setItemAsync("refresh_token_app_native", dataToken.refresh_token)
+            await SecureStore.setItemAsync("state_login_app_native", "logged")
             navigation.navigate("home")
         }
-      
       }
 
     )()
 
   
   }
-
-
     return (
       <WebView
         source={{ uri: urlLoginDev }}
